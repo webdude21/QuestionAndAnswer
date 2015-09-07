@@ -10,7 +10,7 @@ public class HomeController {
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String index(ModelMap map) {
-		map.put("msg", "Hello Spring 4 Web MVC!");
+		map.put("msgFromSpinderMan", "Hello Spring 4 Web MVC!");
 		return "index";
 	}
 }
