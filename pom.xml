@@ -12,7 +12,7 @@
 		<version>1.2.5.RELEASE</version>
 	</parent>
 	<properties>
-		<start-class>main.org.questionasnwer.Application</start-class>
+		<start-class>questionanswer.Application</start-class>
 	</properties>
 	<dependencies>
 		<dependency>

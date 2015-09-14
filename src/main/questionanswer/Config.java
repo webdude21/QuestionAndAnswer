@@ -1,4 +1,4 @@
-package main.org.questionasnwer;
+package questionanswer;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -12,7 +12,7 @@ import org.springframework.web.servlet.view.JstlView;
 import org.springframework.web.servlet.view.UrlBasedViewResolver;
 
 @Configuration
-@ComponentScan("main.org.questionasnwer")
+@ComponentScan("questionasnwer")
 @EnableWebMvc
 public class Config extends WebMvcConfigurerAdapter {
 	@Bean

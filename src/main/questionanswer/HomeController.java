@@ -1,4 +1,4 @@
-package main.org.questionasnwer;
+package questionanswer;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
