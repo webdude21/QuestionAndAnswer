@@ -2,19 +2,24 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.questionanswer</groupId>
-	<artifactId>org.questionasnwer</artifactId>
+	<artifactId>org.questionanswer</artifactId>
 	<version>1.0.2-SNAPSHOT</version>
 	<name>Question and Answer</name>
 	<description>Question and Answer</description>
+	
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>1.2.5.RELEASE</version>
 	</parent>
+	
 	<properties>
 		<start-class>questionanswer.Application</start-class>
+        <java.version>1.8</java.version>
 	</properties>
+	
 	<dependencies>
+	
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>

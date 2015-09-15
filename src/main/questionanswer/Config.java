@@ -12,9 +12,10 @@ import org.springframework.web.servlet.view.JstlView;
 import org.springframework.web.servlet.view.UrlBasedViewResolver;
 
 @Configuration
-@ComponentScan("questionasnwer")
+@ComponentScan("questionanswer")
 @EnableWebMvc
 public class Config extends WebMvcConfigurerAdapter {
+	
 	@Bean
 	public UrlBasedViewResolver setupViewResolver() {
 		UrlBasedViewResolver resolver = new UrlBasedViewResolver();
