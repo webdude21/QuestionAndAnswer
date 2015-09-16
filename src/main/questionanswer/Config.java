@@ -15,7 +15,7 @@ import org.springframework.web.servlet.view.UrlBasedViewResolver;
 @ComponentScan("questionanswer")
 @EnableWebMvc
 public class Config extends WebMvcConfigurerAdapter {
-	
+
 	@Bean
 	public UrlBasedViewResolver setupViewResolver() {
 		UrlBasedViewResolver resolver = new UrlBasedViewResolver();
@@ -24,15 +24,10 @@ public class Config extends WebMvcConfigurerAdapter {
 		resolver.setViewClass(JstlView.class);
 		return resolver;
 	}
-	
+
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
-	    registry
-	      .addResourceHandler("/resources/**")
-	      .addResourceLocations("/resources/")
-	      .setCachePeriod(3600)
-	      .resourceChain(true)
-	      .addResolver(new GzipResourceResolver())
-	      .addResolver(new PathResourceResolver());
+		registry.addResourceHandler("/resources/**").addResourceLocations("/resources/").setCachePeriod(3600)
+				.resourceChain(true).addResolver(new GzipResourceResolver()).addResolver(new PathResourceResolver());
 	}
 }
