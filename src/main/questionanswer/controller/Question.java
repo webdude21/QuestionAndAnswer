@@ -25,7 +25,7 @@ public class Question {
 
 	    map.put("beginIndex", begin);
 	    map.put("endIndex", end);
-	    map.put("questionsList", page);
+	    map.put("questionsList", page.getContent());
 	    map.put("currentIndex", current);
 			
 		return "Question/index";
