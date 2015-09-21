@@ -29,5 +29,4 @@ public class Question {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	
 }

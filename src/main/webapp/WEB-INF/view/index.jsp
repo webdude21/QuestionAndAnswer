@@ -8,6 +8,11 @@
 <title>Question and Answer</title>
 </head>
 <body>
-	<h1>${msgFromSpinderMan}</h1>
+	<h1>Questions</h1>
+	<ol>
+		<c:forEach items="${questionsList}" var="question">
+			<li>${question.getTitle()}</li>
+		</c:forEach>
+	</ol>
 </body>
 </html>
