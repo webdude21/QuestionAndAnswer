@@ -1,1 +1,1 @@
-<div>The Footer</div>
+<footer><hr><p class="text-center"><span><a href="http://webdude.eu/">Created by webdude</a></span></p></footer>

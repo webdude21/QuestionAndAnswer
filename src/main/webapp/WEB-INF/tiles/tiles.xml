@@ -5,14 +5,16 @@
 
 	<definition name="layout.basic" template="/WEB-INF/tiles/layout/basic.jsp">
 		<put-attribute name="title" value="Question and Answer" />
+		<put-attribute name="head" value="/WEB-INF/tiles/view/head.jsp" />
 		<put-attribute name="header" value="/WEB-INF/tiles/view/header.jsp" />
 		<put-attribute name="body" value="" />
-		<put-attribute name="footer" value="/WEB-INF/tiles/view//footer.jsp" />
+		<put-attribute name="footer" value="/WEB-INF/tiles/view/footer.jsp" />
+		<put-attribute name="body-scripts" value="/WEB-INF/tiles/view/body-scripts.jsp" />
 	</definition>
 
 	<!-- Pages -->
 
 	<definition name="site.homepage" extends="layout.basic">
-		<put-attribute name="body" value="/WEB-INF/tiles/view/home/home.jsp" />
+		<put-attribute name="body" value="/WEB-INF/tiles/view/site/home.jsp" />
 	</definition>
 </tiles-definitions>

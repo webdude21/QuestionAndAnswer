@@ -5,10 +5,12 @@
 <html>
 <head>
 <title><tiles:getAsString name="title" /></title>
+<tiles:insertAttribute name="head" />
 </head>
 <body>
 	<tiles:insertAttribute name="header" />
 	<tiles:insertAttribute name="body" />
 	<tiles:insertAttribute name="footer" />
+	<tiles:insertAttribute name="body-scripts" />
 </body>
 </html>
