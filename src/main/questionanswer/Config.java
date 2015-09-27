@@ -8,8 +8,9 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.resource.GzipResourceResolver;
 import org.springframework.web.servlet.resource.PathResourceResolver;
-import org.springframework.web.servlet.view.JstlView;
-import org.springframework.web.servlet.view.UrlBasedViewResolver;
+import org.springframework.web.servlet.view.tiles3.TilesConfigurer;
+import org.springframework.web.servlet.view.tiles3.TilesView;
+import org.springframework.web.servlet.view.tiles3.TilesViewResolver;
 
 @Configuration
 @ComponentScan("questionanswer")
@@ -17,11 +18,17 @@ import org.springframework.web.servlet.view.UrlBasedViewResolver;
 public class Config extends WebMvcConfigurerAdapter {
 
 	@Bean
-	public UrlBasedViewResolver setupViewResolver() {
-		UrlBasedViewResolver resolver = new UrlBasedViewResolver();
-		resolver.setPrefix("/WEB-INF/view/");
-		resolver.setSuffix(".jsp");
-		resolver.setViewClass(JstlView.class);
+	public TilesConfigurer tilesConfigurer() {
+		final TilesConfigurer config = new TilesConfigurer();
+		config.setDefinitions(new String[] { "/WEB-INF/tiles/tiles.xml" });
+		config.setCheckRefresh(true);
+		return config;
+	}
+
+	@Bean
+	public TilesViewResolver tilesViewResolver() {
+		final TilesViewResolver resolver = new TilesViewResolver();
+		resolver.setViewClass(TilesView.class);
 		return resolver;
 	}
 

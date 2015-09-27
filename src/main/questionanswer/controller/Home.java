@@ -2,9 +2,9 @@ package questionanswer.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import questionanswer.data.QuestionRepository;
 
@@ -15,8 +15,7 @@ public class Home {
 	private QuestionRepository questionRepository;
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String index(ModelMap map) {
-		map.put("questionsList", questionRepository.findAll());
-		return "index";
+	public ModelAndView home() {
+		return new ModelAndView("site.homepage", "questionsList", questionRepository.findAll());
 	}
 }
