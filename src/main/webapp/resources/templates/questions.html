@@ -1,7 +1,20 @@
 <div class="content" ng-controller="QuestionsController">
-	<ul ng-repeat="question in questions" class="list-group">
-		<li class="list-group-item">
-			{{question.title}}
-		</li>
+	<div class="row">
+		<div class="col-md-2">
+			<p class="text-center">Sort by:</p>
+			<select ng-model="request.sort" ng-change="query(request)" class="form-control">
+				<option value="title">Title</option>
+				<option value="content">Author</option>
+			</select>
+		</div>
+		<div class="col-md-2">
+			<p class="text-center">Page:</p>
+			<input type="number" ng-model="request.page" ng-change="query(request)" class="form-control" />
+		</div>
+	</div>
+	<hr />
+	<ul ng-repeat="question in viewModel._embedded.questions" class="list-group">
+		<li class="list-group-item">{{question.title}}</li>
 	</ul>
+	<span>{{viewModel.page.number}}</span>
 </div>

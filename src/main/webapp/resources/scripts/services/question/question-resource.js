@@ -14,6 +14,9 @@ questionAndAnswer.factory('QuestionResource', function QuestionResource($resourc
         },
         getAll: {
             method: 'GET',
-        }
-    });
+        },
+         query: {
+	        method: 'GET', isArray: false
+	    }
+	});
 });

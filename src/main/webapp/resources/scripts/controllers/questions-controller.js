@@ -1,10 +1,19 @@
-questionAndAnswer.controller('QuestionsController',
-    function QuestionsController($scope, $routeParams, QuestionResource) {
+questionAndAnswer.controller('QuestionsController', function QuestionsController ($scope,
+        QuestionResource){
+	
+	$scope.request = {
+	    sort: 'title', page: 0, size: 5,
+	};
 
-        var promiseResolver = function (questions) {
-            $scope.questions = questions._embedded.questions
-        };
+	$scope.query = function (queryObject){
+        if (queryObject.page < 0){
+            queryObject.page = 0;
+            return;
+        }
+		$scope.viewModel = QuestionResource.query($scope.request);
+		console.log($scope.viewModel)
+		
+	};
 
-        QuestionResource.getAll().$promise.then(promiseResolver);
-
-    });
+	$scope.query($scope.request);
+});
