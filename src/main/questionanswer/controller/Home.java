@@ -9,6 +9,6 @@ public class Home {
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home() {
-		return "resources/templates/index.html";
+		return "resources/index.html";
 	}
 }
