@@ -11,8 +11,6 @@ questionAndAnswer.controller('QuestionsController', function QuestionsController
             return;
         }
 		$scope.viewModel = QuestionResource.query($scope.request);
-		console.log($scope.viewModel)
-		
 	};
 
 	$scope.query($scope.request);

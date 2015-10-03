@@ -1,5 +1,5 @@
 var questionAndAnswer = angular.module('QuestionAndAnswer',
-    ['ngResource', 'ngRoute', 'ngCookies', 'ngSanitize'])
+    ['ngResource', 'ngRoute', 'ngCookies', 'ngSanitize', 'ngAnimate'])
     .config(function ($routeProvider, $locationProvider) {
         var TEMPLATE_HOME = 'resources/templates/';
         $locationProvider.html5Mode(true);

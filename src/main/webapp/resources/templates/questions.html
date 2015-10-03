@@ -13,8 +13,7 @@
 		</div>
 	</div>
 	<hr />
-	<ul ng-repeat="question in viewModel._embedded.questions" class="list-group">
+	<ul class="animate-repeat" ng-repeat="question in viewModel._embedded.questions" class="list-group">
 		<li class="list-group-item">{{question.title}}</li>
 	</ul>
-	<span>{{viewModel.page.number}}</span>
 </div>
