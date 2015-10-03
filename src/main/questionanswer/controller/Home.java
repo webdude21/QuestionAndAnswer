@@ -2,13 +2,12 @@ package questionanswer.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class Home {
 
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+	@RequestMapping({ "/", "/questions" })
 	public String home() {
-		return "resources/index.html";
+		return "forward:/resources/index.html";
 	}
 }
