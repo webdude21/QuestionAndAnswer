@@ -1,11 +1,12 @@
-var questionAndAnswer = angular.module('QuestionAndAnswer', ['ngResource', 'ngRoute', 'ngCookies', 'ngSanitize'])
-    .config(function($routeProvider, $locationProvider) {
-    	var TEMPLATE_HOME = 'resources/templates/';	
-    	$locationProvider.html5Mode(true);	
+var questionAndAnswer = angular.module('QuestionAndAnswer',
+    ['ngResource', 'ngRoute', 'ngCookies', 'ngSanitize'])
+    .config(function ($routeProvider, $locationProvider) {
+        var TEMPLATE_HOME = 'resources/templates/';
+        $locationProvider.html5Mode(true);
         $routeProvider
-		    .when('/questions', {
-		        templateUrl: TEMPLATE_HOME + 'questions.html'
-		    })
+            .when('/questions', {
+                templateUrl: TEMPLATE_HOME + 'questions.html'
+            })
             .when('/', {
                 templateUrl: TEMPLATE_HOME + 'home.html'
             })
