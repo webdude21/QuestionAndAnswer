@@ -7,13 +7,26 @@
 				<option value="content">Author</option>
 			</select>
 		</div>
+			<div class="col-md-2">
+			<p class="text-center">Sort direction:</p>
+			<select ng-model="request.sortDirection" ng-change="query(request)" class="form-control">
+				<option value="asc">Ascending</option>
+				<option value="desc">Descending</option>
+			</select>
+		</div>
 		<div class="col-md-2">
 			<p class="text-center">Page:</p>
 			<input type="number" ng-model="request.page" ng-change="query(request)" class="form-control" />
 		</div>
+		<div class="col-md-2">
+			<p class="text-center">Page size:</p>
+			<input type="number" ng-model="request.size" ng-change="query(request)" class="form-control" />
+		</div>
 	</div>
 	<hr />
-	<ul class="animate-repeat" ng-repeat="question in viewModel._embedded.questions" class="list-group">
-		<li class="list-group-item">{{question.title}}</li>
-	</ul>
+	<div class="row">
+		<ul ng-repeat="question in viewModel._embedded.questions" class="list-group">
+			<li class="list-group-item"><span>{{question.title}}</span><span> - {{question.content}}</span></li>
+		</ul>
+	</div>
 </div>

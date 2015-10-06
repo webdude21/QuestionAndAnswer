@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Question and answer</title>
-<link href="http://bootswatch.com/darkly/bootstrap.min.css" rel="stylesheet">
+<link href="http://bootswatch.com/journal/bootstrap.min.css" rel="stylesheet">
 <link href="//ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-animate.min.css"></link>
 <link href="/resources/styles/site.css" rel="stylesheet">
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -13,20 +13,26 @@
 <base href="/">
 </head>
 <body ng-app="QuestionAndAnswer" ng-controller="PageController" ng-cloak>
-	<div class="navbar navbar-default navbar-fixed-top">
+	<header class="nav navbar-default navbar-fixed-top">
 		<div class="container">
 			<div class="navbar-header">
-				<a href="/home" class="navbar-brand">{{appTitle}}</a>
-				<button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
-					<span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+				<a href="/" class="navbar-brand">{{viewModel.appTitle}}</a>
+				<button type="button" data-toggle="collapse" data-target=".navbar-collapse" class="navbar-toggle">
+					<span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span
+						class="icon-bar"></span>
 				</button>
 			</div>
-			<div class="navbar-collapse collapse pull-right" id="navbar-main">
-				<ul class="nav navbar-nav">
+			<div class="navbar-collapse collapse in">
+				<ul class="nav navbar-nav navbar-left">
+					<li class="dropdown"><a href="" data-toggle="dropdown" class="dropdown-toggle">Questions<span
+							class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="/questions">List</a></li>
+						</ul>
 				</ul>
 			</div>
 		</div>
-	</div>
+	</header>
 	<div ng-view class="content" ng-cloak></div>
 	<!--  Libraries  -->
 	<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
@@ -38,6 +44,7 @@
 	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-animate.min.js"></script>
 	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-cookies.min.js"></script>
 	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-animate.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.13.4/ui-bootstrap-tpls.min.js"></script>
 	<!--  Angular application  -->
 	<script src="/resources/scripts/app.js"></script>
 	<!--  Services  -->

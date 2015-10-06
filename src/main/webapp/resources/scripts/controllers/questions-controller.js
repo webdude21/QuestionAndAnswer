@@ -2,7 +2,7 @@ questionAndAnswer.controller('QuestionsController', function QuestionsController
         QuestionResource){
 	
 	$scope.request = {
-	    sort: 'title', page: 0, size: 5,
+	    sort: 'title', page: 0, size: 5, sortDirection: "asc"
 	};
 
 	$scope.query = function (queryObject){
