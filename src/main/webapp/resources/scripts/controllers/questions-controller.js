@@ -1,6 +1,5 @@
-questionAndAnswer.controller('QuestionsController', function QuestionsController ($scope,
-        QuestionResource){
-
+questionAndAnswer.controller('QuestionsController', function QuestionsController ($scope, QuestionResource){
+	
 	// initial values for the request
 	$scope.request = {
 	    sort: 'title', page: 1, size: 5, sortDirection: 'asc'
@@ -9,6 +8,11 @@ questionAndAnswer.controller('QuestionsController', function QuestionsController
 	$scope.query = function (req){
 		if (req.page < 1) {
 			req.page = 1;
+			return;
+		}
+		
+		if (req.size < 1){
+			req.size = 1;
 			return;
 		}
 
