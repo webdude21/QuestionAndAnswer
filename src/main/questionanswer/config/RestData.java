@@ -1,4 +1,4 @@
-package questionanswer;
+package questionanswer.config;
 
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -16,7 +16,7 @@ import questionanswer.service.SeederService;
 
 @Configuration
 @Import(RepositoryRestMvcConfiguration.class)
-public class RestDataConfig extends RepositoryRestMvcConfiguration {
+public class RestData extends RepositoryRestMvcConfiguration {
 
 	private static final int CACHE_TIME = 60 * 60 * 24; // 24 hours
 	
