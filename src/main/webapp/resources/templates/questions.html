@@ -1,24 +1,24 @@
-<div class="content" ng-controller="QuestionsController">
+<div ng-controller="QuestionsController">
 	<div class="row">
-		<div class="col-md-2">
+		<div class="col-md-3">
 			<p class="text-center">Sort by:</p>
 			<select ng-model="request.sort" ng-change="query(request)" class="form-control">
 				<option value="title">Title</option>
 				<option value="content">Content</option>
 			</select>
 		</div>
-			<div class="col-md-2">
+		<div class="col-md-3">
 			<p class="text-center">Sort direction:</p>
 			<select ng-model="request.sortDirection" ng-change="query(request)" class="form-control">
 				<option value="asc">Ascending</option>
 				<option value="desc">Descending</option>
 			</select>
 		</div>
-		<div class="col-md-2">
+		<div class="col-md-3">
 			<p class="text-center">Page:</p>
 			<input type="number" ng-model="request.page" ng-change="query(request)" class="form-control" />
 		</div>
-		<div class="col-md-2">
+		<div class="col-md-3">
 			<p class="text-center">Page size:</p>
 			<input type="number" ng-model="request.size" ng-change="query(request)" class="form-control" />
 		</div>
@@ -26,7 +26,10 @@
 	<hr />
 	<div class="row">
 		<ul ng-repeat="question in viewModel._embedded.questions" class="list-group">
-			<li class="list-group-item"><span>{{question.title}}</span><span> - {{question.content}}</span></li>
+			<li class="list-group-item">
+				<div class="wrap">Title: {{question.title}}</div>
+				<div class="wrap">Content: {{question.content}}</div>
+			</li>
 		</ul>
 	</div>
 </div>

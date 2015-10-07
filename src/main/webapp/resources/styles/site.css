@@ -2,6 +2,10 @@
 	margin-top: 8rem;
 }
 
+.wrap {
+	word-wrap: break-word;
+}
+
 body .animate-repeat {
 	line-height: 40px;
 	list-style: none;
