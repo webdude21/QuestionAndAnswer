@@ -7,24 +7,26 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
-import static questionanswer.GlobalConstants.*;
+import questionanswer.data.QuestionRepository;
 
 @Configuration
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class Security extends WebSecurityConfigurerAdapter {
 
-	private static final String QUESTIONS_ROUTE = API_BASE_ROUTE + "/questions/**"; 
+	private static final String QUESTIONS_ROUTE = Routes.API_BASE_ROUTE + QuestionRepository.ROUTE + "/**"; 
 	
 	@Override
 	public void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.inMemoryAuthentication().withUser("webdude").password("webdude").roles("USER", ADMIN);
+		auth.inMemoryAuthentication().withUser("webdude").password("webdude").roles(Roles.USER, Roles.ADMIN);
 	}
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.httpBasic().and().authorizeRequests().antMatchers(HttpMethod.POST, QUESTIONS_ROUTE).hasRole(ADMIN)
-				.antMatchers(HttpMethod.GET, QUESTIONS_ROUTE).hasRole(ADMIN)
-				.antMatchers(HttpMethod.PUT, QUESTIONS_ROUTE).hasRole(ADMIN)
-				.antMatchers(HttpMethod.PATCH, QUESTIONS_ROUTE).hasRole(ADMIN).and().csrf().disable();
+		http.httpBasic().and()
+				.authorizeRequests()
+				.antMatchers(HttpMethod.POST, QUESTIONS_ROUTE).hasRole(Roles.ADMIN)
+				.antMatchers(HttpMethod.GET, QUESTIONS_ROUTE).hasRole(Roles.ADMIN)
+				.antMatchers(HttpMethod.PUT, QUESTIONS_ROUTE).hasRole(Roles.ADMIN)
+				.antMatchers(HttpMethod.PATCH, QUESTIONS_ROUTE).hasRole(Roles.ADMIN).and().csrf().disable();
 	}
 }

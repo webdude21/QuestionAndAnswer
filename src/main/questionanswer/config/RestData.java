@@ -12,8 +12,8 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.resource.GzipResourceResolver;
 import org.springframework.web.servlet.resource.PathResourceResolver;
 
-import static questionanswer.GlobalConstants.*;
 import questionanswer.service.SeederService;
+
 @Configuration
 @Import(RepositoryRestMvcConfiguration.class)
 public class RestData extends RepositoryRestMvcConfiguration {
@@ -27,7 +27,7 @@ public class RestData extends RepositoryRestMvcConfiguration {
 	protected void configureRepositoryRestConfiguration(RepositoryRestConfiguration config) {
 		super.configureRepositoryRestConfiguration(config);
 		try {
-			config.setBaseUri(new URI(API_BASE_ROUTE));
+			config.setBaseUri(new URI(Routes.API_BASE_ROUTE));
 		} catch (URISyntaxException e) {
 			e.printStackTrace();
 		}
