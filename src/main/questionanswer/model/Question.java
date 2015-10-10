@@ -7,11 +7,13 @@ import javax.persistence.Id;
 
 @Entity
 public class Question {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	
 	private String title;
+	
 	private String content;
 
 	public String getTitle() {

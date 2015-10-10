@@ -10,7 +10,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import questionanswer.data.QuestionRepository;
 
 @Configuration
-@EnableGlobalMethodSecurity(prePostEnabled = true)
+@EnableGlobalMethodSecurity
 public class Security extends WebSecurityConfigurerAdapter {
 
 	private static final String QUESTIONS_ROUTE = Routes.API_BASE_ROUTE + QuestionRepository.ROUTE + "/**"; 
