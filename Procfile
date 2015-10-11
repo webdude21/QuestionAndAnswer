@@ -1,1 +1,1 @@
-web: java -jar target/*.jar --spring.profiles.active=production
+web: java $JAVA_OPTS -Dserver.port=$PORT -jar target/*.jar --spring.profiles.active=production
