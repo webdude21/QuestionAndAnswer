@@ -7,6 +7,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class QuestionAnswerApplication {
 
     public static void main(String[] args) {
+        String webPort = System.getenv("PORT");
+        if (webPort == null || webPort.isEmpty()) {
+            webPort = "8080";
+        }
+    	
         SpringApplication.run(QuestionAnswerApplication.class, args);
     }
 }
