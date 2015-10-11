@@ -1,1 +1,1 @@
-web: java -Dserver.port=$PORT -Ddatabase.url=$CLEARDB_DATABASE_URL $JAVA_OPTS -jar target/*.jar --spring.profiles.active=production
+web: java -Dserver.port=$PORT -Ddatabase.url=$JDBC_DATABASE_URL $JAVA_OPTS -jar target/*.jar --spring.profiles.active=production
