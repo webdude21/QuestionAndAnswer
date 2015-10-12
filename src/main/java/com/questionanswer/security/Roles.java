@@ -1,4 +1,4 @@
-package com.questionanswer.config;
+package com.questionanswer.security;
 
 public class Roles {
 	

@@ -25,9 +25,10 @@ public class User {
 	@NotEmpty(message = "Email is required.")
 	@Column(unique = true, nullable = false)
 	private String email;
-
+	
 	@NotEmpty(message = "Password is required.")
 	private String password;
+	
 
 	public User() {
 	}
