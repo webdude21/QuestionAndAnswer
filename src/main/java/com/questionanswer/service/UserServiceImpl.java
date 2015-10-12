@@ -17,14 +17,19 @@ public class UserServiceImpl implements UserDetailsService {
 	@Autowired
 	private UserRepository userRepository;
 
+	@Autowired
+	public UserServiceImpl(UserRepository userRepository) {
+		this.userRepository = userRepository;
+	}
+
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		List<User> users = userRepository.findByEmail(username);
-
+	
 		if (users.isEmpty()) {
 			throw new UsernameNotFoundException(username);
 		}
-
+		
 		return new UserDetailsImpl(users.get(0));
 	}
 }
