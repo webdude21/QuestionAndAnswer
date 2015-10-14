@@ -1,4 +1,4 @@
-package sample.security;
+package com.questionanswer.security;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;

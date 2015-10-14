@@ -40,7 +40,7 @@ public class RestData extends RepositoryRestMvcConfiguration {
 
 	@Override
 	public RepositoryRestConfiguration config() {
-		seeder.seed();
+		seeder.seedQuestions();
 		return super.config();
 	}
 }
