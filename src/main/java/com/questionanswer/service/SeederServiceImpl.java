@@ -7,10 +7,12 @@ import com.questionanswer.data.QuestionRepository;
 import com.questionanswer.data.RoleRepository;
 import com.questionanswer.data.UserRepository;
 import com.questionanswer.model.Question;
+import com.questionanswer.model.Role;
 import com.questionanswer.model.User;
 
 import org.apache.commons.lang3.RandomStringUtils;
 import java.util.ArrayList;
+import java.util.Set;
 
 @Service
 public class SeederServiceImpl implements SeederService {
@@ -22,11 +24,9 @@ public class SeederServiceImpl implements SeederService {
 	private UserRepository userRepo;
 	
 	@Autowired
-	private RoleRepository roleRepository;
+	private RoleRepository roleRepo;
 
-	private final int entitiesToGenerate = 4000;
-
-	public void seedQuestions() {
+	public void seedQuestions(int entitiesToGenerate) {
 		if (this.questionRepo.count() != 0) {
 			return;
 		}
@@ -47,22 +47,26 @@ public class SeederServiceImpl implements SeederService {
 		return question;
 	}
 
-	@Override
-	public void seedRoles() {
-	// TODO write implementation
+	public void seedRoles(Iterable<String> roles) {
+		if (this.roleRepo.count() != 0){
+			return;
+		}
+		
+		roles.forEach(role -> roleRepo.save(new Role(role)));
 	}
 
-	@Override
 	public void seedUsers() {
 		if (this.userRepo.count() != 0) {
 			return;
 		}
 		
 		User user = new User();
+		Set<Role> roles = user.getRoles();
 		user.setEmail("webdude@webdude.eu");
 		user.setFirstName("Dimo");
 		user.setLastName("Petrov");
 		user.setPassword("webdude");
+		roleRepo.findAll().forEach(role -> roles.add(role));
 		userRepo.save(user);		
 	}
 }

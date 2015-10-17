@@ -1,19 +1,27 @@
 package com.questionanswer.model;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 public class User {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
+	
+	@ManyToMany(mappedBy = "users")
+	private Set<Role> roles = new HashSet<>();
 
 	@NotEmpty(message = "First name is required.")
 	private String firstName;
@@ -25,10 +33,9 @@ public class User {
 	@NotEmpty(message = "Email is required.")
 	@Column(unique = true, nullable = false)
 	private String email;
-	
+
 	@NotEmpty(message = "Password is required.")
 	private String password;
-	
 
 	public User() {
 	}
@@ -80,4 +87,13 @@ public class User {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
+	public Set<Role> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(Set<Role> roles) {
+		this.roles = roles;
+	}
+
 }

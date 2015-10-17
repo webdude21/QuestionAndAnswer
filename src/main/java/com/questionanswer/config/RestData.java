@@ -10,6 +10,8 @@ import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
 import org.springframework.data.rest.webmvc.config.RepositoryRestMvcConfiguration;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.resource.GzipResourceResolver;
+
+import com.questionanswer.security.Roles;
 import com.questionanswer.service.SeederService;
 
 @Configuration
@@ -40,7 +42,9 @@ public class RestData extends RepositoryRestMvcConfiguration {
 
 	@Override
 	public RepositoryRestConfiguration config() {
-		seeder.seedQuestions();
+		seeder.seedQuestions(4000);
+		seeder.seedRoles(Roles.getRoles());
+		seeder.seedUsers();
 		return super.config();
 	}
 }
