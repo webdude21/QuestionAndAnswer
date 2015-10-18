@@ -67,6 +67,10 @@ public class SeederServiceImpl implements SeederService {
 		user.setLastName("Petrov");
 		user.setPassword("webdude");
 		roleRepo.findAll().forEach(role -> roles.add(role));
-		userRepo.save(user);		
+		User dbUser = userRepo.save(user);
+		dbUser.getRoles().forEach(role -> {
+			role.getUsers().add(dbUser);
+			roleRepo.save(role);
+		});
 	}
 }
