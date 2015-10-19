@@ -1,5 +1,8 @@
 package com.questionanswer.service;
 
+import java.util.ArrayList;
+
+import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,10 +12,6 @@ import com.questionanswer.data.UserRepository;
 import com.questionanswer.model.Question;
 import com.questionanswer.model.Role;
 import com.questionanswer.model.User;
-
-import org.apache.commons.lang3.RandomStringUtils;
-import java.util.ArrayList;
-import java.util.Set;
 
 @Service
 public class SeederServiceImpl implements SeederService {
@@ -61,16 +60,13 @@ public class SeederServiceImpl implements SeederService {
 		}
 		
 		User user = new User();
-		Set<Role> roles = user.getRoles();
+		Iterable<Role> rolesToAddToTheUser = roleRepo.findAll();
 		user.setEmail("webdude@webdude.eu");
 		user.setFirstName("Dimo");
 		user.setLastName("Petrov");
 		user.setPassword("webdude");
-		roleRepo.findAll().forEach(role -> roles.add(role));
 		User dbUser = userRepo.save(user);
-		dbUser.getRoles().forEach(role -> {
-			role.getUsers().add(dbUser);
-			roleRepo.save(role);
-		});
+		rolesToAddToTheUser.forEach(role -> role.getUsers().add(dbUser));
+		roleRepo.save(rolesToAddToTheUser);
 	}
 }
