@@ -12,9 +12,12 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
 import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.security.core.GrantedAuthority;
 
 @Entity
-public class Role {
+public class Role implements GrantedAuthority {
+
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -48,5 +51,10 @@ public class Role {
 
 	public void setUsers(Set<User> users) {
 		this.users = users;
+	}
+
+	@Override
+	public String getAuthority() {
+		return this.role;
 	}
 }

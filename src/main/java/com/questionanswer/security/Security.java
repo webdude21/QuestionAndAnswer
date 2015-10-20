@@ -21,8 +21,9 @@ public class Security extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private UserDetailsService userDetailsService;
 
-	public void registerAuthentication(AuthenticationManagerBuilder auth) throws Exception {
-	        auth.userDetailsService(userDetailsService);
+	@Autowired
+	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+		auth.userDetailsService(userDetailsService);
 	}
 
 	@Override
@@ -30,6 +31,6 @@ public class Security extends WebSecurityConfigurerAdapter {
 		http.httpBasic().and().authorizeRequests().antMatchers(HttpMethod.POST, QUESTIONS_ROUTE).hasRole(Roles.ADMIN)
 				.antMatchers(HttpMethod.GET, QUESTIONS_ROUTE).hasRole(Roles.ADMIN)
 				.antMatchers(HttpMethod.PUT, QUESTIONS_ROUTE).hasRole(Roles.ADMIN)
-				.antMatchers(HttpMethod.PATCH, QUESTIONS_ROUTE).hasRole(Roles.ADMIN);
+				.antMatchers(HttpMethod.PATCH, QUESTIONS_ROUTE).hasRole(Roles.ADMIN).and().csrf().disable();
 	}
 }

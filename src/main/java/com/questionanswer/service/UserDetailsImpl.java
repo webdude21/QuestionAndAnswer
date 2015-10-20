@@ -2,22 +2,24 @@ package com.questionanswer.service;
 
 import java.util.Collection;
 
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import com.questionanswer.model.Role;
 import com.questionanswer.model.User;
 
 public class UserDetailsImpl extends User implements UserDetails {
 	private static final long serialVersionUID = 1L;
+	
+	private User user;
 
 	UserDetailsImpl(User user){
 		super(user);
+		this.user  = user;
 	}
 	
 	@Override
-	public Collection<? extends GrantedAuthority> getAuthorities() {
-		// TODO Auto-generated method stub
-		return null;
+	public Collection<Role> getAuthorities() {
+		return this.user.getRoles();
 	}
 
 	@Override
@@ -53,5 +55,4 @@ public class UserDetailsImpl extends User implements UserDetails {
 		// TODO Auto-generated method stub
 		return true;
 	}
-
 }
