@@ -13,7 +13,7 @@ import com.questionanswer.config.Routes;
 import com.questionanswer.data.QuestionRepository;
 
 @Configuration
-@EnableGlobalMethodSecurity
+@EnableGlobalMethodSecurity()
 public class Security extends WebSecurityConfigurerAdapter {
 
 	private static final String QUESTIONS_ROUTE = "/" + Routes.API_BASE_ROUTE + QuestionRepository.ROUTE + "/**";
@@ -21,16 +21,16 @@ public class Security extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private UserDetailsService userDetailsService;
 
-	@Autowired
-	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+	@Override
+	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth.userDetailsService(userDetailsService);
 	}
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.httpBasic().and().authorizeRequests().antMatchers(HttpMethod.POST, QUESTIONS_ROUTE).hasRole(Roles.ADMIN)
-				.antMatchers(HttpMethod.GET, QUESTIONS_ROUTE).hasRole(Roles.ADMIN)
-				.antMatchers(HttpMethod.PUT, QUESTIONS_ROUTE).hasRole(Roles.ADMIN)
-				.antMatchers(HttpMethod.PATCH, QUESTIONS_ROUTE).hasRole(Roles.ADMIN).and().csrf().disable();
+				.antMatchers(HttpMethod.GET, QUESTIONS_ROUTE).hasAuthority(Roles.ADMIN)
+				.antMatchers(HttpMethod.PUT, QUESTIONS_ROUTE).hasAuthority(Roles.ADMIN)
+				.antMatchers(HttpMethod.PATCH, QUESTIONS_ROUTE).hasAuthority(Roles.ADMIN).and().csrf().disable();
 	}
 }

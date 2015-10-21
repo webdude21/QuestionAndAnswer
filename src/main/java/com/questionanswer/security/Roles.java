@@ -13,4 +13,8 @@ public class Roles {
 	public static Iterable<String> getRoles() {
 		return Arrays.asList(USER, ADMIN, MODERATOR);
 	}
+
+	public static String[] getRolesAsArray() {
+		return new String[] { USER, ADMIN, MODERATOR };
+	}
 }
