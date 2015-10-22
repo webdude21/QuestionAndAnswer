@@ -5,6 +5,7 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -20,7 +21,7 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
-	@ManyToMany(mappedBy = "users")
+	@ManyToMany(mappedBy = "users", fetch = FetchType.EAGER)
 	private Set<Role> roles = new HashSet<>();
 
 	@NotEmpty(message = "First name is required.")
@@ -53,6 +54,7 @@ public class User {
 		this.lastName = user.lastName;
 		this.email = user.email;
 		this.password = user.password;
+		this.roles = user.roles;
 	}
 
 	public String getPassword() {

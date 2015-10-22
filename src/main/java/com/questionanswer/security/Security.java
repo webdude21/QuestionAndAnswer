@@ -23,14 +23,14 @@ public class Security extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.userDetailsService(userDetailsService);
+		auth.userDetailsService(this.userDetailsService);
 	}
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.httpBasic().and().authorizeRequests().antMatchers(HttpMethod.POST, QUESTIONS_ROUTE).hasRole(Roles.ADMIN)
-				.antMatchers(HttpMethod.GET, QUESTIONS_ROUTE).hasAuthority(Roles.ADMIN)
-				.antMatchers(HttpMethod.PUT, QUESTIONS_ROUTE).hasAuthority(Roles.ADMIN)
-				.antMatchers(HttpMethod.PATCH, QUESTIONS_ROUTE).hasAuthority(Roles.ADMIN).and().csrf().disable();
+		http.authorizeRequests()
+				.antMatchers(HttpMethod.GET, QUESTIONS_ROUTE).permitAll()
+				.antMatchers(QUESTIONS_ROUTE).hasAuthority(Roles.ADMIN)
+				.and().httpBasic();
 	}
 }
