@@ -18,10 +18,13 @@ public class SeederServiceImpl implements SeederService {
 
 	@Autowired
 	private QuestionRepository questionRepo;
-	
+
+	@Autowired
+	private UserService userService;
+
 	@Autowired
 	private UserRepository userRepo;
-	
+
 	@Autowired
 	private RoleRepository roleRepo;
 
@@ -47,10 +50,10 @@ public class SeederServiceImpl implements SeederService {
 	}
 
 	public void seedRoles(Iterable<String> roles) {
-		if (this.roleRepo.count() != 0){
+		if (this.roleRepo.count() != 0) {
 			return;
 		}
-		
+
 		roles.forEach(role -> roleRepo.save(new Role(role)));
 	}
 
@@ -58,9 +61,9 @@ public class SeederServiceImpl implements SeederService {
 		if (this.userRepo.count() != 0) {
 			return;
 		}
-		
+
 		Iterable<Role> rolesToAddToTheUser = roleRepo.findAll();
-		User user = userRepo.save(new User("Dimo", "Petrov", "webdude@webdude.eu", "webdude"));
+		User user = userService.save(new User("Dimo", "Petrov", "webdude@webdude.eu", "webdude"));
 		rolesToAddToTheUser.forEach(role -> role.getUsers().add(user));
 		roleRepo.save(rolesToAddToTheUser);
 	}

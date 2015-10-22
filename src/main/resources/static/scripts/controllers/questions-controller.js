@@ -1,8 +1,12 @@
-questionAndAnswer.controller('QuestionsController', function QuestionsController ($scope, QuestionResource){
+questionAndAnswer.controller('QuestionsController', function QuestionsController ($scope, QuestionResource, $http){
 	
 	// initial values for the request
 	$scope.request = {
 	    sort: 'title', page: 1, size: 5, sortDirection: 'asc'
+	};
+	
+	$scope.delete = function (question){
+	    $http.delete(question._links.self.href);
 	};
 
 	$scope.query = function (req){

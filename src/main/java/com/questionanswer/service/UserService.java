@@ -1,7 +1,7 @@
-	package com.questionanswer.service;
+package com.questionanswer.service;
 
 import com.questionanswer.model.User;
 
 public interface UserService {
-	public User getUserByEmail(String email);
+	public User save(User user);
 }
