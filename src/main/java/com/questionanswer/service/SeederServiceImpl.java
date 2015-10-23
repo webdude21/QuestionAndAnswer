@@ -66,5 +66,5 @@ public class SeederServiceImpl implements SeederService {
 		User user = userService.save(new User("Dimo", "Petrov", "webdude@webdude.eu", "webdude"));
 		rolesToAddToTheUser.forEach(role -> role.getUsers().add(user));
 		roleRepo.save(rolesToAddToTheUser);
-	}
+	}	
 }

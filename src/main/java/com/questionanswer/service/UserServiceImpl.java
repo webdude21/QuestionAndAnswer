@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.questionanswer.data.UserRepository;
 import com.questionanswer.model.User;
+import com.questionanswer.model.UserDetailsImpl;
 
 @Service
 public class UserServiceImpl implements UserDetailsService, UserService {

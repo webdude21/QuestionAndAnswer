@@ -1,10 +1,10 @@
 package com.questionanswer.data;
 
+import java.util.List;
+
 import org.springframework.data.repository.CrudRepository;
 
 import com.questionanswer.model.User;
-import java.lang.String;
-import java.util.List;
 
 public interface UserRepository extends CrudRepository<User, Long> {
 
