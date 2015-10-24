@@ -3,6 +3,7 @@ package com.questionanswer.model;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -10,9 +11,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class User {
@@ -23,6 +27,9 @@ public class User {
 
 	@ManyToMany(mappedBy = "users", fetch = FetchType.EAGER)
 	private Set<Role> roles = new HashSet<>();
+
+	@OneToMany(mappedBy = "user", cascade = { CascadeType.ALL })
+	private Set<Question> questions = new HashSet<>();
 
 	@NotEmpty(message = "First name is required.")
 	private String firstName;
@@ -35,6 +42,8 @@ public class User {
 	@Column(unique = true, nullable = false)
 	private String email;
 
+	// Not a good idea to expose the password even to administrators 
+	@JsonIgnore
 	@NotEmpty(message = "Password is required.")
 	private String password;
 
@@ -103,6 +112,14 @@ public class User {
 
 	public void setRoles(Set<Role> roles) {
 		this.roles = roles;
+	}
+
+	public Set<Question> getQuestions() {
+		return questions;
+	}
+
+	public void setQuestions(Set<Question> questions) {
+		this.questions = questions;
 	}
 
 }

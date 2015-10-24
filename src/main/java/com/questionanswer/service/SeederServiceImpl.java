@@ -16,6 +16,8 @@ import com.questionanswer.model.User;
 @Service
 public class SeederServiceImpl implements SeederService {
 
+	private static final String DEFAULT_USER_EMAIL = "webdude@webdude.eu";
+
 	@Autowired
 	private QuestionRepository questionRepo;
 
@@ -32,20 +34,23 @@ public class SeederServiceImpl implements SeederService {
 		if (this.questionRepo.count() != 0) {
 			return;
 		}
-
+		
+		User user = userRepo.findOneByEmail(DEFAULT_USER_EMAIL);
+		
 		ArrayList<Question> questions = new ArrayList<>();
 
 		for (int i = 0; i < entitiesToGenerate; i++) {
-			questions.add(this.generateQuestion());
+			questions.add(this.generateQuestion(user));
 		}
 
 		questionRepo.save(questions);
 	}
 
-	private Question generateQuestion() {
+	private Question generateQuestion(User user) {
 		Question question = new Question();
 		question.setTitle(RandomStringUtils.randomAlphabetic(20));
 		question.setContent(RandomStringUtils.randomAlphabetic(200));
+		question.setUser(user);
 		return question;
 	}
 
@@ -63,7 +68,7 @@ public class SeederServiceImpl implements SeederService {
 		}
 
 		Iterable<Role> rolesToAddToTheUser = roleRepo.findAll();
-		User user = userService.save(new User("Dimo", "Petrov", "webdude@webdude.eu", "webdude"));
+		User user = userService.save(new User("Dimo", "Petrov", DEFAULT_USER_EMAIL, "webdude"));
 		rolesToAddToTheUser.forEach(role -> role.getUsers().add(user));
 		roleRepo.save(rolesToAddToTheUser);
 	}	

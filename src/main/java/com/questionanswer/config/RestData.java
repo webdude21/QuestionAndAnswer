@@ -42,9 +42,9 @@ public class RestData extends RepositoryRestMvcConfiguration {
 
 	@Override
 	public RepositoryRestConfiguration config() {
-		seeder.seedQuestions(4000);
 		seeder.seedRoles(Roles.getRoles());
 		seeder.seedUsers();
+		seeder.seedQuestions(4000);
 		return super.config();
 	}
 }
