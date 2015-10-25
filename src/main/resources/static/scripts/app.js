@@ -1,17 +1,27 @@
 var questionAndAnswer = angular.module('QuestionAndAnswer',
     ['ngResource', 'ngRoute', 'ngCookies', 'ngSanitize', 'ngAnimate'])
-    .config(function ($routeProvider, $locationProvider) {
-        var TEMPLATE_HOME = 'templates/';
+    .config(function ($routeProvider, $locationProvider, $httpProvider) {
+        var getTemplatePath = function (routeName){
+            return 'templates/' + routeName + ".html";
+        };
+        
+        $httpProvider.interceptors.push('errorHandlerHttpInterceptor');
+
         $locationProvider.html5Mode(true);
+        
         $routeProvider
             .when('/questions', {
-                templateUrl: TEMPLATE_HOME + 'questions.html'
+                templateUrl: getTemplatePath('questions')
             })
             .when('/', {
-                templateUrl: TEMPLATE_HOME + 'home.html'
+                templateUrl: getTemplatePath('home')
             })
-            .otherwise({redirectTo: '/'});
+            .when('/login', {
+                templateUrl: getTemplatePath('account/login')
+            })
+            .otherwise({redirectTo: '/'})
     })
+    .value('toastr', toastr)
     .constant('author', 'Webdude')
     .constant('appName', 'Question & Answer')
     .constant('authorLink', 'http://webdude.eu')

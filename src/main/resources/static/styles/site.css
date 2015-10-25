@@ -6,6 +6,10 @@
 	word-wrap: break-word;
 }
 
+#toast-container {
+	top: 10%;
+}
+
 body .animate-repeat {
 	line-height: 40px;
 	list-style: none;

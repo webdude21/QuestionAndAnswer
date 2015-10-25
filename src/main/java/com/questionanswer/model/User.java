@@ -42,7 +42,7 @@ public class User {
 	@Column(unique = true, nullable = false)
 	private String email;
 
-	// Not a good idea to expose the password even to administrators 
+	// Not a good idea to expose the password even to administrators
 	@JsonIgnore
 	@NotEmpty(message = "Password is required.")
 	private String password;

@@ -4,12 +4,10 @@
 <meta charset="UTF-8">
 <title>Question and answer</title>
 <link href="//bootswatch.com/cyborg/bootstrap.min.css" rel="stylesheet">
-<link
-	href="//ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-animate.min.css"></link>
+<link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.2/toastr.min.css" rel="stylesheet"></link>
 <link href="/styles/site.css" rel="stylesheet">
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport"
-	content="width=device-width, maximum-scale=1, initial-scale=1, user-scalable=0" />
+<meta name="viewport" content="width=device-width, maximum-scale=1, initial-scale=1, user-scalable=0" />
 <base href="/">
 <link rel="shortcut icon" href="/favicon.ico" />
 </head>
@@ -18,56 +16,48 @@
 		<div class="container">
 			<div class="navbar-header">
 				<a href="/" class="navbar-brand">{{viewModel.appTitle}}</a>
-				<button type="button" data-toggle="collapse"
-					data-target=".navbar-collapse" class="navbar-toggle">
-					<span class="sr-only">Toggle navigation</span><span
-						class="icon-bar"></span><span class="icon-bar"></span><span
+				<button type="button" data-toggle="collapse" data-target=".navbar-collapse" class="navbar-toggle">
+					<span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span
 						class="icon-bar"></span>
 				</button>
 			</div>
 			<div class="navbar-collapse collapse in">
 				<ul class="nav navbar-nav navbar-left">
-					<li class="dropdown"><a href="" data-toggle="dropdown"
-						class="dropdown-toggle">Questions<span class="caret"></span></a>
+					<li class="dropdown"><a href="" data-toggle="dropdown" class="dropdown-toggle">Questions<span class="caret"></span></a>
 						<ul class="dropdown-menu">
 							<li><a href="/questions">List</a></li>
 						</ul>
+					<li><a href="/login" data-toggle="dropdown" class="dropdown-toggle">Login</a></li>
 				</ul>
-				<div ng-include="'templates/account/login.html'"></div>
 			</div>
 		</div>
 	</header>
 	<div ng-view class="content container" ng-cloak></div>
 	<!--  Libraries  -->
 	<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
-	<script
-		src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-	<script
-		src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
-	<script
-		src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-route.min.js"></script>
-	<script
-		src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-resource.min.js"></script>
-	<script
-		src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-sanitize.min.js"></script>
-	<script
-		src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-animate.min.js"></script>
-	<script
-		src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-cookies.min.js"></script>
-	<script
-		src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-animate.min.js"></script>
-	<script
-		src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.2/toastr.min.js"></script>
-	<script
-		src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.13.4/ui-bootstrap-tpls.min.js"></script>
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-route.min.js"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-resource.min.js"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-sanitize.min.js"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-animate.min.js"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-cookies.min.js"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-animate.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.2/toastr.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.13.4/ui-bootstrap-tpls.min.js"></script>
 	<!--  Angular application  -->
 	<script src="/scripts/app.js"></script>
 	<!--  Services  -->
 	<script src="/scripts/services/notifier.js"></script>
 	<script src="/scripts/services/error-handler.js"></script>
+	<script src="/scripts/services/interceptors/errorHandlerHttpInterceptor.js"></script>
+	<script src="/scripts/services/account/identity.js"></script>
+	<script src="/scripts/services/account/users-resource.js"></script>
+	<script src="/scripts/services/account/auth.js"></script>
 	<script src="/scripts/services/question/question-resource.js"></script>
 	<!--  Controllers  -->
 	<script src="/scripts/controllers/home-controller.js"></script>
+	<script src="/scripts/controllers/account/login-controller.js"></script>
 	<script src="/scripts/controllers/questions-controller.js"></script>
 	<script src="/scripts/controllers/page-controller.js"></script>
 </body>

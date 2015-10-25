@@ -15,5 +15,4 @@ public class QuestionAnswerApplicationTests {
 	public void contextLoads() {
 
 	}
-
 }
