@@ -1,3 +1,3 @@
-questionAndAnswer.controller('HomeController', function HomeController ($scope) {
+questionAndAnswer.controller('HomeController', function HomeController () {
 
 });

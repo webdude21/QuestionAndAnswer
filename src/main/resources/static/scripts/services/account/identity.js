@@ -10,6 +10,7 @@ questionAndAnswer.factory('identity', function () {
             return roles.any(this.isAuthorizedForRole);
         },
         authToken: function () {
+            var user = this.currentUser;
             if (user) {
                 return btoa(user.username + ":" + user.password)
             }

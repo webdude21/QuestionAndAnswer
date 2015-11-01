@@ -25,14 +25,7 @@ questionAndAnswer.factory('auth', function ($http, $q, identity, serverRoutes) {
             return deferred.promise;
         },
         logout: function () {
-            var deferred = $q.defer();
-
-            $http.post('/auth/logout').success(function () {
-                identity.currentUser = undefined;
-                deferred.resolve();
-            });
-
-            return deferred.promise;
+            identity.currentUser = undefined;
         },
         isAuthenticated: function () {
             if (identity.isAuthenticated()) {

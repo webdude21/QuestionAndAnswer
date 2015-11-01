@@ -1,26 +1,25 @@
-questionAndAnswer.controller('loginController', function ($scope, $location, notifier, auth) {
+questionAndAnswer.controller('LoginController', function ($location, notifier, auth) {
 
-    $scope.viewModel = {
-        login: function (user) {
-            auth.login(user).then(function (response) {
-                if (response) {
-                    notifier.success('Successful login!');
-                } else {
-                    notifier.error("Login failed");
-                }
-            }, notifier.error);
-        },
-        logout: function () {
-            auth.logout().then(function () {
-                notifier.success('Successful logout!');
-                if ($scope.user) {
-                    $scope.user.username = '';
-                    $scope.user.password = '';
-                }
-                $location.path('/');
-            }, function (error) {
-                notifier.error(error.data.reason);
-            });
-        }
-    }
+    this.login = function (user) {
+        auth.login(user).then(function (response) {
+            if (response) {
+                notifier.success('Successful login!');
+            } else {
+                notifier.error("Login failed");
+            }
+        }, notifier.error);
+    };
+
+    this.logout = function () {
+        auth.logout().then(function () {
+            notifier.success('Successful logout!');
+            if (this.user) {
+                this.user.username = '';
+                this.user.password = '';
+            }
+            $location.path('/');
+        }, function (error) {
+            notifier.error(error.data.reason);
+        });
+    };
 });
