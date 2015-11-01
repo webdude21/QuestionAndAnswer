@@ -4,6 +4,11 @@ questionAndAnswer.factory('errorHandler', function (notifier, $location) {
             if (serverError['error_description']) {
                 notifier.error(serverError['error_description']);
             }
+            
+            if (serverError.data) {
+                notifier.error(serverError.data);
+                $location.path("/not-found");
+            }
 
             if (serverError['reason']) {
                 notifier.error(serverError['reason']);

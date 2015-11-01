@@ -6,7 +6,7 @@ questionAndAnswer.controller('QuestionsController', function QuestionsController
         
         $scope.delete = function (question){
             $http.delete(question._links.self.href).then(function(){
-                console.log("deleted");
+                notifier.success("Deleted!");
             }, notifier.error);
         };
 

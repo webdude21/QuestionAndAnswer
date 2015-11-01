@@ -6,8 +6,13 @@ var questionAndAnswer = angular.module('QuestionAndAnswer',
             };
 
             $httpProvider.interceptors.push('errorHandlerHttpInterceptor');
+ 
             $httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';
 
+            if (window.currentUser){
+                $httpProvider.interceptors.push('authenticationInterceptor');
+            }
+            
             $locationProvider.html5Mode(true);
 
             $routeProvider.when('/questions', {

@@ -1,11 +1,5 @@
-questionAndAnswer.factory('identity', function ($window, UsersResource) {
-    var user;
-    if ($window.bootstrappedUserObject) {
-        user = new UsersResource();
-        angular.extend(user, $window.bootstrappedUserObject);
-    }
+questionAndAnswer.factory('identity', function () {
     return {
-        currentUser: user,
         isAuthenticated: function () {
             return !!this.currentUser;
         },
@@ -14,6 +8,11 @@ questionAndAnswer.factory('identity', function ($window, UsersResource) {
         },
         isAuthorizedForAnyOfTheFollowingRoles: function (roles) {
             return roles.any(this.isAuthorizedForRole);
+        },
+        authToken: function () {
+            if (user) {
+                return btoa(user.username + ":" + user.password)
+            }
         }
     }
 });

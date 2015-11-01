@@ -34,9 +34,9 @@ public class SeederServiceImpl implements SeederService {
 		if (this.questionRepo.count() != 0) {
 			return;
 		}
-		
+
 		User user = userRepo.findOneByEmail(DEFAULT_USER_EMAIL);
-		
+
 		ArrayList<Question> questions = new ArrayList<>();
 
 		for (int i = 0; i < entitiesToGenerate; i++) {
@@ -68,8 +68,8 @@ public class SeederServiceImpl implements SeederService {
 		}
 
 		Iterable<Role> rolesToAddToTheUser = roleRepo.findAll();
-		User user = userService.save(new User("Dimo", "Petrov", DEFAULT_USER_EMAIL, "webdude"));
+		User user = userService.save(new User("Dimo", "Petrov", DEFAULT_USER_EMAIL, DEFAULT_USER_EMAIL));
 		rolesToAddToTheUser.forEach(role -> role.getUsers().add(user));
 		roleRepo.save(rolesToAddToTheUser);
-	}	
+	}
 }
