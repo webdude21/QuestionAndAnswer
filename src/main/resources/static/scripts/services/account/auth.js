@@ -1,4 +1,4 @@
-questionAndAnswer.factory('auth', function ($http, $q, identity, UsersResource) {
+questionAndAnswer.factory('auth', function ($http, $q, identity, UsersResource, serverRoutes) {
     return {
         signup: function (user) {
             var deferred = $q.defer();
@@ -29,18 +29,24 @@ questionAndAnswer.factory('auth', function ($http, $q, identity, UsersResource) 
             return deferred.promise;
         },
         login: function (user) {
+            var headers = user ? {
+                authorization: "Basic " + btoa(user.username + ":" + user.password)
+            } : {};
+
             var deferred = $q.defer();
 
-            $http.post('/auth/login', user).then(function (response) {
-                if (response.success) {
+            $http.get(serverRoutes.currentUser, {
+                headers: headers
+            }).then(function (response) {
+                if (response.status === 200 && response.data.principal) {
                     var user = new UsersResource();
-                    angular.extend(user, response.user);
+                    angular.extend(user, response.data.principal);
                     identity.currentUser = user;
                     deferred.resolve(true);
                 } else {
                     deferred.resolve(false);
                 }
-            }, function (response){
+            }, function (response) {
                 deferred.reject(response);
             })
 
@@ -72,7 +78,7 @@ questionAndAnswer.factory('auth', function ($http, $q, identity, UsersResource) 
         },
         isAuthorizedForAnyOfTheFollowingRoles: function (roles) {
             if (!(roles instanceof Array)) {
-                throw new Error('The method expects ana array');
+                throw new Error('The method expects an array');
             }
 
             if (identity.isAuthorizedForAnyOfTheFollowingRoles(roles)) {

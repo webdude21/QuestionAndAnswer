@@ -3,8 +3,8 @@ questionAndAnswer.factory('notifier', function (toastr) {
         success: function (msg) {
             toastr.success(msg);
         },
-        error: function (msg) {
-            toastr.error(msg);
+        error: function (error) {
+            toastr.error(error.data.message || error.statusText || error || "no message");
         }
     }
 });

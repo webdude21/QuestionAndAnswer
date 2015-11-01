@@ -1,16 +1,9 @@
-questionAndAnswer.factory('UsersResource', function ($resource) {
-    var AUTHORIZED_PUBLISHER_ROLES = ['admin', 'editor', 'author'];
-    var UsersResource = $resource('/api/users/:id', {
-    }, {
+questionAndAnswer.factory('UsersResource', function ($resource, serverRoutes) {
+    var UsersResource = $resource(serverRoutes.currentUser, {}, {
         update: {
             method: 'PUT',
             isArray: false
         }
     });
-
-    UsersResource.prototype.isAdmin = function () {
-        return this.roles && this.roles.indexOf('admin') > -1;
-    };
-
     return UsersResource;
 });
