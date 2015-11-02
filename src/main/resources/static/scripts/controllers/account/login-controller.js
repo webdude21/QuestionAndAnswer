@@ -1,12 +1,11 @@
 questionAndAnswer.controller('LoginController', function ($location, notifier, auth, identity) {
-
     this.identity = identity;
     this.login = function (user) {
         auth.login(user).then(function (response) {
             if (response) {
                 notifier.success('Successful login!');
             } else {
-                notifier.error("Login failed");
+                notifier.error('Login failed');
             }
         }, notifier.error);
     };

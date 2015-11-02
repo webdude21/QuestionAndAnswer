@@ -1,5 +1,22 @@
 questionAndAnswer.factory('auth', function ($http, $q, identity, serverRoutes) {
+    var tryToLogin = function () {
+        $http.get(serverRoutes.currentUser).then(function (response) {
+            if (response.status === 200 && response.data.principal) {
+                var user = {};
+                angular.extend(user, response.data.principal);
+                identity.currentUser = user;
+            }
+        });
+    };
+
     return {
+        alredyLoggedIn: function () {
+            if (!this.haveCheckedLogin) {
+                tryToLogin();
+            }
+
+            this.haveCheckedLogin = true;
+        },
         login: function (user) {
             var headers = user ? {
                 authorization: "Basic " + btoa(user.username + ":" + user.password)
@@ -20,11 +37,30 @@ questionAndAnswer.factory('auth', function ($http, $q, identity, serverRoutes) {
                 }
             }, function (response) {
                 deferred.reject(response);
-            })
+            });
 
             return deferred.promise;
         },
         logout: function () {
+            /* a very dirty hack here */
+            $http.get(serverRoutes.currentUser, {
+                headers: {
+                    authorization: "Basic " + btoa('wrong:wrong')
+                }
+            }).then(function (response) {
+                if (response.status === 401) {
+                    var user = {};
+                    identity.currentUser = user;
+                    deferred.resolve(true);
+                } else {
+                    deferred.resolve(false);
+                }
+            }, function (response) {
+                deferred.reject(response);
+            });
+
+            var deferred = $q.defer();
+
             identity.currentUser = undefined;
         },
         isAuthenticated: function () {

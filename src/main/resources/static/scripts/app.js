@@ -8,7 +8,6 @@ var questionAndAnswer = angular.module('QuestionAndAnswer',
             var CONTROLLER_VIEW_MODEL_NAME = 'vm';
 
             $httpProvider.interceptors.push('errorHandlerHttpInterceptor');
-            $httpProvider.interceptors.push('authenticationInterceptor');
             $httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';
 
             $locationProvider.html5Mode(true);
