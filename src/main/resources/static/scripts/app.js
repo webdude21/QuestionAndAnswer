@@ -25,10 +25,6 @@ var questionAndAnswer = angular.module('QuestionAndAnswer',
                 templateUrl: getTemplatePath('question/ask-question'),
                 controller: 'AskQuestionsController',
                 controllerAs: CONTROLLER_VIEW_MODEL_NAME
-            }).when('/login', {
-                templateUrl: getTemplatePath('account/login'),
-                controller: 'LoginController',
-                controllerAs: CONTROLLER_VIEW_MODEL_NAME
             }).otherwise({
                 redirectTo: '/'
             })

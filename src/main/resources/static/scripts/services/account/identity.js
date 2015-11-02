@@ -14,6 +14,11 @@ questionAndAnswer.factory('identity', function () {
             if (user) {
                 return btoa(user.username + ":" + user.password)
             }
+        },
+        loggedInUser: function () {
+            if (this.isAuthenticated()) {
+                return this.currentUser.firstName + ' ' + this.currentUser.lastName;
+            }
         }
     }
 });

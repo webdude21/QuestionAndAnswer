@@ -1,5 +1,6 @@
-questionAndAnswer.controller('LoginController', function ($location, notifier, auth) {
+questionAndAnswer.controller('LoginController', function ($location, notifier, auth, identity) {
 
+    this.identity = identity;
     this.login = function (user) {
         auth.login(user).then(function (response) {
             if (response) {
@@ -11,15 +12,9 @@ questionAndAnswer.controller('LoginController', function ($location, notifier, a
     };
 
     this.logout = function () {
-        auth.logout().then(function () {
-            notifier.success('Successful logout!');
-            if (this.user) {
-                this.user.username = '';
-                this.user.password = '';
-            }
-            $location.path('/');
-        }, function (error) {
-            notifier.error(error.data.reason);
-        });
+        auth.logout();
+        notifier.success('Successful logout!');
+        this.user = {};
+        $location.path('/');
     };
 });
