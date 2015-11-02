@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class Home {
 
-	@RequestMapping({ "/", "/questions", "/login", "/question/**" })
+	@RequestMapping({ "/", "/login", "/question/**" })
 	public String home() {
 		return "forward:/index.html";
 	}

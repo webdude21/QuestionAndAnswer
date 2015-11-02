@@ -12,13 +12,13 @@ var questionAndAnswer = angular.module('QuestionAndAnswer',
 
             $locationProvider.html5Mode(true);
 
-            $routeProvider.when('/questions', {
-                templateUrl: getTemplatePath('question/list-questions'),
-                controller: 'QuestionsController',
-                controllerAs: CONTROLLER_VIEW_MODEL_NAME
-            }).when('/', {
+            $routeProvider.when('/', {
                 templateUrl: getTemplatePath('home'),
                 controller: 'HomeController',
+                controllerAs: CONTROLLER_VIEW_MODEL_NAME
+            }).when('/question/list-questions', {
+                templateUrl: getTemplatePath('question/list-questions'),
+                controller: 'QuestionsController',
                 controllerAs: CONTROLLER_VIEW_MODEL_NAME
             }).when('/question/ask-question', {
                 templateUrl: getTemplatePath('question/ask-question'),

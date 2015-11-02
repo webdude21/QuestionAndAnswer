@@ -1,8 +1,8 @@
 questionAndAnswer.factory('auth', function ($http, $q, identity, serverRoutes) {
     var tryToLogin = function () {
+        var user = {};
         $http.get(serverRoutes.currentUser).then(function (response) {
             if (response.status === 200 && response.data.principal) {
-                var user = {};
                 angular.extend(user, response.data.principal);
                 identity.currentUser = user;
             }
