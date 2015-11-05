@@ -29,7 +29,7 @@ var questionAnswerAppConfig = function ($routeProvider, $locationProvider, $http
 
 angular.module('templates', []); // used for client-side template caching
 
-var questionAndAnswer = angular.module('QuestionAndAnswer', ['ngResource', 'ngRoute', 'ngCookies', 'ngSanitize', 'ngAnimate', 'templates'])
+var questionAndAnswer = angular.module('QuestionAndAnswer', ['ngResource', 'ngRoute', 'templates'])
 		.config(questionAnswerAppConfig)
 		.value('toastr', toastr)
 		.constant('serverRoutes', { currentUser: 'api/currentUser'})

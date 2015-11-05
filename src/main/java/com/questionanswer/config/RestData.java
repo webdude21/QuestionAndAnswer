@@ -36,7 +36,7 @@ public class RestData extends RepositoryRestMvcConfiguration {
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		super.addResourceHandlers(registry);
-		registry.addResourceHandler("/**").addResourceLocations("classpath:/static/")//.setCachePeriod(CACHE_TIME)
+		registry.addResourceHandler("/**").addResourceLocations("classpath:/static/").setCachePeriod(CACHE_TIME)
 				.resourceChain(true).addResolver(new GzipResourceResolver());
 	}
 

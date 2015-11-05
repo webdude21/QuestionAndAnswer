@@ -80,7 +80,7 @@ gulp.task('scripts', function () {
 
 	return gulp.src(config.appJsSrc)
 		.pipe(angularFilesort())
-		.pipe(gulpIf(isProduction, uglify()))
+		.pipe(gulpIf(isProduction, uglify({mangle: false})))
 		.pipe(addStream.obj(prepareTemplates()))
 		.pipe(concat(config.resultScriptFileName + (isProduction ? getStamp() : '') + '.min.js', {newLine: ''}))
 		.pipe(gulp.dest(config.destPath))
