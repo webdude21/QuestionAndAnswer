@@ -1,5 +1,5 @@
 // Include plug-ins
-var isProduction = require('yargs').argv.env === 'production',
+var isProduction = true,//require('yargs').argv.env === 'production',
 	gulp = require('gulp'),
 	gulpIf = require('gulp-if'),
 	concat = require('gulp-concat'),
