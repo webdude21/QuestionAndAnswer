@@ -48,7 +48,9 @@ var getStamp = function () {
 
 // For angular templates
 var prepareTemplates = function () {
-	return gulp.src(config.appTemplatesHtml).pipe(angularTemplateCache());
+	return gulp.src(config.appTemplatesHtml)
+	.pipe(gulpIf(isProduction, minifyHTML({ conditionals: true, empty: true })))
+	.pipe(angularTemplateCache());
 };
 
 // Minify, prefix and contat CSS
