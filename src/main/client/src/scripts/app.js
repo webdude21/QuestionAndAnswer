@@ -32,7 +32,7 @@ angular.module('templates', []); // used for client-side template caching
 var questionAndAnswer = angular.module('QuestionAndAnswer', ['ngResource', 'ngRoute', 'templates'])
 		.config(questionAnswerAppConfig)
 		.value('toastr', toastr)
-		.constant('serverRoutes', { currentUser: 'api/currentUser'})
+		.constant('serverRoutes', { currentUser: 'api/authentication/currentuser', register: 'api/authentication/register'})
 		.constant('author', 'Webdude')
 		.constant('appName', 'Question & Answer')
 		.constant('authorLink', 'http://webdude.eu')
