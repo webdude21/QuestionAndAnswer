@@ -16,4 +16,5 @@ questionAndAnswer.controller('LoginController', function ($location, notifier, a
         this.user = {};
         $location.path('/');
     };
+    '','',''
 });

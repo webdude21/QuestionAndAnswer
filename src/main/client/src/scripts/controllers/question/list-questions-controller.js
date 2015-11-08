@@ -1,6 +1,6 @@
 questionAndAnswer.controller('QuestionsController', function QuestionsController (QuestionResource, $http, notifier){
         
-        this.request = { sort: 'title', page: 1, size: 5, sortDirection: 'asc' };
+        this.request = { sort: 'title', page: 1, size: 5, sortDirection: 'asc', title: '' };
         
         this.delete = function (question){
             $http.delete(question._links.self.href).then(function(){

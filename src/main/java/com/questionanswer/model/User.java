@@ -121,5 +121,4 @@ public class User {
 	public void setQuestions(Set<Question> questions) {
 		this.questions = questions;
 	}
-
 }

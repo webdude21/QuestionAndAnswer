@@ -41,9 +41,7 @@ var getStamp = function () {
 	var myDay = ('0' + myDate.getDate()).slice(-2);
 	var mySeconds = myDate.getSeconds().toString();
 
-	var myFullDate = myYear + myMonth + myDay + mySeconds;
-
-	return myFullDate;
+	return myYear + myMonth + myDay + mySeconds;
 };
 
 // For angular templates

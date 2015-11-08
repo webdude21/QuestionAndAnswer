@@ -8,11 +8,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.questionanswer.config.Routes;
+
 @RestController
-@RequestMapping(value = "/api/authentication")
+@RequestMapping(value = Routes.API_BASE_ROUTE + "/authentication")
 public class UserController {
 
-	@RequestMapping(value = "/currentuser",  method = { RequestMethod.GET })
+	@RequestMapping(value = "/currentuser", method = { RequestMethod.GET })
 	public Principal currentUser(Principal user) {
 		return user;
 	}

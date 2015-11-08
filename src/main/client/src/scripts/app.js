@@ -25,7 +25,7 @@ var questionAnswerAppConfig = function ($routeProvider, $locationProvider, $http
 	}).otherwise({
 		redirectTo: '/'
 	});
-}
+};
 
 angular.module('templates', []); // used for client-side template caching
 

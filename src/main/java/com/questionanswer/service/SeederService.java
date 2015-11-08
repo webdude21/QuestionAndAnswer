@@ -2,9 +2,9 @@ package com.questionanswer.service;
 
 public interface SeederService {
 	
-	public void seedQuestions(int entitiesToGenerate);
+	void seedQuestions(int entitiesToGenerate);
 	
-	public void seedRoles(Iterable<String> roles);
+	void seedRoles(Iterable<String> roles);
 	
-	public void seedUsers();
+	void seedUsers();
 }
