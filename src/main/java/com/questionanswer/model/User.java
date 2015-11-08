@@ -17,6 +17,7 @@ import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
 public class User {
@@ -42,8 +43,6 @@ public class User {
 	@Column(unique = true, nullable = false)
 	private String email;
 
-	// Not a good idea to expose the password even to administrators
-	@JsonIgnore
 	@NotEmpty(message = "Password is required.")
 	private String password;
 
@@ -66,10 +65,13 @@ public class User {
 		this.roles = user.roles;
 	}
 
+	// Not a good idea to expose the password even to administrators
+	@JsonIgnore
 	public String getPassword() {
 		return password;
 	}
 
+	@JsonProperty
 	public void setPassword(String password) {
 		this.password = password;
 	}
