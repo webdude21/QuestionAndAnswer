@@ -123,4 +123,15 @@ public class User {
 	public void setQuestions(Set<Question> questions) {
 		this.questions = questions;
 	}
+
+	@Override
+	public boolean equals(Object object) {
+		if (!(object instanceof User)) {
+			return false;
+		}
+
+		User other = (User) object;
+
+		return other.getEmail().equals(this.getEmail());
+	}
 }

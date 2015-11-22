@@ -2,7 +2,6 @@ package com.questionanswer.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -12,7 +11,7 @@ import com.questionanswer.model.User;
 import com.questionanswer.model.UserDetailsImpl;
 
 @Service
-public class UserServiceImpl implements UserDetailsService, UserService {
+public class UserServiceImpl implements UserService {
 
 	@Autowired
 	private UserRepository userRepository;
