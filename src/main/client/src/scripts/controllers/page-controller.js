@@ -1,7 +1,6 @@
-questionAndAnswer.controller('PageController', function PageController ($scope, author, appTitle, authorLink, auth,
-        identity) {
+questionAndAnswer.controller('PageController', function PageController($scope, author, appTitle, authorLink, auth, identity) {
 
-    if (!identity.isAuthenticated()) { 
+    if (!identity.isAuthenticated()) {
         auth.alredyLoggedIn();
     }
 
