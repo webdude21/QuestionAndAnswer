@@ -1,6 +1,12 @@
 questionAndAnswer.controller('QuestionsController', function QuestionsController(QuestionResource, $http, notifier) {
 
-    this.request = {sort: 'title', page: 1, size: 5, sortDirection: 'asc', title: ''};
+    this.request = {
+        sort: 'title',
+        page: 1,
+        size: 5,
+        sortDirection: 'asc',
+        title: ''
+    };
 
     this.delete = function (question) {
         $http.delete(question._links.self.href).then(function () {
@@ -20,7 +26,9 @@ questionAndAnswer.controller('QuestionsController', function QuestionsController
         }
 
         this.list = QuestionResource.query({
-            sort: [req.sort, req.sortDirection].join(','), page: req.page - 1, size: req.size
+            sort: [req.sort, req.sortDirection].join(','),
+            page: req.page - 1,
+            size: req.size
         });
     };
 
