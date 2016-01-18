@@ -5,6 +5,7 @@ import com.questionanswer.model.User;
 import com.questionanswer.service.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,8 +29,23 @@ public class UserController {
     }
 
     @RequestMapping(value = "/register", method = { RequestMethod.POST })
-    public HttpEntity<User> Register(@RequestBody User user) {
-        User savedUser = this.userService.save(user);
-        return new ResponseEntity<User>(savedUser, HttpStatus.CREATED);
+    public HttpEntity<?> Register(@RequestBody User user) {
+
+        if (this.userService.loadUserByUsername(user.getEmail()) != null) {
+            return new ResponseEntity<>("User with the same email already exists!", HttpStatus.BAD_REQUEST);
+        }
+
+        try {
+            User savedUser = this.userService.save(user);
+            return new ResponseEntity<User>(savedUser, HttpStatus.CREATED);
+        } catch (DataIntegrityViolationException ex) {
+            return prepareExceptionResponce(ex);
+        }
+    }
+
+    private HttpEntity<?> prepareExceptionResponce(Exception ex) {
+        String errorMessage;
+        errorMessage = ex + " <== error";
+        return new ResponseEntity<>(errorMessage, HttpStatus.BAD_REQUEST);
     }
 }
