@@ -30,7 +30,8 @@ public class SeederServiceImpl implements SeederService {
 	@Autowired
 	private RoleRepository roleRepo;
 
-	public void seedQuestions(int entitiesToGenerate) {
+	@Override
+    public void seedQuestions(int entitiesToGenerate) {
 		if (this.questionRepo.count() != 0) {
 			return;
 		}
@@ -54,7 +55,8 @@ public class SeederServiceImpl implements SeederService {
 		return question;
 	}
 
-	public void seedRoles(Iterable<String> roles) {
+	@Override
+    public void seedRoles(Iterable<String> roles) {
 		if (this.roleRepo.count() != 0) {
 			return;
 		}
@@ -62,7 +64,8 @@ public class SeederServiceImpl implements SeederService {
 		roles.forEach(role -> roleRepo.save(new Role(role)));
 	}
 
-	public void seedUsers() {
+	@Override
+    public void seedUsers() {
 		if (this.userRepo.count() != 0) {
 			return;
 		}
