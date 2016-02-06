@@ -17,44 +17,44 @@ import org.springframework.security.core.GrantedAuthority;
 @Entity
 public class Role implements GrantedAuthority {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 
-	@ManyToMany(cascade = { CascadeType.ALL }, fetch = FetchType.EAGER)
-	private Set<User> users = new HashSet<User>();
+    @ManyToMany(cascade = { CascadeType.ALL }, fetch = FetchType.EAGER)
+    private Set<User> users = new HashSet<User>();
 
-	@NotEmpty
-	private String role;
+    @NotEmpty
+    private String role;
 
-	public Role(String role) {
-		this.role = role;
-	}
+    public Role(String role) {
+        this.role = role;
+    }
 
-	public String getRole() {
-		return role;
-	}
+    public String getRole() {
+        return role;
+    }
 
-	public void setRole(String role) {
-		this.role = role;
-	}
+    public void setRole(String role) {
+        this.role = role;
+    }
 
-	public Role() {
+    public Role() {
 
-	}
+    }
 
-	public Set<User> getUsers() {
-		return users;
-	}
+    public Set<User> getUsers() {
+        return users;
+    }
 
-	public void setUsers(Set<User> users) {
-		this.users = users;
-	}
+    public void setUsers(Set<User> users) {
+        this.users = users;
+    }
 
-	@Override
-	public String getAuthority() {
-		return this.getRole();
-	}
+    @Override
+    public String getAuthority() {
+        return this.getRole();
+    }
 }

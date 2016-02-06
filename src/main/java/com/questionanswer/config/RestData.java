@@ -18,33 +18,33 @@ import com.questionanswer.service.SeederService;
 @Import(RepositoryRestMvcConfiguration.class)
 public class RestData extends RepositoryRestMvcConfiguration {
 
-	private static final int CACHE_TIME = 60 * 60 * 24; // 24 hours
+    private static final int CACHE_TIME = 60 * 60 * 24; // 24 hours
 
-	@Autowired
-	private SeederService seeder;
+    @Autowired
+    private SeederService seeder;
 
-	@Override
-	protected void configureRepositoryRestConfiguration(RepositoryRestConfiguration config) {
-		super.configureRepositoryRestConfiguration(config);
-		try {
-			config.setBaseUri(new URI(Routes.API_BASE_ROUTE));
-		} catch (URISyntaxException e) {
-			e.printStackTrace();
-		}
-	}
+    @Override
+    protected void configureRepositoryRestConfiguration(RepositoryRestConfiguration config) {
+        super.configureRepositoryRestConfiguration(config);
+        try {
+            config.setBaseUri(new URI(Routes.API_BASE_ROUTE));
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        }
+    }
 
-	@Override
-	public void addResourceHandlers(ResourceHandlerRegistry registry) {
-		super.addResourceHandlers(registry);
-		registry.addResourceHandler("/**").addResourceLocations("classpath:/static/").setCachePeriod(CACHE_TIME)
-				.resourceChain(true).addResolver(new GzipResourceResolver());
-	}
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        super.addResourceHandlers(registry);
+        registry.addResourceHandler("/**").addResourceLocations("classpath:/static/").setCachePeriod(CACHE_TIME)
+                .resourceChain(true).addResolver(new GzipResourceResolver());
+    }
 
-	@Override
-	public RepositoryRestConfiguration config() {
-		seeder.seedRoles(Roles.getRoles());
-		seeder.seedUsers();
-		seeder.seedQuestions(4000);
-		return super.config();
-	}
+    @Override
+    public RepositoryRestConfiguration config() {
+        seeder.seedRoles(Roles.getRoles());
+        seeder.seedUsers();
+        seeder.seedQuestions(4000);
+        return super.config();
+    }
 }

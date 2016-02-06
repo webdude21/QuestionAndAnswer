@@ -22,116 +22,116 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Entity
 public class User {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 
-	@ManyToMany(mappedBy = "users", fetch = FetchType.EAGER)
-	private Set<Role> roles = new HashSet<>();
+    @ManyToMany(mappedBy = "users", fetch = FetchType.EAGER)
+    private Set<Role> roles = new HashSet<>();
 
-	@OneToMany(mappedBy = "user", cascade = { CascadeType.ALL })
-	private Set<Question> questions = new HashSet<>();
+    @OneToMany(mappedBy = "user", cascade = { CascadeType.ALL })
+    private Set<Question> questions = new HashSet<>();
 
-	@NotEmpty(message = "First name is required.")
-	private String firstName;
+    @NotEmpty(message = "First name is required.")
+    private String firstName;
 
-	@NotEmpty(message = "Last name is required.")
-	private String lastName;
+    @NotEmpty(message = "Last name is required.")
+    private String lastName;
 
-	@Email(message = "Please provide a valid email address.")
-	@NotEmpty(message = "Email is required.")
-	@Column(unique = true, nullable = false)
-	private String email;
+    @Email(message = "Please provide a valid email address.")
+    @NotEmpty(message = "Email is required.")
+    @Column(unique = true, nullable = false)
+    private String email;
 
-	@NotEmpty(message = "Password is required.")
-	private String password;
+    @NotEmpty(message = "Password is required.")
+    private String password;
 
-	public User() {
-	}
+    public User() {
+    }
 
-	public User(String firstName, String lastName, String email, String password) {
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.email = email;
-		this.password = password;
-	}
+    public User(String firstName, String lastName, String email, String password) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
+    }
 
-	public User(User user) {
-		this.id = user.id;
-		this.firstName = user.firstName;
-		this.lastName = user.lastName;
-		this.email = user.email;
-		this.password = user.password;
-		this.roles = user.roles;
-	}
+    public User(User user) {
+        this.id = user.id;
+        this.firstName = user.firstName;
+        this.lastName = user.lastName;
+        this.email = user.email;
+        this.password = user.password;
+        this.roles = user.roles;
+    }
 
-	// Not a good idea to expose the password even to administrators
-	@JsonIgnore
-	public String getPassword() {
-		return password;
-	}
+    // Not a good idea to expose the password even to administrators
+    @JsonIgnore
+    public String getPassword() {
+        return password;
+    }
 
-	@JsonProperty
-	public void setPassword(String password) {
-		this.password = password;
-	}
+    @JsonProperty
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
-	public Long getId() {
-		return id;
-	}
+    public Long getId() {
+        return id;
+    }
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public String getFirstName() {
-		return firstName;
-	}
+    public String getFirstName() {
+        return firstName;
+    }
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
 
-	public String getLastName() {
-		return lastName;
-	}
+    public String getLastName() {
+        return lastName;
+    }
 
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
 
-	public String getEmail() {
-		return email;
-	}
+    public String getEmail() {
+        return email;
+    }
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-	public Set<Role> getRoles() {
-		return roles;
-	}
+    public Set<Role> getRoles() {
+        return roles;
+    }
 
-	public void setRoles(Set<Role> roles) {
-		this.roles = roles;
-	}
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
 
-	public Set<Question> getQuestions() {
-		return questions;
-	}
+    public Set<Question> getQuestions() {
+        return questions;
+    }
 
-	public void setQuestions(Set<Question> questions) {
-		this.questions = questions;
-	}
+    public void setQuestions(Set<Question> questions) {
+        this.questions = questions;
+    }
 
-	@Override
-	public boolean equals(Object object) {
-		if (!(object instanceof User)) {
-			return false;
-		}
+    @Override
+    public boolean equals(Object object) {
+        if (!(object instanceof User)) {
+            return false;
+        }
 
-		User other = (User) object;
+        User other = (User) object;
 
-		return other.getEmail().equals(this.getEmail());
-	}
+        return other.getEmail().equals(this.getEmail());
+    }
 }

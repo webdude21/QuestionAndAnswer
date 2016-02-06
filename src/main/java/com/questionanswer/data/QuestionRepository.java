@@ -9,7 +9,7 @@ import org.springframework.data.repository.query.Param;
 import com.questionanswer.model.Question;
 
 public interface QuestionRepository extends PagingAndSortingRepository<Question, Long> {
-	String ROUTE = "questions";
+    String ROUTE = "questions";
 
-	List<Question> findByTitleContaining(@Param("title") String title, Pageable pageable);
+    List<Question> findByTitleContaining(@Param("title") String title, Pageable pageable);
 }

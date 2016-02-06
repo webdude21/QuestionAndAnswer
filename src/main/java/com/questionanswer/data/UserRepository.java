@@ -8,7 +8,7 @@ import com.questionanswer.model.User;
 
 public interface UserRepository extends CrudRepository<User, Long> {
 
-	User findOneByEmail(String email);
+    User findOneByEmail(String email);
 
-	List<User> findByEmail(String email);
+    List<User> findByEmail(String email);
 }
