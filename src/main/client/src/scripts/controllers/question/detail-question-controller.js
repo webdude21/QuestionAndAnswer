@@ -1,5 +1,5 @@
 questionAndAnswer.controller('DetailQuestionsController',
-  function DetailQuestionsController($routeParams, QuestionResource) {
+  function DetailQuestionsController($routeParams, Question) {
 
-    this.question = QuestionResource.getById({ id: $routeParams.id });
+    this.question = Question.getById({ id: $routeParams.id });
   });
