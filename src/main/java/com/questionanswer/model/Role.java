@@ -6,25 +6,18 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.security.core.GrantedAuthority;
 
 @Entity
-public class Role implements GrantedAuthority {
+public class Role extends BaseEntityAudit implements GrantedAuthority {
 
     private static final long serialVersionUID = 1L;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-
     @ManyToMany(cascade = { CascadeType.ALL }, fetch = FetchType.EAGER)
-    private Set<User> users = new HashSet<User>();
+    private Set<User> userroles = new HashSet<User>();
 
     @NotEmpty
     private String role;
@@ -46,11 +39,11 @@ public class Role implements GrantedAuthority {
     }
 
     public Set<User> getUsers() {
-        return users;
+        return userroles;
     }
 
     public void setUsers(Set<User> users) {
-        this.users = users;
+        this.userroles = users;
     }
 
     @Override
