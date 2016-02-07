@@ -10,10 +10,16 @@ import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.Version;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @MappedSuperclass
 public abstract class BaseEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
+    public static long getSerialversionuid() {
+        return serialVersionUID;
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,21 +27,26 @@ public abstract class BaseEntity implements Serializable {
     @Column(name = "id", nullable = false, columnDefinition = "BIGINT UNSIGNED")
     protected Long id;
 
-    public static long getSerialversionuid() {
-        return serialVersionUID;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public void setVersion(Long version) {
-        this.version = version;
-    }
-
     @Column(name = "version")
     @Version
+    @JsonIgnore
     private Long version;
+
+    @Override
+    public boolean equals(Object object) {
+        if (this == object)
+            return true;
+        if (object == null)
+            return false;
+        if (getClass() != object.getClass())
+            return false;
+
+        BaseEntity other = (BaseEntity) object;
+        if (this.getId() != other.getId() && (this.getId() == null || !this.id.equals(other.id))) {
+            return false;
+        }
+        return true;
+    }
 
     public Long getId() {
         return id;
@@ -53,20 +64,12 @@ public abstract class BaseEntity implements Serializable {
         return hash;
     }
 
-    @Override
-    public boolean equals(Object object) {
-        if (this == object)
-            return true;
-        if (object == null)
-            return false;
-        if (getClass() != object.getClass())
-            return false;
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-        BaseEntity other = (BaseEntity) object;
-        if (this.getId() != other.getId() && (this.getId() == null || !this.id.equals(other.id))) {
-            return false;
-        }
-        return true;
+    public void setVersion(Long version) {
+        this.version = version;
     }
 
     @Override

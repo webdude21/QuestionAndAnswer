@@ -8,25 +8,31 @@ import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;  
 import javax.persistence.Temporal;  
 import javax.persistence.TemporalType;  
-import javax.validation.constraints.Size;  
+import javax.validation.constraints.Size;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;  
   
 @MappedSuperclass  
 public abstract class BaseEntityAudit extends BaseEntity {  
   
     private static final long serialVersionUID = -6103805689131116088L;
 
+    @JsonIgnore
     @Column(name = "created_at")  
     @Temporal(TemporalType.TIMESTAMP)  
     private Date createdAt;  
   
+    @JsonIgnore
     @Size(max = 20)  
     @Column(name = "created_by", length = 20)  
     private String createdBy;  
   
+    @JsonIgnore
     @Column(name = "updated_at")  
     @Temporal(TemporalType.TIMESTAMP)  
     private Date updatedAt;  
   
+    @JsonIgnore
     @Size(max = 20)  
     @Column(name = "updated_by", length = 20)  
     private String updatedBy;  
