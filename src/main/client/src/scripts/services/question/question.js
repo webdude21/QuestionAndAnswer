@@ -9,9 +9,6 @@ questionAndAnswer.factory('Question', function Question($resource) {
       method: 'GET',
       params: { id: '@id' }
     },
-    createNew: {
-      method: 'POST'
-    },
     query: {
       method: 'GET',
       isArray: false

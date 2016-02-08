@@ -54,7 +54,8 @@ var questionAndAnswer = angular.module('QuestionAndAnswer', ['ngResource', 'ngRo
   .value('toastr', toastr)
   .constant('serverRoutes', {
     currentUser: 'api/authentication/currentuser',
-    register: 'api/authentication/register'
+    register: 'api/authentication/register',
+    usersRoute: '/api/users/'
   })
   .constant('author', 'Webdude')
   .constant('appName', 'Question & Answer')
