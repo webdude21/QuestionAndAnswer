@@ -1,7 +1,14 @@
 var questionAnswerAppConfig = function ($routeProvider, $locationProvider, $httpProvider) {
   var getTemplatePath = function (routeName) {
-    return 'templates/' + routeName + ".html";
-  };
+      return 'templates/' + routeName + '.html';
+    },
+    routeUserChecks = {
+      authenticated: {
+        authenticate: function (auth) {
+          return auth.isAuthenticated();
+        }
+      }
+    };
 
   var CONTROLLER_VIEW_MODEL_NAME = 'vm';
 
@@ -24,12 +31,16 @@ var questionAnswerAppConfig = function ($routeProvider, $locationProvider, $http
     .when('/question/ask-question', {
       templateUrl: getTemplatePath('question/ask-question'),
       controller: 'AskQuestionsController',
-      controllerAs: CONTROLLER_VIEW_MODEL_NAME
+      controllerAs: CONTROLLER_VIEW_MODEL_NAME,
+      resolve: routeUserChecks.authenticated
     })
     .when('/question/:id', {
       templateUrl: getTemplatePath('question/detail'),
       controller: 'DetailQuestionsController',
       controllerAs: CONTROLLER_VIEW_MODEL_NAME
+    })
+    .when('/unauthorized', {
+      templateUrl: getTemplatePath('unauthorized')
     })
     .otherwise({
       redirectTo: '/'
@@ -49,3 +60,10 @@ var questionAndAnswer = angular.module('QuestionAndAnswer', ['ngResource', 'ngRo
   .constant('appName', 'Question & Answer')
   .constant('authorLink', 'http://webdude.eu')
   .constant('appTitle', 'Question & Answer');
+questionAndAnswer.run(function ($rootScope, $location) {
+  $rootScope.$on('$routeChangeError', function (ev, current, previous, rejection) {
+    if (rejection === 'not authorized') {
+      $location.path('/unauthorized');
+    }
+  })
+});
