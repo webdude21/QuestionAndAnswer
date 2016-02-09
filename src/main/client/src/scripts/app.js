@@ -57,10 +57,12 @@ var questionAndAnswer = angular.module('QuestionAndAnswer', ['ngResource', 'ngRo
     register: 'api/authentication/register',
     usersRoute: '/api/users/'
   })
-  .constant('author', 'Webdude')
-  .constant('appName', 'Question & Answer')
-  .constant('authorLink', 'http://webdude.eu')
-  .constant('appTitle', 'Question & Answer');
+  .constant('credits', {
+    author: 'Webdude',
+    appName: 'Question & Answer',
+    authorLink: 'http://webdude.eu',
+    appTitle: 'Question & Answer'
+  });
 questionAndAnswer.run(function ($rootScope, $location) {
   $rootScope.$on('$routeChangeError', function (ev, current, previous, rejection) {
     if (rejection === 'not authorized') {

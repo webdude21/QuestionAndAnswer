@@ -1,3 +1,3 @@
-questionAndAnswer.controller('HomeController', function HomeController() {
+questionAndAnswer.controller('HomeController', function () {
 
 });

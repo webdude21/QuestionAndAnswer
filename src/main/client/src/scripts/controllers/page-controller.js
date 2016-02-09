@@ -1,13 +1,12 @@
-questionAndAnswer.controller('PageController',
-  function PageController($scope, author, appTitle, authorLink, auth, identity) {
+questionAndAnswer.controller('PageController', function ($scope, credits, auth, identity) {
 
-    if (!identity.isAuthenticated()) {
-      auth.alredyLoggedIn();
-    }
+  if (!identity.isAuthenticated()) {
+    auth.alredyLoggedIn();
+  }
 
-    $scope.viewModel = {
-      author: author,
-      authorLink: authorLink,
-      appTitle: appTitle
-    };
-  });
+  $scope.viewModel = {
+    author: credits.author,
+    authorLink: credits.authorLink,
+    appTitle: credits.appTitle
+  };
+});

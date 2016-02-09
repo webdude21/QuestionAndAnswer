@@ -1,6 +1,6 @@
 var questionAndAnswer = angular.module('QuestionAndAnswer');
 
-questionAndAnswer.factory('Question', function Question($resource) {
+questionAndAnswer.factory('Question', function ($resource) {
   return $resource('/api/questions/:id', null, {
     getAll: {
       method: 'GET'
