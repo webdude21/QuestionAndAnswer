@@ -20,8 +20,12 @@ import java.security.Principal;
 @RequestMapping(value = Routes.API_BASE_ROUTE + "/authentication")
 public class UserController {
 
+    private UserService userService;
+    
     @Autowired
-    UserService userService;
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
 
     @RequestMapping(value = "/currentuser", method = { RequestMethod.GET })
     public Principal currentUser(Principal user) {

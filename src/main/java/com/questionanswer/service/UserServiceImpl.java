@@ -13,10 +13,8 @@ import com.questionanswer.model.UserDetailsImpl;
 @Service
 public class UserServiceImpl implements UserService {
 
-    @Autowired
     private UserRepository userRepository;
 
-    @Autowired
     private PasswordEncoder passwordEncoder;
 
     @Autowired

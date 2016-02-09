@@ -1,7 +1,7 @@
 questionAndAnswer.controller('QuestionsController',
   function QuestionsController(Question, $http, notifier) {
 
-    this.getDetailLink = function (question){
+    this.getDetailLink = function (question) {
       return '/question/' + question._links.self.href.split("/").slice(-1);
     }
 

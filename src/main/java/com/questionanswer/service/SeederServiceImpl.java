@@ -18,17 +18,31 @@ public class SeederServiceImpl implements SeederService {
 
     private static final String DEFAULT_USER_EMAIL = "webdude@webdude.eu";
 
-    @Autowired
     private QuestionRepository questionRepo;
 
-    @Autowired
+    private RoleRepository roleRepo;
+
+    private UserRepository userRepo;
+
     private UserService userService;
 
     @Autowired
-    private UserRepository userRepo;
+    public SeederServiceImpl(QuestionRepository questionRepo, UserService userService, UserRepository userRepo,
+            RoleRepository roleRepo) {
+        super();
+        this.questionRepo = questionRepo;
+        this.userService = userService;
+        this.userRepo = userRepo;
+        this.roleRepo = roleRepo;
+    }
 
-    @Autowired
-    private RoleRepository roleRepo;
+    private Question generateQuestion(User user) {
+        Question question = new Question();
+        question.setTitle(RandomStringUtils.randomAlphabetic(20));
+        question.setContent(RandomStringUtils.randomAlphabetic(200));
+        question.setUser(user);
+        return question;
+    }
 
     @Override
     public void seedQuestions(int entitiesToGenerate) {
@@ -45,14 +59,6 @@ public class SeederServiceImpl implements SeederService {
         }
 
         questionRepo.save(questions);
-    }
-
-    private Question generateQuestion(User user) {
-        Question question = new Question();
-        question.setTitle(RandomStringUtils.randomAlphabetic(20));
-        question.setContent(RandomStringUtils.randomAlphabetic(200));
-        question.setUser(user);
-        return question;
     }
 
     @Override
