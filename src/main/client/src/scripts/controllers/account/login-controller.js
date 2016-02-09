@@ -3,8 +3,7 @@ questionAndAnswer.controller('LoginController', function ($location, notifier, a
   this.login = function (user) {
     auth.login(user).then(function (response) {
       if (response) {
-        var __newVar__20160209185645538606 = 'Successful login!';
-        notifier.success(__newVar__20160209185645538606);
+        notifier.success('Successful login!');
       } else {
         notifier.error('Login failed');
       }
