@@ -1,11 +1,11 @@
 'use strict';
 questionAndAnswer.directive('question', function () {
   return {
-    restrict: 'EA',
+    restrict: 'E',
     templateUrl: 'templates/directives/question.html',
     replace: true,
     scope: {
-      question: '@'
+      question: '='
     }
   }
 });
