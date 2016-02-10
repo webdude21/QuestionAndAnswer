@@ -45,6 +45,7 @@ public class RestData extends RepositoryRestMvcConfiguration {
         seeder.seedRoles(Roles.getRoles());
         seeder.seedUsers();
         seeder.seedQuestions(50);
+        seeder.seedAnswers(10);
         return super.config();
     }
 }

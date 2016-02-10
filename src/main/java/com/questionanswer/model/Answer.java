@@ -21,7 +21,16 @@ public class Answer extends BaseEntityAudit {
 
     @OneToMany(mappedBy = "answer", cascade = { CascadeType.ALL })
     private Set<Vote> votes = new HashSet<>();
+    
+    private String content;
 
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
 
     public Question getQuestion() {
         return question;

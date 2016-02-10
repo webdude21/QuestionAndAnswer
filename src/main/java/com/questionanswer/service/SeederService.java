@@ -7,4 +7,6 @@ public interface SeederService {
     void seedRoles(Iterable<String> roles);
 
     void seedUsers();
+
+    void seedAnswers(int answerPerQuestion);
 }

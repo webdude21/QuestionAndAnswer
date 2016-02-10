@@ -6,9 +6,11 @@ import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.questionanswer.data.AnswerRepository;
 import com.questionanswer.data.QuestionRepository;
 import com.questionanswer.data.RoleRepository;
 import com.questionanswer.data.UserRepository;
+import com.questionanswer.model.Answer;
 import com.questionanswer.model.Question;
 import com.questionanswer.model.Role;
 import com.questionanswer.model.User;
@@ -26,14 +28,17 @@ public class SeederServiceImpl implements SeederService {
 
     private UserService userService;
 
+    private AnswerRepository answerRepo;
+
     @Autowired
     public SeederServiceImpl(QuestionRepository questionRepo, UserService userService, UserRepository userRepo,
-            RoleRepository roleRepo) {
+            RoleRepository roleRepo, AnswerRepository answerRepo) {
         super();
         this.questionRepo = questionRepo;
         this.userService = userService;
         this.userRepo = userRepo;
         this.roleRepo = roleRepo;
+        this.answerRepo = answerRepo;
     }
 
     private Question generateQuestion(User user) {
@@ -80,5 +85,30 @@ public class SeederServiceImpl implements SeederService {
         User user = userService.save(new User("Dimo", "Petrov", DEFAULT_USER_EMAIL, DEFAULT_USER_EMAIL));
         rolesToAddToTheUser.forEach(role -> role.getUsers().add(user));
         roleRepo.save(rolesToAddToTheUser);
+    }
+
+    @Override
+    public void seedAnswers(int answerPerQuestion) {
+        if (this.answerRepo.count() != 0) {
+            return;
+        }
+
+        this.questionRepo.findAll().forEach(x -> generateAnswer(x, answerPerQuestion));
+    }
+
+    private void generateAnswer(Question question, int answerPerQuestion) {
+        ArrayList<Answer> answers = new ArrayList<>();
+
+        User user = this.userRepo.findOneByEmail(DEFAULT_USER_EMAIL);
+
+        for (int i = 0; i < answerPerQuestion; i++) {
+            Answer answer = new Answer();
+            answer.setQuestion(question);
+            answer.setUser(user);
+            answer.setContent(RandomStringUtils.randomAlphabetic(20));
+            answers.add(answer);
+        }
+
+        this.answerRepo.save(answers);
     }
 }
