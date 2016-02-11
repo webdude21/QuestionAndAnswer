@@ -1,4 +1,9 @@
-<blockquote>
-  <p>{{question.title}}</p>
-  <small class="wrap">{{question.content}}</small>
-</blockquote>
+<div>
+  <blockquote>
+    <p>{{question.current.title}}</p>
+    <small class="wrap">{{question.current.content}}</small>
+  </blockquote>
+  <div ng-repeat="answer in question.answers._embedded.answers">
+    <answer answer="answer"></answer>
+  </div>
+</div>

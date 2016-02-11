@@ -55,7 +55,8 @@ var questionAndAnswer = angular.module('QuestionAndAnswer', ['ngResource', 'ngRo
   .constant('serverRoutes', {
     currentUser: 'api/authentication/currentuser',
     register: 'api/authentication/register',
-    usersRoute: '/api/users/'
+    usersRoute: '/api/users/',
+    questions: '/api/questions'
   })
   .constant('credits', {
     author: 'Webdude',
