@@ -19,7 +19,7 @@ public class Question extends BaseEntityAudit {
     private String content;
 
     private String title;
-    
+
     @ManyToOne(targetEntity = User.class)
     private User user;
 
