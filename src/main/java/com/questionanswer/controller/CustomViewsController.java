@@ -29,7 +29,7 @@ public class CustomViewsController {
     }
 
     @Transactional
-    @RequestMapping(value = "/questionDetails/{id}", method = { RequestMethod.GET })
+    @RequestMapping(value = "/question/{id}", method = { RequestMethod.GET })
     public Map<String, Object> question(@PathVariable long id) {
         Map<String, Object> resultMap = new HashMap<>();
 
