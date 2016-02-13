@@ -1,6 +1,6 @@
 <div>
   <blockquote>
-    <p>{{question.current.title}}</p>
+    <p>{{question.current.title}} - published by {{question.user.firstName}} {{question.user.lastName}}</p>
     <small class="wrap">{{question.current.content}}</small>
   </blockquote>
   <div ng-repeat="answer in question.answers._embedded.answers">

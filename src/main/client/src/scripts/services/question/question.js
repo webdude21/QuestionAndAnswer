@@ -9,9 +9,13 @@ questionAndAnswer.factory('Question', function ($resource, serverRoutes) {
       method: 'GET',
       params: { id: '@id' }
     },
-    getAnswerRelatedEntities: {
+    getQuestionsAnswers: {
       method: 'GET',
-      params: { id: '@id', reletedEntity: '@reletedEntity' }
+      params: { id: '@id', reletedEntity: 'answers' }
+    },
+    getQuestionUser: {
+      method: 'GET',
+      params: { id: '@id', reletedEntity: 'user' }
     },
     query: {
       method: 'GET',

@@ -1,7 +1,9 @@
-questionAndAnswer.controller('DetailQuestionsController',
-  function DetailQuestionsController($routeParams, Question) {
-    this.question = {};
+questionAndAnswer.controller('DetailQuestionsController', function ($routeParams, Question) {
+  this.question = {};
 
-    this.question.current = Question.getById({ id: $routeParams.id });
-    this.question.answers = Question.getAnswerRelatedEntities({ id: $routeParams.id, reletedEntity: 'answers' });
-  });
+  var questionId = { id: $routeParams.id };
+
+  this.question.current = Question.getById(questionId);
+  this.question.answers = Question.getQuestionsAnswers(questionId);
+  this.question.user = Question.getQuestionUser(questionId)
+});
