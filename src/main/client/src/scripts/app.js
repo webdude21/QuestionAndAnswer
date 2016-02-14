@@ -65,6 +65,7 @@ var questionAndAnswer = angular.module('QuestionAndAnswer', ['ngResource', 'ngRo
     authorLink: 'http://webdude.eu',
     appTitle: 'Question & Answer'
   });
+
 questionAndAnswer.run(function ($rootScope, $location) {
   $rootScope.$on('$routeChangeError', function (ev, current, previous, rejection) {
     if (rejection === 'not authorized') {
