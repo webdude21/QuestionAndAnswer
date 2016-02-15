@@ -5,11 +5,13 @@ public class AnswerAndVoteCount {
     private int votesCount;
 
     private String content;
+    
+    private long answerId;
 
     public AnswerAndVoteCount(Answer answer) {
         this.content = answer.getContent();
-        this.votesCount = answer.getVotes().size();
-
+        this.answerId = answer.getId();
+        this.votesCount = answer.getVotedUsers().size();
     }
 
     public int getVotesCount() {
@@ -26,5 +28,13 @@ public class AnswerAndVoteCount {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public long getAnswerId() {
+        return answerId;
+    }
+
+    public void setAnswerId(long answerId) {
+        this.answerId = answerId;
     }
 }

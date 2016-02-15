@@ -104,7 +104,7 @@ public class SeederServiceImpl implements SeederService {
         for (int i = 0; i < answerPerQuestion; i++) {
             Answer answer = new Answer();
             answer.setQuestion(question);
-            answer.setUser(user);
+            answer.setAuthor(user);
             answer.setContent(RandomStringUtils.randomAlphabetic(20));
             answers.add(answer);
         }

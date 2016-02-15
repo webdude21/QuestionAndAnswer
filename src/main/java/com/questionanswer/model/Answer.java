@@ -5,8 +5,8 @@ import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 
 @Entity
 public class Answer extends BaseEntityAudit {
@@ -17,11 +17,19 @@ public class Answer extends BaseEntityAudit {
     private Question question;
 
     @ManyToOne(targetEntity = User.class)
-    private User user;
+    private User author;
 
-    @OneToMany(mappedBy = "answer", cascade = { CascadeType.ALL })
-    private Set<Vote> votes = new HashSet<>();
+    @ManyToMany(mappedBy = "answersvotes", cascade = { CascadeType.ALL })
+    private Set<User> votedUsers = new HashSet<>();
     
+    public Set<User> getVotedUsers() {
+        return votedUsers;
+    }
+
+    public void setVotedUsers(Set<User> votedUsers) {
+        this.votedUsers = votedUsers;
+    }
+
     private String content;
 
     public String getContent() {
@@ -36,23 +44,15 @@ public class Answer extends BaseEntityAudit {
         return question;
     }
 
-    public User getUser() {
-        return user;
-    }
-
-    public Set<Vote> getVotes() {
-        return votes;
-    }
+    public User getAuthor() {
+        return author;
+    }  
 
     public void setQuestion(Question question) {
         this.question = question;
     }
 
-    public void setUser(User user) {
-        this.user = user;
-    }
-    
-    public void setVotes(Set<Vote> votes) {
-        this.votes = votes;
+    public void setAuthor(User user) {
+        this.author = user;
     }
 }

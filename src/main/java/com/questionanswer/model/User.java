@@ -21,7 +21,7 @@ public class User extends BaseEntityAudit {
 
     private static final long serialVersionUID = -1525848083627501220L;
 
-    @OneToMany(mappedBy = "user", cascade = { CascadeType.ALL })
+    @OneToMany(mappedBy = "author", cascade = { CascadeType.ALL })
     private Set<Answer> answers = new HashSet<>();
 
     @Email(message = "Please provide a valid email address.")
@@ -44,8 +44,8 @@ public class User extends BaseEntityAudit {
     @ManyToMany(mappedBy = "userroles", fetch = FetchType.EAGER)
     private Set<Role> roles = new HashSet<>();
 
-    @ManyToMany(mappedBy = "uservotes", fetch = FetchType.EAGER)
-    private Set<Vote> votes = new HashSet<>();
+    @ManyToMany(cascade = { CascadeType.ALL }, fetch = FetchType.EAGER)
+    private Set<User> answersvotes = new HashSet<User>();
 
     public User() {
     }
@@ -107,10 +107,6 @@ public class User extends BaseEntityAudit {
         return roles;
     }
 
-    public Set<Vote> getVotes() {
-        return votes;
-    }
-
     public void setAnswers(Set<Answer> answers) {
         this.answers = answers;
     }
@@ -132,15 +128,19 @@ public class User extends BaseEntityAudit {
         this.password = password;
     }
 
+    public Set<User> getAnswersvotes() {
+        return answersvotes;
+    }
+
+    public void setAnswersvotes(Set<User> answersvotes) {
+        this.answersvotes = answersvotes;
+    }
+
     public void setQuestions(Set<Question> questions) {
         this.questions = questions;
     }
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
-    }
-
-    public void setVotes(Set<Vote> votes) {
-        this.votes = votes;
     }
 }
