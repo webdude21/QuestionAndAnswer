@@ -6,13 +6,12 @@ questionAndAnswer.factory('errorHandler', function (notifier, $location) {
       }
 
       if (serverError.data) {
-        notifier.error(serverError.data);
-        $location.path("/not-found");
+        notifier.error(serverError['data']);
       }
 
       if (serverError['reason']) {
         notifier.error(serverError['reason']);
-        $location.path("/not-found");
+        $location.path('/not-found');
       }
 
       if (serverError.modelState) {

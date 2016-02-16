@@ -1,6 +1,10 @@
 questionAndAnswer.factory('notifier', function (toastr) {
   return {
     success: function (msg) {
+      if (msg.response) {
+        msg = msg.response;
+      }
+
       toastr.success(msg);
     },
     error: function (error) {
@@ -11,6 +15,10 @@ questionAndAnswer.factory('notifier', function (toastr) {
 
       if (error.data && error.data.message) {
         error = error.data.message;
+      }
+
+      if (error.response) {
+        error = error.response;
       }
 
       if (error.statusText) {

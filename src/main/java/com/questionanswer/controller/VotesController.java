@@ -1,6 +1,7 @@
 package com.questionanswer.controller;
 
 import java.security.Principal;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.questionanswer.config.Routes;
 import com.questionanswer.data.AnswerRepository;
 import com.questionanswer.model.Answer;
+import com.questionanswer.model.ResponseMessage;
 import com.questionanswer.model.User;
 import com.questionanswer.service.UserService;
 
@@ -23,7 +25,7 @@ import com.questionanswer.service.UserService;
 public class VotesController {
 
     private AnswerRepository answersRepo;
-    
+
     private UserService userService;
 
     @Autowired
@@ -35,28 +37,33 @@ public class VotesController {
     @Transactional
     @RequestMapping(value = "/answer/{id}/upvote", method = { RequestMethod.PUT })
     public HttpEntity<?> upvote(@PathVariable long id, Principal user) {
-        if (user == null){
-            return new ResponseEntity<>("You must be logged in order to vote", HttpStatus.BAD_REQUEST);
+        if (user == null) {
+            return new ResponseEntity<>(new ResponseMessage("You must be logged in order to vote"), HttpStatus.BAD_REQUEST);
         }
         
-        User votedUser = (User) this.userService.loadUserByUsername(user.getName());
+        User votedUser = this.userService.loadUserByName(user.getName());
+        
+        if (votedUser == null) {
+            return new ResponseEntity<>(new ResponseMessage("You must be logged in order to vote"), HttpStatus.BAD_REQUEST);
+        }
         
         Answer answer = this.answersRepo.findOne(id);
-        
-        if (answer == null){
-            return new ResponseEntity<>("You cannot vote for non existing answer", HttpStatus.BAD_REQUEST);
+
+        if (answer == null) {
+            return new ResponseEntity<>(new ResponseMessage("You cannot vote for non existing answer"), HttpStatus.BAD_REQUEST);
         }
-        
-        boolean userHasAlreadyVoted = answer.getVotedUsers().contains(user);
-        
-        if (userHasAlreadyVoted){
-            return new ResponseEntity<>("You cannot vote more than once", HttpStatus.BAD_REQUEST);
+
+        boolean userHasAlreadyVoted = votedUser.getAnswersvotes().contains(answer);
+
+        if (userHasAlreadyVoted) {
+            return new ResponseEntity<>(new ResponseMessage("You cannot vote more than once"), HttpStatus.BAD_REQUEST);
         }
-        
+
         answer.getVotedUsers().add(votedUser);
+        votedUser.getAnswersvotes().add(answer);
         
         answersRepo.save(answer);
-        
-        return new ResponseEntity<>("Succesfull vote", HttpStatus.ACCEPTED);
+
+        return new ResponseEntity<>(new ResponseMessage("Succesfull vote"), HttpStatus.ACCEPTED);
     }
 }

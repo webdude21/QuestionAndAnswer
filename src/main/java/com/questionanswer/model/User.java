@@ -45,7 +45,7 @@ public class User extends BaseEntityAudit {
     private Set<Role> roles = new HashSet<>();
 
     @ManyToMany(cascade = { CascadeType.ALL }, fetch = FetchType.EAGER)
-    private Set<User> answersvotes = new HashSet<User>();
+    private Set<Answer> answersvotes = new HashSet<Answer>();
 
     public User() {
     }
@@ -128,11 +128,11 @@ public class User extends BaseEntityAudit {
         this.password = password;
     }
 
-    public Set<User> getAnswersvotes() {
+    public Set<Answer> getAnswersvotes() {
         return answersvotes;
     }
 
-    public void setAnswersvotes(Set<User> answersvotes) {
+    public void setAnswersvotes(Set<Answer> answersvotes) {
         this.answersvotes = answersvotes;
     }
 

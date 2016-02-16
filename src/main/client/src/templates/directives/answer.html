@@ -1,5 +1,5 @@
 <blockquote class="blockquote-reverse">
   <p>{{answer.content}}</p>
   <span>{{answer.votesCount}}</span>
-  <a href="#" class="btn btn-success">Vote</a>
+  <a href="#" class="btn btn-success" ng-click="upvote(answer.answerId)">Vote</a>
 </blockquote>
