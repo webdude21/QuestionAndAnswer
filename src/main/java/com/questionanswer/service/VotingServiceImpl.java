@@ -25,13 +25,13 @@ public class VotingServiceImpl implements VotingService {
         this.userRepo = userRepo;
     }
     
-    private void produceError(String message) throws IllegalAccessException{
-        throw new IllegalAccessException(message);
+    private void produceError(String message) throws IllegalArgumentException{
+        throw new IllegalArgumentException(message);
     }
 
     @Override
     @Transactional
-    public void updateVotes(Principal user, long id) throws IllegalAccessException {
+    public void updateVotes(Principal user, long id) throws IllegalArgumentException {
         if (user == null) {
             produceError("You must be logged in order to vote");
         }

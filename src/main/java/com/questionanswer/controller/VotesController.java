@@ -31,7 +31,7 @@ public class VotesController {
        
         try {
             votingService.updateVotes(user, id);
-        } catch (IllegalAccessException ex){
+        } catch (IllegalArgumentException ex){
             return new ResponseEntity<>(new ResponseMessage(ex.getMessage()), HttpStatus.BAD_REQUEST);
         }
 

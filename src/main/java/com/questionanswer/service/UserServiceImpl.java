@@ -39,4 +39,13 @@ public class UserServiceImpl implements UserService {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         return userRepository.save(user);
     }
+
+    @Override
+    public User register(User user) throws IllegalArgumentException {
+        if (userRepository.findOneByEmail(user.getEmail()) != null) {
+            throw new IllegalArgumentException("User with the same email already exists!");
+        }
+
+        return this.save(user);
+    }
 }

@@ -1,11 +1,8 @@
 package com.questionanswer.controller;
 
-import com.questionanswer.config.Routes;
-import com.questionanswer.model.User;
-import com.questionanswer.service.UserService;
+import java.security.Principal;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,7 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.security.Principal;
+import com.questionanswer.config.Routes;
+import com.questionanswer.model.ResponseMessage;
+import com.questionanswer.model.User;
+import com.questionanswer.service.UserService;
 
 @RestController
 @RequestMapping(value = Routes.API_BASE_ROUTE + "/authentication")
@@ -34,22 +34,10 @@ public class UserController {
 
     @RequestMapping(value = "/register", method = { RequestMethod.POST })
     public HttpEntity<?> Register(@RequestBody User user) {
-
-        if (this.userService.loadUserByUsername(user.getEmail()) != null) {
-            return new ResponseEntity<>("User with the same email already exists!", HttpStatus.BAD_REQUEST);
-        }
-
         try {
-            User savedUser = this.userService.save(user);
-            return new ResponseEntity<User>(savedUser, HttpStatus.CREATED);
-        } catch (DataIntegrityViolationException ex) {
-            return prepareExceptionResponce(ex);
+            return new ResponseEntity<User>(this.userService.register(user), HttpStatus.CREATED);
+        } catch (IllegalArgumentException ex) {
+            return new ResponseEntity<>(new ResponseMessage(ex.getMessage()), HttpStatus.BAD_REQUEST);
         }
-    }
-
-    private HttpEntity<?> prepareExceptionResponce(Exception ex) {
-        String errorMessage;
-        errorMessage = ex + " <== error";
-        return new ResponseEntity<>(errorMessage, HttpStatus.BAD_REQUEST);
     }
 }
