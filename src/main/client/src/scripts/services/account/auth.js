@@ -17,6 +17,9 @@ questionAndAnswer.factory('auth', function ($http, $q, identity, serverRoutes) {
 
       this.haveCheckedLogin = true;
     },
+    register: function (user) {
+      return $http.post(serverRoutes.register, user);
+    },
     login: function (user) {
       var headers = user ? {
         authorization: "Basic " + btoa(user.username + ":" + user.password)
@@ -88,6 +91,5 @@ questionAndAnswer.factory('auth', function ($http, $q, identity, serverRoutes) {
         return $q.reject('not authorized');
       }
     }
-
   }
 });

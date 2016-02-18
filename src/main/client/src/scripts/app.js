@@ -28,6 +28,11 @@ var questionAnswerAppConfig = function ($routeProvider, $locationProvider, $http
       controller: 'QuestionsController',
       controllerAs: CONTROLLER_VIEW_MODEL_NAME
     })
+    .when('/register', {
+      templateUrl: getTemplatePath('account/register'),
+      controller: 'RegisterController',
+      controllerAs: CONTROLLER_VIEW_MODEL_NAME
+    })
     .when('/question/ask-question', {
       templateUrl: getTemplatePath('question/ask-question'),
       controller: 'AskQuestionsController',
