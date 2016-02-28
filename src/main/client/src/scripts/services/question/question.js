@@ -1,7 +1,7 @@
 var questionAndAnswer = angular.module('QuestionAndAnswer');
 
 questionAndAnswer.factory('Question', function ($resource, serverRoutes) {
-  return $resource(serverRoutes.questions + '/:id/:reletedEntity', null, {
+  return $resource(serverRoutes.questions + '/:id/:relatedEntity', null, {
     getAll: {
       method: 'GET'
     },
@@ -11,11 +11,11 @@ questionAndAnswer.factory('Question', function ($resource, serverRoutes) {
     },
     getQuestionsAnswers: {
       method: 'GET',
-      params: { id: '@id', reletedEntity: 'answers' }
+      params: { id: '@id', relatedEntity: 'answers' }
     },
     getQuestionUser: {
       method: 'GET',
-      params: { id: '@id', reletedEntity: 'user' }
+      params: { id: '@id', relatedEntity: 'user' }
     },
     query: {
       method: 'GET',

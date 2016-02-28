@@ -12,7 +12,7 @@ questionAndAnswer.directive('answer', function () {
         CustomViews.upvoteAnswer({ id: id })
           .$promise
           .then(function (msg) {
-            notifier.success(msg)
+            notifier.success(msg);
             $scope.answer.votesCount += 1;
           });
       }

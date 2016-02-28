@@ -35,6 +35,6 @@ public class VotesController {
             return new ResponseEntity<>(new ResponseMessage(ex.getMessage()), HttpStatus.BAD_REQUEST);
         }
 
-        return new ResponseEntity<>(new ResponseMessage("Succesfull vote"), HttpStatus.ACCEPTED);
+        return new ResponseEntity<>(new ResponseMessage("Successful vote"), HttpStatus.ACCEPTED);
     }
 }

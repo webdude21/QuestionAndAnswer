@@ -2,7 +2,7 @@ questionAndAnswer.controller('QuestionsController', function (Question, $http, n
 
   this.getDetailLink = function (question) {
     return '/question/' + question._links.self.href.split("/").slice(-1);
-  }
+  };
 
   this.request = {
     sort: 'title',

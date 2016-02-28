@@ -34,7 +34,7 @@ public class QuestionDetailsServiceImpl implements QuestionDetailService {
         resultMap.put("user", resultQuestion.getUser());
         resultMap.put("answers", resultQuestion.getAnswers()
                 .stream()
-                .map(a -> new AnswerAndVoteCount(a))
+                .map(AnswerAndVoteCount::new)
                 .collect(Collectors.toList()));
         
         return resultMap;
