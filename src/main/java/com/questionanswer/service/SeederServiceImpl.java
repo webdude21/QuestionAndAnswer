@@ -31,7 +31,7 @@ public class SeederServiceImpl implements SeederService {
 
 	@Autowired
 	public SeederServiceImpl(QuestionRepository questionRepo, UserService userService, UserRepository userRepo,
-							 RoleRepository roleRepo, AnswerRepository answerRepo) {
+													 RoleRepository roleRepo, AnswerRepository answerRepo) {
 		super();
 		this.questionRepo = questionRepo;
 		this.userService = userService;
