@@ -1,58 +1,56 @@
 package com.questionanswer.model;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Answer extends BaseEntityAudit {
-    
-    private static final long serialVersionUID = 8878653896319636157L;
 
-    @ManyToOne(targetEntity = Question.class)
-    private Question question;
+	private static final long serialVersionUID = 8878653896319636157L;
 
-    @ManyToOne(targetEntity = User.class)
-    private User author;
+	@ManyToOne(targetEntity = Question.class)
+	private Question question;
 
-    @ManyToMany(mappedBy = "answersvotes", cascade = { CascadeType.ALL })
-    private Set<User> votedUsers = new HashSet<>();
-    
-    public Set<User> getVotedUsers() {
-        return votedUsers;
-    }
+	@ManyToOne(targetEntity = User.class)
+	private User author;
 
-    public void setVotedUsers(Set<User> votedUsers) {
-        this.votedUsers = votedUsers;
-    }
+	@ManyToMany(mappedBy = "answersvotes", cascade = {CascadeType.ALL})
+	private Set<User> votedUsers = new HashSet<>();
+	private String content;
 
-    private String content;
+	public Set<User> getVotedUsers() {
+		return votedUsers;
+	}
 
-    public String getContent() {
-        return content;
-    }
+	public void setVotedUsers(Set<User> votedUsers) {
+		this.votedUsers = votedUsers;
+	}
 
-    public void setContent(String content) {
-        this.content = content;
-    }
+	public String getContent() {
+		return content;
+	}
 
-    public Question getQuestion() {
-        return question;
-    }
+	public void setContent(String content) {
+		this.content = content;
+	}
 
-    public User getAuthor() {
-        return author;
-    }  
+	public Question getQuestion() {
+		return question;
+	}
 
-    public void setQuestion(Question question) {
-        this.question = question;
-    }
+	public void setQuestion(Question question) {
+		this.question = question;
+	}
 
-    public void setAuthor(User user) {
-        this.author = user;
-    }
+	public User getAuthor() {
+		return author;
+	}
+
+	public void setAuthor(User user) {
+		this.author = user;
+	}
 }

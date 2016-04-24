@@ -1,7 +1,8 @@
 package com.questionanswer.controller;
 
-import java.security.Principal;
-
+import com.questionanswer.config.Routes;
+import com.questionanswer.model.ResponseMessage;
+import com.questionanswer.service.VotingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
@@ -11,30 +12,28 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.questionanswer.config.Routes;
-import com.questionanswer.model.ResponseMessage;
-import com.questionanswer.service.VotingService;
+import java.security.Principal;
 
 @RestController
 @RequestMapping(value = Routes.API_BASE_ROUTE + "/customviews")
 public class VotesController {
 
-    private VotingService votingService;
+	private VotingService votingService;
 
-    @Autowired
-    public VotesController(VotingService votingService) {
-        this.votingService = votingService;
-    }
+	@Autowired
+	public VotesController(VotingService votingService) {
+		this.votingService = votingService;
+	}
 
-    @RequestMapping(value = "/answer/{id}/upvote", method = { RequestMethod.PUT })
-    public HttpEntity<?> upvote(@PathVariable long id, Principal user) {
-       
-        try {
-            votingService.updateVotes(user, id);
-        } catch (IllegalArgumentException ex){
-            return new ResponseEntity<>(new ResponseMessage(ex.getMessage()), HttpStatus.BAD_REQUEST);
-        }
+	@RequestMapping(value = "/answer/{id}/upvote", method = {RequestMethod.PUT})
+	public HttpEntity<?> upvote(@PathVariable long id, Principal user) {
 
-        return new ResponseEntity<>(new ResponseMessage("Successful vote"), HttpStatus.ACCEPTED);
-    }
+		try {
+			votingService.updateVotes(user, id);
+		} catch (IllegalArgumentException ex) {
+			return new ResponseEntity<>(new ResponseMessage(ex.getMessage()), HttpStatus.BAD_REQUEST);
+		}
+
+		return new ResponseEntity<>(new ResponseMessage("Successful vote"), HttpStatus.ACCEPTED);
+	}
 }

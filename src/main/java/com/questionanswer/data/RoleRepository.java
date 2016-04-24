@@ -1,8 +1,7 @@
 package com.questionanswer.data;
 
-import org.springframework.data.repository.CrudRepository;
-
 import com.questionanswer.model.Role;
+import org.springframework.data.repository.CrudRepository;
 
 public interface RoleRepository extends CrudRepository<Role, Long> {
 

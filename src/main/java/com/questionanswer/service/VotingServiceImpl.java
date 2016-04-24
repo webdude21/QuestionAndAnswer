@@ -1,62 +1,60 @@
 package com.questionanswer.service;
 
-import java.security.Principal;
-
-import javax.transaction.Transactional;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import com.questionanswer.data.AnswerRepository;
 import com.questionanswer.data.UserRepository;
 import com.questionanswer.model.Answer;
 import com.questionanswer.model.User;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import javax.transaction.Transactional;
+import java.security.Principal;
 
 @Service
 public class VotingServiceImpl implements VotingService {
-    
-    private AnswerRepository answersRepo;
 
-    private UserRepository userRepo;
+	private AnswerRepository answersRepo;
 
-    @Autowired
-    public VotingServiceImpl(AnswerRepository answersRepo, UserRepository userRepo) {
-        this.answersRepo = answersRepo;
-        this.userRepo = userRepo;
-    }
-    
-    private void produceError(String message) throws IllegalArgumentException{
-        throw new IllegalArgumentException(message);
-    }
+	private UserRepository userRepo;
 
-    @Override
-    @Transactional
-    public void updateVotes(Principal user, long id) throws IllegalArgumentException {
-        if (user == null) {
-            produceError("You must be logged in order to vote");
-        }
-        
-        User votedUser = this.userRepo.findOneByEmail(user.getName());
-        
-        if (votedUser == null) {
-            produceError("You must be logged in order to vote");
-        }
-        
-        Answer answer = this.answersRepo.findOne(id);
+	@Autowired
+	public VotingServiceImpl(AnswerRepository answersRepo, UserRepository userRepo) {
+		this.answersRepo = answersRepo;
+		this.userRepo = userRepo;
+	}
 
-        if (answer == null) {
-            produceError("You cannot vote for non existing answer");
-        }
+	private void produceError(String message) throws IllegalArgumentException {
+		throw new IllegalArgumentException(message);
+	}
 
-        boolean userHasAlreadyVoted = votedUser.getAnswersvotes().contains(answer);
+	@Override
+	@Transactional
+	public void updateVotes(Principal user, long id) throws IllegalArgumentException {
+		if (user == null) {
+			produceError("You must be logged in order to vote");
+		}
 
-        if (userHasAlreadyVoted) {
-            produceError("You cannot vote more than once");
-        }
+		User votedUser = this.userRepo.findOneByEmail(user.getName());
 
-        answer.getVotedUsers().add(votedUser);
-        votedUser.getAnswersvotes().add(answer);
-        
-        answersRepo.save(answer);
-    }
+		if (votedUser == null) {
+			produceError("You must be logged in order to vote");
+		}
+
+		Answer answer = this.answersRepo.findOne(id);
+
+		if (answer == null) {
+			produceError("You cannot vote for non existing answer");
+		}
+
+		boolean userHasAlreadyVoted = votedUser.getAnswersvotes().contains(answer);
+
+		if (userHasAlreadyVoted) {
+			produceError("You cannot vote more than once");
+		}
+
+		answer.getVotedUsers().add(votedUser);
+		votedUser.getAnswersvotes().add(answer);
+
+		answersRepo.save(answer);
+	}
 }

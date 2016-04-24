@@ -11,15 +11,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(value = Routes.API_BASE_ROUTE + "/seed")
 public class SeedDataController {
 
-    private SeederService seederService;
+	private SeederService seederService;
 
-    @Autowired
-    public SeedDataController(SeederService seederService) {
-        this.seederService = seederService;
-    }
+	@Autowired
+	public SeedDataController(SeederService seederService) {
+		this.seederService = seederService;
+	}
 
-    @RequestMapping(value = "", method = { RequestMethod.GET })
-    public void seed() {
-        new Thread(seederService::seed).start();
-    }
+	@RequestMapping(value = "", method = {RequestMethod.GET})
+	public void seed() {
+		new Thread(seederService::seed).start();
+	}
 }

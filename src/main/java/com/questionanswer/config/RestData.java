@@ -11,19 +11,19 @@ import org.springframework.web.servlet.resource.GzipResourceResolver;
 @Import(RepositoryRestMvcConfiguration.class)
 public class RestData extends RepositoryRestMvcConfiguration {
 
-    private static final int CACHE_TIME = 60 * 60 * 24; // 24 hours
+	private static final int CACHE_TIME = 60 * 60 * 24; // 24 hours
 
-    protected void configureRepositoryRestConfiguration(RepositoryRestConfiguration config) {
-        config.setBasePath(Routes.API_BASE_ROUTE);
-    }
+	protected void configureRepositoryRestConfiguration(RepositoryRestConfiguration config) {
+		config.setBasePath(Routes.API_BASE_ROUTE);
+	}
 
-    @Override
-    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        super.addResourceHandlers(registry);
-        registry.addResourceHandler("/**")
-        .addResourceLocations("classpath:/static/")
-        .setCachePeriod(CACHE_TIME)
-                .resourceChain(true)
-                .addResolver(new GzipResourceResolver());
-    }  
+	@Override
+	public void addResourceHandlers(ResourceHandlerRegistry registry) {
+		super.addResourceHandlers(registry);
+		registry.addResourceHandler("/**")
+				.addResourceLocations("classpath:/static/")
+				.setCachePeriod(CACHE_TIME)
+				.resourceChain(true)
+				.addResolver(new GzipResourceResolver());
+	}
 }

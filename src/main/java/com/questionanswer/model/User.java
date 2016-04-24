@@ -1,146 +1,139 @@
 package com.questionanswer.model;
 
-import java.util.HashSet;
-import java.util.Set;
-
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class User extends BaseEntityAudit {
 
-    private static final long serialVersionUID = -1525848083627501220L;
+	private static final long serialVersionUID = -1525848083627501220L;
 
-    @OneToMany(mappedBy = "author", cascade = { CascadeType.ALL })
-    private Set<Answer> answers = new HashSet<>();
+	@OneToMany(mappedBy = "author", cascade = {CascadeType.ALL})
+	private Set<Answer> answers = new HashSet<>();
 
-    @Email(message = "Please provide a valid email address.")
-    @NotEmpty(message = "Email is required.")
-    @Column(unique = true, nullable = false)
-    private String email;
+	@Email(message = "Please provide a valid email address.")
+	@NotEmpty(message = "Email is required.")
+	@Column(unique = true, nullable = false)
+	private String email;
 
-    @NotEmpty(message = "First name is required.")
-    private String firstName;
+	@NotEmpty(message = "First name is required.")
+	private String firstName;
 
-    @NotEmpty(message = "Last name is required.")
-    private String lastName;
-    
-    @NotEmpty(message = "Password is required.")
-    private String password;
+	@NotEmpty(message = "Last name is required.")
+	private String lastName;
 
-    @OneToMany(mappedBy = "user", cascade = { CascadeType.ALL })
-    private Set<Question> questions = new HashSet<>();
+	@NotEmpty(message = "Password is required.")
+	private String password;
 
-    @ManyToMany(mappedBy = "userroles", fetch = FetchType.EAGER)
-    private Set<Role> roles = new HashSet<>();
+	@OneToMany(mappedBy = "user", cascade = {CascadeType.ALL})
+	private Set<Question> questions = new HashSet<>();
 
-    @ManyToMany(cascade = { CascadeType.ALL }, fetch = FetchType.EAGER)
-    private Set<Answer> answersvotes = new HashSet<Answer>();
+	@ManyToMany(mappedBy = "userroles", fetch = FetchType.EAGER)
+	private Set<Role> roles = new HashSet<>();
 
-    public User() {
-    }
+	@ManyToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
+	private Set<Answer> answersvotes = new HashSet<Answer>();
 
-    public User(String firstName, String lastName, String email, String password) {
-        this.setFirstName(firstName);
-        this.setLastName(lastName);
-        this.setEmail(email);
-        this.setPassword(password);
-    }
-    
-    public User(User user) {
-        this.setId(user.getId());
-        this.setFirstName(user.getFirstName());
-        this.setLastName(user.getLastName());
-        this.setEmail(user.getEmail());
-        this.setPassword(user.getPassword());
-        this.setRoles(user.getRoles());
-    }
+	public User() {
+	}
 
-    @Override
-    public boolean equals(Object object) {
-        if (!(object instanceof User)) {
-            return false;
-        }
+	public User(String firstName, String lastName, String email, String password) {
+		this.setFirstName(firstName);
+		this.setLastName(lastName);
+		this.setEmail(email);
+		this.setPassword(password);
+	}
 
-        User other = (User) object;
+	public User(User user) {
+		this.setId(user.getId());
+		this.setFirstName(user.getFirstName());
+		this.setLastName(user.getLastName());
+		this.setEmail(user.getEmail());
+		this.setPassword(user.getPassword());
+		this.setRoles(user.getRoles());
+	}
 
-        return other.getEmail().equals(this.getEmail());
-    }
+	@Override
+	public boolean equals(Object object) {
+		if (!(object instanceof User)) {
+			return false;
+		}
 
-    public Set<Answer> getAnswers() {
-        return answers;
-    }
+		User other = (User) object;
 
-    public String getEmail() {
-        return email;
-    }
+		return other.getEmail().equals(this.getEmail());
+	}
 
-    public String getFirstName() {
-        return firstName;
-    }
+	public Set<Answer> getAnswers() {
+		return answers;
+	}
 
-    public String getLastName() {
-        return lastName;
-    }
+	public void setAnswers(Set<Answer> answers) {
+		this.answers = answers;
+	}
 
-    // Not a good idea to expose the password even to administrators
-    @JsonIgnore
-    public String getPassword() {
-        return password;
-    }
+	public String getEmail() {
+		return email;
+	}
 
-    public Set<Question> getQuestions() {
-        return questions;
-    }
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
-    public Set<Role> getRoles() {
-        return roles;
-    }
+	public String getFirstName() {
+		return firstName;
+	}
 
-    public void setAnswers(Set<Answer> answers) {
-        this.answers = answers;
-    }
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+	public String getLastName() {
+		return lastName;
+	}
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
+	// Not a good idea to expose the password even to administrators
+	@JsonIgnore
+	public String getPassword() {
+		return password;
+	}
 
-    @JsonProperty
-    public void setPassword(String password) {
-        this.password = password;
-    }
+	@JsonProperty
+	public void setPassword(String password) {
+		this.password = password;
+	}
 
-    public Set<Answer> getAnswersvotes() {
-        return answersvotes;
-    }
+	public Set<Question> getQuestions() {
+		return questions;
+	}
 
-    public void setAnswersvotes(Set<Answer> answersvotes) {
-        this.answersvotes = answersvotes;
-    }
+	public void setQuestions(Set<Question> questions) {
+		this.questions = questions;
+	}
 
-    public void setQuestions(Set<Question> questions) {
-        this.questions = questions;
-    }
+	public Set<Role> getRoles() {
+		return roles;
+	}
 
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
-    }
+	public void setRoles(Set<Role> roles) {
+		this.roles = roles;
+	}
+
+	public Set<Answer> getAnswersvotes() {
+		return answersvotes;
+	}
+
+	public void setAnswersvotes(Set<Answer> answersvotes) {
+		this.answersvotes = answersvotes;
+	}
 }

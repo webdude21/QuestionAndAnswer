@@ -1,9 +1,9 @@
 <div>
-  <blockquote>
-    <p>{{question.question.title}} - published by {{question.user.firstName}} {{question.user.lastName}}</p>
-    <small class="wrap">{{question.question.content}}</small>
-  </blockquote>
-  <div ng-repeat="answer in question.answers">
-    <answer answer="answer"></answer>
-  </div>
+    <blockquote>
+        <p>{{question.question.title}} - published by {{question.user.firstName}} {{question.user.lastName}}</p>
+        <small class="wrap">{{question.question.content}}</small>
+    </blockquote>
+    <div ng-repeat="answer in question.answers">
+        <answer answer="answer"></answer>
+    </div>
 </div>

@@ -1,14 +1,13 @@
 package com.questionanswer.data;
 
-import java.util.List;
-
+import com.questionanswer.model.User;
 import org.springframework.data.repository.CrudRepository;
 
-import com.questionanswer.model.User;
+import java.util.List;
 
 public interface UserRepository extends CrudRepository<User, Long> {
 
-    User findOneByEmail(String email);
+	User findOneByEmail(String email);
 
-    List<User> findByEmail(String email);
+	List<User> findByEmail(String email);
 }

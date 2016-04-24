@@ -2,39 +2,39 @@ package com.questionanswer.model;
 
 public class AnswerAndVoteCount {
 
-    private int votesCount;
+	private int votesCount;
 
-    private String content;
-    
-    private long answerId;
+	private String content;
 
-    public AnswerAndVoteCount(Answer answer) {
-        this.content = answer.getContent();
-        this.answerId = answer.getId();
-        this.votesCount = answer.getVotedUsers().size();
-    }
+	private long answerId;
 
-    public int getVotesCount() {
-        return votesCount;
-    }
+	public AnswerAndVoteCount(Answer answer) {
+		this.content = answer.getContent();
+		this.answerId = answer.getId();
+		this.votesCount = answer.getVotedUsers().size();
+	}
 
-    public void setVotesCount(int votesCount) {
-        this.votesCount = votesCount;
-    }
+	public int getVotesCount() {
+		return votesCount;
+	}
 
-    public String getContent() {
-        return content;
-    }
+	public void setVotesCount(int votesCount) {
+		this.votesCount = votesCount;
+	}
 
-    public void setContent(String content) {
-        this.content = content;
-    }
+	public String getContent() {
+		return content;
+	}
 
-    public long getAnswerId() {
-        return answerId;
-    }
+	public void setContent(String content) {
+		this.content = content;
+	}
 
-    public void setAnswerId(long answerId) {
-        this.answerId = answerId;
-    }
+	public long getAnswerId() {
+		return answerId;
+	}
+
+	public void setAnswerId(long answerId) {
+		this.answerId = answerId;
+	}
 }
