@@ -30,54 +30,54 @@ public class UserServiceTests {
 	private PasswordEncoder mockedPasswordEncoder;
 
 	public UserServiceTests() {
-		this.mockedUser = new User("dimo", "petrov", VALID_EMAIL, RAW_PASSWORD);
-		this.mockedUserRepo = mock(UserRepository.class);
-		this.mockedPasswordEncoder = mock(PasswordEncoder.class);
-		this.userService = new UserServiceImpl(this.mockedUserRepo, this.mockedPasswordEncoder);
+		mockedUser = new User("dimo", "petrov", VALID_EMAIL, RAW_PASSWORD);
+		mockedUserRepo = mock(UserRepository.class);
+		mockedPasswordEncoder = mock(PasswordEncoder.class);
+		userService = new UserServiceImpl(mockedUserRepo, mockedPasswordEncoder);
 	}
 
 	@Test
 	public void fetchingAnExistingUser() {
-		when(this.mockedUserRepo.findOneByEmail(VALID_EMAIL)).thenReturn(this.mockedUser);
-		UserDetails user = this.userService.loadUserByUsername(VALID_EMAIL);
-		assertThat(user, equalTo(this.mockedUser));
-		verify(this.mockedUserRepo, times(1)).findOneByEmail(VALID_EMAIL);
+		when(mockedUserRepo.findOneByEmail(VALID_EMAIL)).thenReturn(mockedUser);
+		UserDetails user = userService.loadUserByUsername(VALID_EMAIL);
+		assertThat(user, equalTo(mockedUser));
+		verify(mockedUserRepo, times(1)).findOneByEmail(VALID_EMAIL);
 	}
 
 	@Test(expected = UsernameNotFoundException.class)
 	public void requiestingNonExistingUserThrowsException() {
 		when(mockedUserRepo.findOneByEmail(VALID_EMAIL)).thenReturn(null);
-		this.userService.loadUserByUsername(VALID_EMAIL);
+		userService.loadUserByUsername(VALID_EMAIL);
 	}
 
 	@Test
 	public void savingAnUserEncodesThePassword() {
 		when(mockedPasswordEncoder.encode(RAW_PASSWORD)).thenReturn(ENCODED_PASSWORD);
-		this.userService.save(this.mockedUser);
-		assertThat(this.mockedUser.getPassword(), equalTo(ENCODED_PASSWORD));
-		verify(this.mockedPasswordEncoder, times(1)).encode(RAW_PASSWORD);
+		userService.save(mockedUser);
+		assertThat(mockedUser.getPassword(), equalTo(ENCODED_PASSWORD));
+		verify(mockedPasswordEncoder, times(1)).encode(RAW_PASSWORD);
 	}
 
 	@Test
 	public void callingSaveActuallySavesTheUserAndReturnsIt() {
-		when(mockedUserRepo.save(this.mockedUser)).thenReturn(this.mockedUser);
-		User user = this.userService.save(this.mockedUser);
-		assertThat(this.mockedUser, equalTo(user));
-		verify(this.mockedUserRepo, times(1)).save(this.mockedUser);
+		when(mockedUserRepo.save(mockedUser)).thenReturn(mockedUser);
+		User user = userService.save(mockedUser);
+		assertThat(mockedUser, equalTo(user));
+		verify(mockedUserRepo, times(1)).save(mockedUser);
 	}
 
 	@Test
 	public void callingRegisterActuallySavesTheUserAndReturnsIt() {
 		when(mockedUserRepo.findOneByEmail(VALID_EMAIL)).thenReturn(null);
-		when(mockedUserRepo.save(this.mockedUser)).thenReturn(this.mockedUser);
-		User user = this.userService.register(this.mockedUser);
-		assertThat(this.mockedUser, equalTo(user));
-		verify(this.mockedUserRepo, times(1)).save(this.mockedUser);
+		when(mockedUserRepo.save(mockedUser)).thenReturn(mockedUser);
+		User user = userService.register(mockedUser);
+		assertThat(mockedUser, equalTo(user));
+		verify(mockedUserRepo, times(1)).save(mockedUser);
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void callingRegisterWithAnUserWithAlreadyExistingEmailThrowsAnException() {
-		when(mockedUserRepo.findOneByEmail(VALID_EMAIL)).thenReturn(this.mockedUser);
-		this.userService.register(this.mockedUser);
+		when(mockedUserRepo.findOneByEmail(VALID_EMAIL)).thenReturn(mockedUser);
+		userService.register(mockedUser);
 	}
 }
