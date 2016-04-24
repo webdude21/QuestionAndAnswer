@@ -9,6 +9,10 @@ questionAndAnswer.factory('CustomViews', function ($resource, serverRoutes) {
 		upvoteAnswer: {
 			method: 'PUT',
 			params: { id: '@id', type: 'answer', action: 'upvote' }
+		},
+		unVoteAnswer: {
+			method: 'PUT',
+			params: { id: '@id', type: 'answer', action: 'unvote' }
 		}
 	});
 });

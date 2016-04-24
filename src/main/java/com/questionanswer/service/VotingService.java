@@ -7,5 +7,7 @@ import java.security.Principal;
 @Service
 public interface VotingService {
 
-	void updateVotes(Principal user, long id) throws IllegalArgumentException;
+	void upVote(Principal user, long id) throws IllegalArgumentException;
+
+	void unVote(Principal user, long id) throws IllegalArgumentException;
 }

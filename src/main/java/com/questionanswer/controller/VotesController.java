@@ -29,11 +29,23 @@ public class VotesController {
 	public HttpEntity<?> upvote(@PathVariable long id, Principal user) {
 
 		try {
-			votingService.updateVotes(user, id);
+			votingService.upVote(user, id);
 		} catch (IllegalArgumentException ex) {
 			return new ResponseEntity<>(new ResponseMessage(ex.getMessage()), HttpStatus.BAD_REQUEST);
 		}
 
 		return new ResponseEntity<>(new ResponseMessage("Successful vote"), HttpStatus.ACCEPTED);
+	}
+
+	@RequestMapping(value = "/answer/{id}/unvote", method = {RequestMethod.PUT})
+	public HttpEntity<?> unVote(@PathVariable long id, Principal user) {
+
+		try {
+			votingService.unVote(user, id);
+		} catch (IllegalArgumentException ex) {
+			return new ResponseEntity<>(new ResponseMessage(ex.getMessage()), HttpStatus.BAD_REQUEST);
+		}
+
+		return new ResponseEntity<>(new ResponseMessage("Successful unVote"), HttpStatus.ACCEPTED);
 	}
 }

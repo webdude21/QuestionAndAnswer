@@ -8,14 +8,24 @@ questionAndAnswer.directive('answer', function () {
 			answer: '='
 		},
 		controller: function ($scope, CustomViews, notifier) {
-			$scope.upvote = function (id) {
+			$scope.upVote = function (id) {
 				CustomViews.upvoteAnswer({ id: id })
 					.$promise
 					.then(function (msg) {
 						notifier.success(msg);
 						$scope.answer.votesCount += 1;
 					});
-			}
+			};
+
+			$scope.unVote = function (id) {
+				CustomViews.unVoteAnswer({ id: id })
+					.$promise
+					.then(function (msg) {
+						notifier.success(msg);
+						$scope.answer.votesCount -= 1;
+					});
+			};
+			
 		}
 	}
 });

@@ -29,7 +29,48 @@ public class VotingServiceImpl implements VotingService {
 
 	@Override
 	@Transactional
-	public void updateVotes(Principal user, long id) throws IllegalArgumentException {
+	public void upVote(Principal user, long id) throws IllegalArgumentException {
+		User votedUser = getUser(user, id);
+		Answer answer = getAnswer(id);
+		checkIfCanVote(votedUser, answer);
+		answer.getVotedUsers().add(votedUser);
+		votedUser.getAnswersvotes().add(answer);
+		answersRepo.save(answer);
+	}
+
+	@Override
+	@Transactional
+	public void unVote(Principal user, long id) throws IllegalArgumentException {
+		User votedUser = getUser(user, id);
+		Answer answer = getAnswer(id);
+		checkIfCanUnVote(votedUser, answer);
+		answer.getVotedUsers().remove(votedUser);
+		votedUser.getAnswersvotes().remove(answer);
+		answersRepo.save(answer);
+	}
+
+	private void checkIfCanUnVote(User votedUser, Answer answer) {
+		if (!votedUser.getAnswersvotes().contains(answer)) {
+			produceError("You cannot unvote if not voted");
+		}
+	}
+
+	private void checkIfCanVote(User votedUser, Answer answer) {
+		if (votedUser.getAnswersvotes().contains(answer)) {
+			produceError("You cannot vote more than once");
+		}
+	}
+
+	private Answer getAnswer(long id) throws IllegalArgumentException {
+		Answer answer = this.answersRepo.findOne(id);
+
+		if (answer == null) {
+			produceError("You cannot vote for non existing answer");
+		}
+		return answer;
+	}
+
+	private User getUser(Principal user, long id) throws IllegalArgumentException {
 		if (user == null) {
 			produceError("You must be logged in order to vote");
 		}
@@ -39,22 +80,6 @@ public class VotingServiceImpl implements VotingService {
 		if (votedUser == null) {
 			produceError("You must be logged in order to vote");
 		}
-
-		Answer answer = this.answersRepo.findOne(id);
-
-		if (answer == null) {
-			produceError("You cannot vote for non existing answer");
-		}
-
-		boolean userHasAlreadyVoted = votedUser.getAnswersvotes().contains(answer);
-
-		if (userHasAlreadyVoted) {
-			produceError("You cannot vote more than once");
-		}
-
-		answer.getVotedUsers().add(votedUser);
-		votedUser.getAnswersvotes().add(answer);
-
-		answersRepo.save(answer);
+		return votedUser;
 	}
 }
