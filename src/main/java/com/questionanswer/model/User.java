@@ -6,11 +6,12 @@ import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
+import java.security.Principal;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-public class User extends BaseEntityAudit {
+public class User extends BaseEntityAudit implements Principal {
 
 	private static final long serialVersionUID = -1525848083627501220L;
 
@@ -68,6 +69,11 @@ public class User extends BaseEntityAudit {
 		User other = (User) object;
 
 		return other.getEmail().equals(this.getEmail());
+	}
+
+	@Override
+	public String getName() {
+		return this.getEmail();
 	}
 
 	public Set<Answer> getAnswers() {

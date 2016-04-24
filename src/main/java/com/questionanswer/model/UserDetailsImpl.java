@@ -3,9 +3,10 @@ package com.questionanswer.model;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.security.Principal;
 import java.util.Collection;
 
-public class UserDetailsImpl extends User implements UserDetails {
+public class UserDetailsImpl extends User implements UserDetails, Principal {
 	private static final long serialVersionUID = 1L;
 
 	public UserDetailsImpl(User user) {
@@ -45,5 +46,10 @@ public class UserDetailsImpl extends User implements UserDetails {
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		return super.getRoles();
+	}
+
+	@Override
+	public String getName() {
+		return this.getEmail();
 	}
 }
