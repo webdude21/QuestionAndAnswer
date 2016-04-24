@@ -59,8 +59,21 @@ public class VotingServiceTest {
 		setupValidCase();
 		voteService.upVote(mockedUser, VALID_ANSWER_ID);
 		relevantMethodsCalled();
+		validCaseVerified();
+	}
+
+	private void validCaseVerified() {
 		assertThat(mockedAnswer.getVotedUsers().contains(mockedUser), equalTo(true));
 		assertThat(mockedUser.getAnswersvotes().contains(mockedAnswer), equalTo(true));
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void votingWhenAlreadyVotedThrows() {
+		setupValidCase();
+		voteService.upVote(mockedUser, VALID_ANSWER_ID);
+
+		// voting again throws
+		voteService.upVote(mockedUser, VALID_ANSWER_ID);
 	}
 
 	private void relevantMethodsCalled() {
