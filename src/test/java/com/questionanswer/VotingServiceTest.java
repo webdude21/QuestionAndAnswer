@@ -76,6 +76,19 @@ public class VotingServiceTest {
 		voteService.upVote(mockedUser, VALID_ANSWER_ID);
 	}
 
+	@Test(expected = IllegalArgumentException.class)
+	public void unVotingWhenNotVotedThrows() {
+		setupValidCase();
+		voteService.unVote(mockedUser, VALID_ANSWER_ID);
+	}
+
+	@Test
+	public void unVotingWorksWhenYouHaveAlreadyVoted() {
+		setupValidCase();
+		voteService.upVote(mockedUser, VALID_ANSWER_ID);
+		voteService.unVote(mockedUser, VALID_ANSWER_ID);
+	}
+
 	private void relevantMethodsCalled() {
 		verify(mockedUserRepo, times(1)).findOneByEmail(VALID_EMAIL);
 		verify(mockedAnswerRepo, times(1)).findOne(VALID_ANSWER_ID);
