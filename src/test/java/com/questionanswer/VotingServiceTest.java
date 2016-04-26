@@ -51,14 +51,32 @@ public class VotingServiceTest {
 
 	@Test(expected = IllegalArgumentException.class)
 	public void callingVoteServiceWithIllegalUserThrows() {
+		setupValidCase();
 		voteService.upVote(null, 1);
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void callingVoteWithIllegalAnswerId(){
+		setupValidCase();
+		voteService.upVote(mockedUser, 2);
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void callingUnVoteServiceWithIllegalUserThrows() {
+		setupValidCase();
+		voteService.unVote(null, 1);
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void callingUnVoteWithIllegalAnswerId(){
+		setupValidCase();
+		voteService.unVote(mockedUser, 2);
 	}
 
 	@Test
 	public void votingWithAllValidPrerequisitesSucceeds() {
 		setupValidCase();
 		voteService.upVote(mockedUser, VALID_ANSWER_ID);
-		relevantMethodsCalled();
 		validCaseVerified();
 	}
 
