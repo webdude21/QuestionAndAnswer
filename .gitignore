@@ -1,3 +1,5 @@
 /bin/
 /target/
 /src/main/client/node_modules/
+/src/main/client/dist/
+/src/main/client/typings/

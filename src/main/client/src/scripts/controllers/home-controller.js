@@ -1,3 +1,0 @@
-questionAndAnswer.controller('HomeController', function () {
-
-});
