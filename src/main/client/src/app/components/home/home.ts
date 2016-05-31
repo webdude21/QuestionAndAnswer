@@ -9,11 +9,6 @@ import {Component} from '@angular/core';
   pipes: []
 })
 export class Home {
-
   constructor() {}
-
-  ngOnInit() {
-
-  }
-
+  ngOnInit() {}
 }
