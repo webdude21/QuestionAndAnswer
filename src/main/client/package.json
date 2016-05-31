@@ -9,7 +9,7 @@
     "watch": "npm run build -- --watch",
     "server": "webpack-dev-server --inline --colors --progress --display-error-details --display-cached --port 3000  --content-base src",
     "start": "npm run server",
-    "copyStaticFiles": "rm -r ../resources/static/ && mkdir ../resources/static && cp -r src/ ../resources/static/ && cp -r dist/*.* ../resources/static/"
+    "copyStaticFiles": "rm -r ../resources/static/ && mkdir ../resources/static/ && cp -r src/** ../resources/static/ && cp -r dist/** ../resources/static/"
   },
   "license": "MIT",
   "devDependencies": {

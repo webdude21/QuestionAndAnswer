@@ -8,6 +8,6 @@ public class ClientApp {
 
 	@RequestMapping({"/", "/login", "/unauthorized", "/question/**", "/register"})
 	public String home() {
-		return "forward:/src/index.html";
+		return "forward:/index.html";
 	}
 }
