@@ -16,7 +16,5 @@ import {About} from './components/about/about';
   { path: '/about', component: About, name: 'About' },
 ])
 export class SeedApp {
-
   constructor() { }
-
 }
