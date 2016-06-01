@@ -1,6 +1,6 @@
 import {Injectable} from "@angular/core";
 
-const BASE_PATH = '/api';
+const BASE_PATH = 'https://question--answer.herokuapp.com/api';
 
 @Injectable()
 export class ServerRoutes {

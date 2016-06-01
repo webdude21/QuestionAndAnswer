@@ -3,6 +3,11 @@ import {Http, URLSearchParams} from "@angular/http";
 import {ServerRoutes} from "./serverRoutes";
 import "rxjs/add/operator/map";
 
+enum EntityTypes {
+  answers,
+  user
+}
+
 @Injectable()
 export class QuestionServices {
 
@@ -14,22 +19,21 @@ export class QuestionServices {
       .map(res => res.json());
   }
 
-  getQuestionBy(id: number) {
-    return this.http
-      .get(`${ServerRoutes.QUESTIONS}/${id}`)
-      .map(res => res.json());
-  }
-  
-  getQuestionsAnswers(id: number){
-        return this.http
-      .get(`${ServerRoutes.QUESTIONS}/${id}/answers`)
-      .map(res => res.json());
-  }
-  
-  getQuestionsUser(id: number){
-        return this.http
-      .get(`${ServerRoutes.QUESTIONS}/${id}/user`)
-      .map(res => res.json());
+  getQuestionBy(id: number, entity?: EntityTypes) {
+    var url = `${ServerRoutes.QUESTIONS}/${id}`;
+    
+    if (entity){
+      url += `/${entity}`;
+    }
+    
+    return this.http.get(url).map(res => res.json());
   }
 
+  getQuestionsAnswers(id: number) {
+    return this.getQuestionBy(id, EntityTypes.answers);
+  }
+  
+  getQuestionsUser(id: number) {
+    return this.getQuestionBy(id, EntityTypes.user);
+  }
 }

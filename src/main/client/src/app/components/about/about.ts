@@ -13,7 +13,6 @@ import {Http} from '@angular/http';
 export class About {
 
   constructor(http: Http) {
-
   }
 
   ngOnInit() {
