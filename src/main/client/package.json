@@ -6,6 +6,7 @@
     "typings-install": "typings install",
     "postinstall": "npm run typings-install",
     "build": "webpack --inline --colors --progress --display-error-details --display-cached",
+    "fullBuild": "npm run build && npm run copyStaticFiles",
     "watch": "npm run build -- --watch",
     "server": "webpack-dev-server --inline --colors --progress --display-error-details --display-cached --port 3000  --content-base src",
     "start": "npm run server",
