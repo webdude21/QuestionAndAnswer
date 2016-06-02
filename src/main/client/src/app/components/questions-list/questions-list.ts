@@ -2,6 +2,7 @@
 import {Component} from '@angular/core';
 import {QuestionServices} from '../../services/question';
 import {Observable} from 'rxjs/Observable';
+import {IQuestion} from '../../models/Question';
 
 @Component({
   selector: 'questions-list',
@@ -12,10 +13,10 @@ import {Observable} from 'rxjs/Observable';
   pipes: []
 })
 export class QuestionsList {
-  questionsList: Observable<any>;
+  questionsList: Observable<IQuestion>;
   constructor(public questions: QuestionServices) { }
 
   ngOnInit() {
-    this.questionsList = this.questions.getAll().map(i => i._embedded.questions);
+    this.questionsList = this.questions.getAll();
   }
 }

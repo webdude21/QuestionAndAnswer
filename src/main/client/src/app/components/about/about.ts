@@ -11,11 +11,6 @@ import {Http} from '@angular/http';
   pipes: []
 })
 export class About {
-
-  constructor(http: Http) {
-  }
-
-  ngOnInit() {
-
-  }
+  constructor(http: Http) { }
+  ngOnInit() { }
 }
