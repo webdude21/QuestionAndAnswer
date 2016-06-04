@@ -1,6 +1,7 @@
 import {Injectable} from "@angular/core";
 import {Http, URLSearchParams} from "@angular/http";
 import {ServerRoutes} from "./serverRoutes";
+import {IQuestion} from "../models/Question";
 import "rxjs/add/operator/map";
 
 @Injectable()
@@ -8,7 +9,7 @@ export class CustomViewsServices {
 
   constructor(private http: Http) { }
 
-  getQuestionById(id: string) {
+  getQuestionById(id: string): IQuestion {
     return this.http
       .get(`${ServerRoutes.CUSTOM_VIEWS}/question/${id}`)
       .map(res => res.json());
