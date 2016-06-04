@@ -1,16 +1,34 @@
 <h3>
   QuestionAnswer
 </h3>
-<nav>
-  <a [routerLink]=" ['/Home'] ">Home</a> |
-  <a [routerLink]=" ['/About'] ">About</a> |
-  <a [routerLink]=" ['/QuestionsList']">Questions</a>
-</nav>
-
+<header class="nav navbar-default navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <a href="/" class="navbar-brand">QuestionAnswer</a>
+      <button type="button" data-toggle="collapse" data-target=".navbar-collapse" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+    </div>
+    <div class="navbar-collapse collapse in">
+      <ul class="nav navbar-nav navbar-left">
+        <li class="dropdown"><a href="" data-toggle="dropdown" class="dropdown-toggle">Menu<span
+                        class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a [routerLink]=" ['/Home'] ">Home</a></li>
+            <li><a [routerLink]=" ['/About'] ">About</a></li>
+            <li><a [routerLink]=" ['/QuestionsList']">Questions</a></li>
+          </ul>
+      </ul>
+    </div>
+  </div>
+</header>
 <main>
   <router-outlet></router-outlet>
 </main>
 
 <footer>
-  © 2016
+  2016 © <a href="http://www.webdude.eu">Created by webdude</a>
 </footer>
