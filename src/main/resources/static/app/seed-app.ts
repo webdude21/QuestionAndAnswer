@@ -15,7 +15,7 @@ import {QuestionsList} from './components/questions-list/questions-list';
 @RouteConfig([
   { path: '/home', component: Home, name: 'Home', useAsDefault: true },
   { path: '/about', component: About, name: 'About' },
-  { path: '/questions-list', component: QuestionsList, name: 'QuestionsList'}
+  { path: '/questions-list', component: QuestionsList, name: 'QuestionsList' }
 ])
 export class SeedApp {
   constructor() { }

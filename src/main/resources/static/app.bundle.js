@@ -20393,8 +20393,7 @@ webpackJsonp([0],[
 	var About = (function () {
 	    function About(http) {
 	    }
-	    About.prototype.ngOnInit = function () {
-	    };
+	    About.prototype.ngOnInit = function () { };
 	    About = __decorate([
 	        core_1.Component({
 	            selector: 'about',
@@ -20432,7 +20431,7 @@ webpackJsonp([0],[
 	        this.questions = questions;
 	    }
 	    QuestionsList.prototype.ngOnInit = function () {
-	        this.questionsList = this.questions.getAll().map(function (i) { return i._embedded.questions; });
+	        this.questionsList = this.questions.getAll();
 	    };
 	    QuestionsList = __decorate([
 	        core_1.Component({
@@ -20475,7 +20474,7 @@ webpackJsonp([0],[
 	    QuestionServices.prototype.getAll = function () {
 	        return this.http
 	            .get("" + serverRoutes_1.ServerRoutes.QUESTIONS)
-	            .map(function (res) { return res.json(); });
+	            .map(function (res) { return res.json()._embedded.questions; });
 	    };
 	    QuestionServices.prototype.getQuestionBy = function (id, entity) {
 	        var url = serverRoutes_1.ServerRoutes.QUESTIONS + "/" + id;
@@ -20514,7 +20513,7 @@ webpackJsonp([0],[
 	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 	};
 	var core_1 = __webpack_require__(4);
-	var BASE_PATH = '/api';
+	var BASE_PATH = 'https://question--answer.herokuapp.com/api';
 	var ServerRoutes = (function () {
 	    function ServerRoutes() {
 	    }
