@@ -20425,13 +20425,24 @@ webpackJsonp([0],[
 	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 	};
 	var core_1 = __webpack_require__(4);
+	var ng2_bootstrap_1 = __webpack_require__(335);
+	;
 	var question_1 = __webpack_require__(500);
 	var QuestionsList = (function () {
 	    function QuestionsList(questions) {
 	        this.questions = questions;
 	    }
 	    QuestionsList.prototype.ngOnInit = function () {
-	        this.questionsList = this.questions.getAll();
+	        var _this = this;
+	        this.questions
+	            .getAll()
+	            .subscribe(function (q) {
+	            _this.questionsList = q.entity;
+	            _this.pageInfo = q.page;
+	            _this.totalItems = q.page.totalElements;
+	            _this.currentPage = q.page.number;
+	            _this.itemsPerPage = q.page.size;
+	        });
 	    };
 	    QuestionsList = __decorate([
 	        core_1.Component({
@@ -20439,7 +20450,7 @@ webpackJsonp([0],[
 	            templateUrl: 'app/components/questions-list/questions-list.html',
 	            styleUrls: ['app/components/questions-list/questions-list.css'],
 	            providers: [question_1.QuestionServices],
-	            directives: [],
+	            directives: [ng2_bootstrap_1.PAGINATION_DIRECTIVES],
 	            pipes: []
 	        }), 
 	        __metadata('design:paramtypes', [question_1.QuestionServices])
@@ -20466,7 +20477,8 @@ webpackJsonp([0],[
 	var core_1 = __webpack_require__(4);
 	var http_1 = __webpack_require__(280);
 	var serverRoutes_1 = __webpack_require__(501);
-	__webpack_require__(502);
+	var PagableEntity_1 = __webpack_require__(502);
+	__webpack_require__(503);
 	var QuestionServices = (function () {
 	    function QuestionServices(http) {
 	        this.http = http;
@@ -20474,7 +20486,8 @@ webpackJsonp([0],[
 	    QuestionServices.prototype.getAll = function () {
 	        return this.http
 	            .get("" + serverRoutes_1.ServerRoutes.QUESTIONS)
-	            .map(function (res) { return res.json()._embedded.questions; });
+	            .map(function (res) { return res.json(); })
+	            .map(function (res) { return new PagableEntity_1.PagableEntity(res.page, res._embedded.questions); });
 	    };
 	    QuestionServices.prototype.getQuestionBy = function (id, entity) {
 	        var url = serverRoutes_1.ServerRoutes.QUESTIONS + "/" + id;
@@ -20533,16 +20546,31 @@ webpackJsonp([0],[
 
 /***/ },
 /* 502 */
+/***/ function(module, exports) {
+
+	"use strict";
+	var PagableEntity = (function () {
+	    function PagableEntity(page, entity) {
+	        this.page = page;
+	        this.entity = entity;
+	    }
+	    return PagableEntity;
+	}());
+	exports.PagableEntity = PagableEntity;
+	
+
+/***/ },
+/* 503 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	var Observable_1 = __webpack_require__(38);
-	var map_1 = __webpack_require__(503);
+	var map_1 = __webpack_require__(504);
 	Observable_1.Observable.prototype.map = map_1.map;
 	//# sourceMappingURL=map.js.map
 
 /***/ },
-/* 503 */
+/* 504 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
