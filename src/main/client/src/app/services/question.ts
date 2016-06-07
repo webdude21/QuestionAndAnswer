@@ -12,9 +12,15 @@ export class QuestionServices {
 
   constructor(private http: Http) { }
 
-  getAll(): Observable<PagableEntity<IQuestion>> {
+  getAll(page?: number): Observable<PagableEntity<IQuestion>> {
+    let params = new URLSearchParams();
+
+    if (page) {
+      params.set('page', page.toString());
+    }
+
     return this.http
-      .get(`${ServerRoutes.QUESTIONS}`)
+      .get(`${ServerRoutes.QUESTIONS}`, { search: params })
       .map(res => res.json())
       .map(res => new PagableEntity<IQuestion>(res.page, res._embedded.questions));
   }

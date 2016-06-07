@@ -6,6 +6,8 @@ import {Observable} from 'rxjs/Observable';
 import {IQuestion} from '../../models/Question';
 import {IPage} from '../../models/Page';
 import {PagableEntity} from '../../models/PagableEntity';
+import {RouteParams} from '@angular/router-deprecated';
+
 
 @Component({
   selector: 'questions-list',
@@ -17,16 +19,22 @@ import {PagableEntity} from '../../models/PagableEntity';
 })
 export class QuestionsList {
   totalItems: number;
-  currentPage: number;
+  currentPage: number = 0;
   questionsList: IQuestion[];
   pageInfo: IPage;
   itemsPerPage: number;
 
-  constructor(public questions: QuestionServices) { }
+  constructor(public questions: QuestionServices, public params: RouteParams) {
+    let page = parseInt(params.get('page'));
+
+    if (page) {
+      this.currentPage = page;
+    }
+  }
 
   ngOnInit() {
     this.questions
-      .getAll()
+      .getAll(this.currentPage)
       .subscribe(q => {
         this.questionsList = q.entity;
         this.pageInfo = q.page;
