@@ -20426,21 +20426,32 @@ webpackJsonp([0],[
 	};
 	var core_1 = __webpack_require__(4);
 	var ng2_bootstrap_1 = __webpack_require__(335);
-	;
 	var question_1 = __webpack_require__(500);
+	var router_deprecated_1 = __webpack_require__(301);
 	var QuestionsList = (function () {
-	    function QuestionsList(questions) {
+	    function QuestionsList(questions, params) {
 	        this.questions = questions;
+	        this.params = params;
+	        this.currentPage = 0;
+	        var page = parseInt(params.get('page'));
+	        if (page) {
+	            this.currentPage = page;
+	        }
 	    }
+	    QuestionsList.prototype.handlePageChange = function (event) {
+	        this.retrieveData(event.page);
+	    };
 	    QuestionsList.prototype.ngOnInit = function () {
+	        this.retrieveData();
+	    };
+	    QuestionsList.prototype.retrieveData = function (page) {
 	        var _this = this;
 	        this.questions
-	            .getAll()
+	            .getAll(page - 1)
 	            .subscribe(function (q) {
 	            _this.questionsList = q.entity;
-	            _this.pageInfo = q.page;
 	            _this.totalItems = q.page.totalElements;
-	            _this.currentPage = q.page.number;
+	            _this.currentPage = q.page.number + 1;
 	            _this.itemsPerPage = q.page.size;
 	        });
 	    };
@@ -20453,7 +20464,7 @@ webpackJsonp([0],[
 	            directives: [ng2_bootstrap_1.PAGINATION_DIRECTIVES],
 	            pipes: []
 	        }), 
-	        __metadata('design:paramtypes', [question_1.QuestionServices])
+	        __metadata('design:paramtypes', [question_1.QuestionServices, router_deprecated_1.RouteParams])
 	    ], QuestionsList);
 	    return QuestionsList;
 	}());
@@ -20483,9 +20494,13 @@ webpackJsonp([0],[
 	    function QuestionServices(http) {
 	        this.http = http;
 	    }
-	    QuestionServices.prototype.getAll = function () {
+	    QuestionServices.prototype.getAll = function (page) {
+	        var params = new http_1.URLSearchParams();
+	        if (page) {
+	            params.set('page', page.toString());
+	        }
 	        return this.http
-	            .get("" + serverRoutes_1.ServerRoutes.QUESTIONS)
+	            .get("" + serverRoutes_1.ServerRoutes.QUESTIONS, { search: params })
 	            .map(function (res) { return res.json(); })
 	            .map(function (res) { return new PagableEntity_1.PagableEntity(res.page, res._embedded.questions); });
 	    };

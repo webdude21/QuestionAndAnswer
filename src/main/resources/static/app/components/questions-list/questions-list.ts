@@ -1,11 +1,12 @@
 
 import {Component} from '@angular/core';
-import {PAGINATION_DIRECTIVES} from 'ng2-bootstrap';;
+import {PAGINATION_DIRECTIVES} from 'ng2-bootstrap';
+import {PageChangedEvent} from 'ng2-bootstrap/components/pagination/pagination.component';
 import {QuestionServices} from '../../services/question';
 import {Observable} from 'rxjs/Observable';
 import {IQuestion} from '../../models/Question';
-import {IPage} from '../../models/Page';
 import {PagableEntity} from '../../models/PagableEntity';
+import {RouteParams} from '@angular/router-deprecated';
 
 @Component({
   selector: 'questions-list',
@@ -17,21 +18,33 @@ import {PagableEntity} from '../../models/PagableEntity';
 })
 export class QuestionsList {
   totalItems: number;
-  currentPage: number;
+  currentPage: number = 0;
   questionsList: IQuestion[];
-  pageInfo: IPage;
   itemsPerPage: number;
 
-  constructor(public questions: QuestionServices) { }
+  constructor(public questions: QuestionServices, public params: RouteParams) {
+    let page = parseInt(params.get('page'));
 
-  ngOnInit() {
+    if (page) {
+      this.currentPage = page;
+    }
+  }
+
+  public handlePageChange(event: PageChangedEvent): void {
+    this.retrieveData(event.page);
+  }
+
+  ngOnInit(): void {
+    this.retrieveData();
+  }
+
+  private retrieveData(page?: number): void {
     this.questions
-      .getAll()
+      .getAll(page - 1)
       .subscribe(q => {
         this.questionsList = q.entity;
-        this.pageInfo = q.page;
         this.totalItems = q.page.totalElements;
-        this.currentPage = q.page.number;
+        this.currentPage = q.page.number + 1;
         this.itemsPerPage = q.page.size;
       });
   }
