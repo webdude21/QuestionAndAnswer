@@ -35,12 +35,25 @@ export class QuestionsList {
   }
 
   ngOnInit(): void {
-    this.retrieveData();
+    this.retrieveData(this.currentPage);
+  }
+
+  private ensureCorrectPageNumber(page: number = 0): number {
+    if (page > 1) {
+      page--;
+    } else {
+      page = 0;
+    }
+
+    return page;
   }
 
   private retrieveData(page?: number): void {
+    page = this.ensureCorrectPageNumber(page)
+    console.debug(`RetrieveData called with page number: ${page}`);
+
     this.questions
-      .getAll(page - 1)
+      .getAll(page)
       .subscribe(q => {
         this.questionsList = q.entity;
         this.totalItems = q.page.totalElements;
