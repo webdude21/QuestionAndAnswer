@@ -1,12 +1,13 @@
 
 import {Component} from '@angular/core';
+import {Router, RouteParams, RouteConfig, ROUTER_DIRECTIVES} from '@angular/router-deprecated';
 import {PAGINATION_DIRECTIVES} from 'ng2-bootstrap';
 import {PageChangedEvent} from 'ng2-bootstrap/components/pagination/pagination.component';
+
 import {QuestionServices} from '../../services/question';
 import {Observable} from 'rxjs/Observable';
 import {IQuestion} from '../../models/Question';
 import {PagableEntity} from '../../models/PagableEntity';
-import {RouteParams} from '@angular/router-deprecated';
 
 @Component({
   selector: 'questions-list',
