@@ -3,14 +3,13 @@ webpackJsonp([0],[
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	var common_1 = __webpack_require__(1);
-	var platform_browser_dynamic_1 = __webpack_require__(160);
-	var core_1 = __webpack_require__(4);
+	var platform_browser_dynamic_1 = __webpack_require__(1);
+	var core_1 = __webpack_require__(7);
 	var http_1 = __webpack_require__(280);
 	var router_deprecated_1 = __webpack_require__(301);
 	var seed_app_1 = __webpack_require__(333);
 	core_1.enableProdMode();
-	platform_browser_dynamic_1.bootstrap(seed_app_1.SeedApp, [http_1.HTTP_PROVIDERS, router_deprecated_1.ROUTER_PROVIDERS, core_1.provide(common_1.LocationStrategy, { useClass: common_1.HashLocationStrategy })])
+	platform_browser_dynamic_1.bootstrap(seed_app_1.SeedApp, [http_1.HTTP_PROVIDERS, router_deprecated_1.ROUTER_PROVIDERS])
 	    .catch(function (err) { return console.error(err); });
 	
 
@@ -360,11 +359,12 @@ webpackJsonp([0],[
 	var __metadata = (this && this.__metadata) || function (k, v) {
 	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 	};
-	var core_1 = __webpack_require__(4);
+	var core_1 = __webpack_require__(7);
 	var router_deprecated_1 = __webpack_require__(301);
 	var home_1 = __webpack_require__(334);
 	var about_1 = __webpack_require__(498);
 	var questions_list_1 = __webpack_require__(499);
+	var question_detail_1 = __webpack_require__(506);
 	var SeedApp = (function () {
 	    function SeedApp() {
 	    }
@@ -379,6 +379,7 @@ webpackJsonp([0],[
 	        router_deprecated_1.RouteConfig([
 	            { path: '/home', component: home_1.Home, name: 'Home', useAsDefault: true },
 	            { path: '/about', component: about_1.About, name: 'About' },
+	            { path: '/question/:id', component: question_detail_1.QuestionDetail, name: 'QuestionDetail' },
 	            { path: '/questions-list', component: questions_list_1.QuestionsList, name: 'QuestionsList' }
 	        ]), 
 	        __metadata('design:paramtypes', [])
@@ -402,13 +403,12 @@ webpackJsonp([0],[
 	var __metadata = (this && this.__metadata) || function (k, v) {
 	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 	};
-	var core_1 = __webpack_require__(4);
+	var core_1 = __webpack_require__(7);
 	var ng2_bootstrap_1 = __webpack_require__(335);
 	var Home = (function () {
 	    function Home() {
 	        this.date = new Date();
 	    }
-	    Home.prototype.ngOnInit = function () { };
 	    Home = __decorate([
 	        core_1.Component({
 	            selector: 'home',
@@ -521,7 +521,7 @@ webpackJsonp([0],[
 	var __metadata = (this && this.__metadata) || function (k, v) {
 	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 	};
-	var core_1 = __webpack_require__(4);
+	var core_1 = __webpack_require__(7);
 	// todo: support template url
 	var AccordionComponent = (function () {
 	    function AccordionComponent() {
@@ -586,8 +586,8 @@ webpackJsonp([0],[
 	var __param = (this && this.__param) || function (paramIndex, decorator) {
 	    return function (target, key) { decorator(target, key, paramIndex); }
 	};
-	var core_1 = __webpack_require__(4);
-	var common_1 = __webpack_require__(1);
+	var core_1 = __webpack_require__(7);
+	var common_1 = __webpack_require__(181);
 	var collapse_1 = __webpack_require__(339);
 	var accordion_component_1 = __webpack_require__(337);
 	/* tslint:disable:component-selector-name */
@@ -676,7 +676,7 @@ webpackJsonp([0],[
 	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 	};
 	// FIX: in order to update to rc.1 had to disable animation, sorry
-	var core_1 = __webpack_require__(4);
+	var core_1 = __webpack_require__(7);
 	// import {AnimationBuilder} from '@angular/platform-browser/src/animate/animation_builder';
 	// import {animation, style, animate, state, transition} from '@angular/core';
 	/*@Directive({
@@ -859,8 +859,8 @@ webpackJsonp([0],[
 	var __metadata = (this && this.__metadata) || function (k, v) {
 	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 	};
-	var core_1 = __webpack_require__(4);
-	var common_1 = __webpack_require__(1);
+	var core_1 = __webpack_require__(7);
+	var common_1 = __webpack_require__(181);
 	var ALERT_TEMPLATE = "\n  <div class=\"alert\" role=\"alert\" [ngClass]=\"classes\" *ngIf=\"!closed\">\n    <button *ngIf=\"dismissible\" type=\"button\" class=\"close\" (click)=\"onClose()\" (touch)=\"onClose()\">\n      <span aria-hidden=\"true\">&times;</span>\n      <span class=\"sr-only\">Close</span>\n    </button>\n    <ng-content></ng-content>\n  </div>\n  ";
 	// TODO: templateUrl
 	var AlertComponent = (function () {
@@ -947,8 +947,8 @@ webpackJsonp([0],[
 	var __param = (this && this.__param) || function (paramIndex, decorator) {
 	    return function (target, key) { decorator(target, key, paramIndex); }
 	};
-	var core_1 = __webpack_require__(4);
-	var common_1 = __webpack_require__(1);
+	var core_1 = __webpack_require__(7);
+	var common_1 = __webpack_require__(181);
 	var ButtonCheckboxDirective = (function () {
 	    function ButtonCheckboxDirective(cd) {
 	        this.state = false;
@@ -1045,8 +1045,8 @@ webpackJsonp([0],[
 	var __param = (this && this.__param) || function (paramIndex, decorator) {
 	    return function (target, key) { decorator(target, key, paramIndex); }
 	};
-	var core_1 = __webpack_require__(4);
-	var common_1 = __webpack_require__(1);
+	var core_1 = __webpack_require__(7);
+	var common_1 = __webpack_require__(181);
 	var ButtonRadioDirective = (function () {
 	    function ButtonRadioDirective(cd, el) {
 	        this.onChange = Function.prototype;
@@ -1150,7 +1150,7 @@ webpackJsonp([0],[
 	var __metadata = (this && this.__metadata) || function (k, v) {
 	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 	};
-	var core_1 = __webpack_require__(4);
+	var core_1 = __webpack_require__(7);
 	var carousel_component_1 = __webpack_require__(348);
 	var SlideComponent = (function () {
 	    function SlideComponent(carousel) {
@@ -1208,8 +1208,8 @@ webpackJsonp([0],[
 	var __metadata = (this && this.__metadata) || function (k, v) {
 	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 	};
-	var core_1 = __webpack_require__(4);
-	var common_1 = __webpack_require__(1);
+	var core_1 = __webpack_require__(7);
+	var common_1 = __webpack_require__(181);
 	var ng2_bootstrap_config_1 = __webpack_require__(349);
 	(function (Direction) {
 	    Direction[Direction["UNKNOWN"] = 0] = "UNKNOWN";
@@ -1393,7 +1393,7 @@ webpackJsonp([0],[
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	var lang_1 = __webpack_require__(7);
+	var lang_1 = __webpack_require__(10);
 	(function (Ng2BootstrapTheme) {
 	    Ng2BootstrapTheme[Ng2BootstrapTheme["BS3"] = 1] = "BS3";
 	    Ng2BootstrapTheme[Ng2BootstrapTheme["BS4"] = 2] = "BS4";
@@ -1460,8 +1460,8 @@ webpackJsonp([0],[
 	var __param = (this && this.__param) || function (paramIndex, decorator) {
 	    return function (target, key) { decorator(target, key, paramIndex); }
 	};
-	var core_1 = __webpack_require__(4);
-	var common_1 = __webpack_require__(1);
+	var core_1 = __webpack_require__(7);
+	var common_1 = __webpack_require__(181);
 	var position_1 = __webpack_require__(352);
 	var datepicker_component_1 = __webpack_require__(353);
 	// import {DatePickerInner} from './datepicker-inner';
@@ -1791,8 +1791,8 @@ webpackJsonp([0],[
 	var __param = (this && this.__param) || function (paramIndex, decorator) {
 	    return function (target, key) { decorator(target, key, paramIndex); }
 	};
-	var core_1 = __webpack_require__(4);
-	var common_1 = __webpack_require__(1);
+	var core_1 = __webpack_require__(7);
+	var common_1 = __webpack_require__(181);
 	var datepicker_inner_component_1 = __webpack_require__(354);
 	var daypicker_component_1 = __webpack_require__(458);
 	var monthpicker_component_1 = __webpack_require__(459);
@@ -1952,8 +1952,8 @@ webpackJsonp([0],[
 	var __metadata = (this && this.__metadata) || function (k, v) {
 	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 	};
-	var core_1 = __webpack_require__(4);
-	var common_1 = __webpack_require__(1);
+	var core_1 = __webpack_require__(7);
+	var common_1 = __webpack_require__(181);
 	var date_formatter_1 = __webpack_require__(355);
 	var FORMAT_DAY = 'DD';
 	var FORMAT_MONTH = 'MMMM';
@@ -6340,7 +6340,7 @@ webpackJsonp([0],[
 	    return _moment;
 
 	}));
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(40)(module)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(43)(module)))
 
 /***/ },
 /* 357 */
@@ -16087,8 +16087,8 @@ webpackJsonp([0],[
 	var __metadata = (this && this.__metadata) || function (k, v) {
 	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 	};
-	var core_1 = __webpack_require__(4);
-	var common_1 = __webpack_require__(1);
+	var core_1 = __webpack_require__(7);
+	var common_1 = __webpack_require__(181);
 	var ng2_bootstrap_config_1 = __webpack_require__(349);
 	var datepicker_inner_component_1 = __webpack_require__(354);
 	// write an interface for template options
@@ -16218,8 +16218,8 @@ webpackJsonp([0],[
 	var __metadata = (this && this.__metadata) || function (k, v) {
 	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 	};
-	var core_1 = __webpack_require__(4);
-	var common_1 = __webpack_require__(1);
+	var core_1 = __webpack_require__(7);
+	var common_1 = __webpack_require__(181);
 	var datepicker_inner_component_1 = __webpack_require__(354);
 	var ng2_bootstrap_config_1 = __webpack_require__(349);
 	// write an interface for template options
@@ -16287,8 +16287,8 @@ webpackJsonp([0],[
 	var __metadata = (this && this.__metadata) || function (k, v) {
 	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 	};
-	var core_1 = __webpack_require__(4);
-	var common_1 = __webpack_require__(1);
+	var core_1 = __webpack_require__(7);
+	var common_1 = __webpack_require__(181);
 	var ng2_bootstrap_config_1 = __webpack_require__(349);
 	var datepicker_inner_component_1 = __webpack_require__(354);
 	// write an interface for template options
@@ -16376,7 +16376,7 @@ webpackJsonp([0],[
 	var __metadata = (this && this.__metadata) || function (k, v) {
 	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 	};
-	var core_1 = __webpack_require__(4);
+	var core_1 = __webpack_require__(7);
 	var dropdown_service_1 = __webpack_require__(463);
 	var DropdownDirective = (function () {
 	    function DropdownDirective(el) {
@@ -16624,7 +16624,7 @@ webpackJsonp([0],[
 	var __param = (this && this.__param) || function (paramIndex, decorator) {
 	    return function (target, key) { decorator(target, key, paramIndex); }
 	};
-	var core_1 = __webpack_require__(4);
+	var core_1 = __webpack_require__(7);
 	var dropdown_directive_1 = __webpack_require__(462);
 	var DropdownMenuDirective = (function () {
 	    function DropdownMenuDirective(dropdown, el) {
@@ -16661,9 +16661,9 @@ webpackJsonp([0],[
 	var __param = (this && this.__param) || function (paramIndex, decorator) {
 	    return function (target, key) { decorator(target, key, paramIndex); }
 	};
-	var core_1 = __webpack_require__(4);
+	var core_1 = __webpack_require__(7);
 	var dropdown_directive_1 = __webpack_require__(462);
-	var lang_1 = __webpack_require__(7);
+	var lang_1 = __webpack_require__(10);
 	/* tslint:disable */
 	var MouseEvent = lang_1.global.MouseEvent;
 	/* tslint:enable */
@@ -16753,8 +16753,8 @@ webpackJsonp([0],[
 	var __metadata = (this && this.__metadata) || function (k, v) {
 	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 	};
-	var core_1 = __webpack_require__(4);
-	var common_1 = __webpack_require__(1);
+	var core_1 = __webpack_require__(7);
+	var common_1 = __webpack_require__(181);
 	var modal_options_class_1 = __webpack_require__(468);
 	var ModalBackdropOptions = (function () {
 	    function ModalBackdropOptions(options) {
@@ -16830,9 +16830,9 @@ webpackJsonp([0],[
 	var __param = (this && this.__param) || function (paramIndex, decorator) {
 	    return function (target, key) { decorator(target, key, paramIndex); }
 	};
-	var core_1 = __webpack_require__(4);
-	var lang_1 = __webpack_require__(7);
-	var platform_browser_1 = __webpack_require__(239);
+	var core_1 = __webpack_require__(7);
+	var lang_1 = __webpack_require__(10);
+	var platform_browser_1 = __webpack_require__(176);
 	var modal_backdrop_component_1 = __webpack_require__(467);
 	var modal_options_class_1 = __webpack_require__(468);
 	var components_helper_service_1 = __webpack_require__(470);
@@ -17165,7 +17165,7 @@ webpackJsonp([0],[
 	var __metadata = (this && this.__metadata) || function (k, v) {
 	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 	};
-	var core_1 = __webpack_require__(4);
+	var core_1 = __webpack_require__(7);
 	/**
 	 * Components helper class to easily work with
 	 * allows to:
@@ -17243,7 +17243,7 @@ webpackJsonp([0],[
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	var lang_1 = __webpack_require__(7);
+	var lang_1 = __webpack_require__(10);
 	var Utils = (function () {
 	    function Utils() {
 	    }
@@ -17297,8 +17297,8 @@ webpackJsonp([0],[
 	var __param = (this && this.__param) || function (paramIndex, decorator) {
 	    return function (target, key) { decorator(target, key, paramIndex); }
 	};
-	var core_1 = __webpack_require__(4);
-	var common_1 = __webpack_require__(1);
+	var core_1 = __webpack_require__(7);
+	var common_1 = __webpack_require__(181);
 	var paginationConfig = {
 	    maxSize: void 0,
 	    itemsPerPage: 10,
@@ -17578,8 +17578,8 @@ webpackJsonp([0],[
 	var __param = (this && this.__param) || function (paramIndex, decorator) {
 	    return function (target, key) { decorator(target, key, paramIndex); }
 	};
-	var core_1 = __webpack_require__(4);
-	var common_1 = __webpack_require__(1);
+	var core_1 = __webpack_require__(7);
+	var common_1 = __webpack_require__(181);
 	var pagination_component_1 = __webpack_require__(473);
 	var pagerConfig = {
 	    itemsPerPage: 10,
@@ -17645,7 +17645,7 @@ webpackJsonp([0],[
 	var __metadata = (this && this.__metadata) || function (k, v) {
 	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 	};
-	var core_1 = __webpack_require__(4);
+	var core_1 = __webpack_require__(7);
 	var progressConfig = {
 	    animate: true,
 	    max: 100
@@ -17723,8 +17723,8 @@ webpackJsonp([0],[
 	var __param = (this && this.__param) || function (paramIndex, decorator) {
 	    return function (target, key) { decorator(target, key, paramIndex); }
 	};
-	var core_1 = __webpack_require__(4);
-	var common_1 = __webpack_require__(1);
+	var core_1 = __webpack_require__(7);
+	var common_1 = __webpack_require__(181);
 	var progress_directive_1 = __webpack_require__(476);
 	// todo: number pipe
 	// todo: use query from progress?
@@ -17798,7 +17798,7 @@ webpackJsonp([0],[
 	var __metadata = (this && this.__metadata) || function (k, v) {
 	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 	};
-	var core_1 = __webpack_require__(4);
+	var core_1 = __webpack_require__(7);
 	var progress_directive_1 = __webpack_require__(476);
 	var bar_component_1 = __webpack_require__(477);
 	var ProgressbarComponent = (function () {
@@ -17859,9 +17859,9 @@ webpackJsonp([0],[
 	var __param = (this && this.__param) || function (paramIndex, decorator) {
 	    return function (target, key) { decorator(target, key, paramIndex); }
 	};
-	var core_1 = __webpack_require__(4);
-	var common_1 = __webpack_require__(1);
-	var lang_1 = __webpack_require__(7);
+	var core_1 = __webpack_require__(7);
+	var common_1 = __webpack_require__(181);
+	var lang_1 = __webpack_require__(10);
 	/* tslint:disable */
 	var KeyboardEvent = lang_1.global.KeyboardEvent;
 	/* tslint:enable */
@@ -18024,7 +18024,7 @@ webpackJsonp([0],[
 	var __metadata = (this && this.__metadata) || function (k, v) {
 	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 	};
-	var core_1 = __webpack_require__(4);
+	var core_1 = __webpack_require__(7);
 	var tabset_component_1 = __webpack_require__(483);
 	/* tslint:disable */
 	var TabDirective = (function () {
@@ -18121,8 +18121,8 @@ webpackJsonp([0],[
 	var __metadata = (this && this.__metadata) || function (k, v) {
 	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 	};
-	var core_1 = __webpack_require__(4);
-	var common_1 = __webpack_require__(1);
+	var core_1 = __webpack_require__(7);
+	var common_1 = __webpack_require__(181);
 	var common_2 = __webpack_require__(484);
 	// todo: add active event to tab
 	// todo: fix? mixing static and dynamic tabs position tabs in order of creation
@@ -18270,7 +18270,7 @@ webpackJsonp([0],[
 	var __param = (this && this.__param) || function (paramIndex, decorator) {
 	    return function (target, key) { decorator(target, key, paramIndex); }
 	};
-	var core_1 = __webpack_require__(4);
+	var core_1 = __webpack_require__(7);
 	var NgTranscludeDirective = (function () {
 	    function NgTranscludeDirective(_viewRef) {
 	        this.viewRef = _viewRef;
@@ -18315,7 +18315,7 @@ webpackJsonp([0],[
 	var __metadata = (this && this.__metadata) || function (k, v) {
 	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 	};
-	var core_1 = __webpack_require__(4);
+	var core_1 = __webpack_require__(7);
 	var tab_directive_1 = __webpack_require__(482);
 	var TabHeadingDirective = (function () {
 	    function TabHeadingDirective(templateRef, tab) {
@@ -18356,8 +18356,8 @@ webpackJsonp([0],[
 	var __param = (this && this.__param) || function (paramIndex, decorator) {
 	    return function (target, key) { decorator(target, key, paramIndex); }
 	};
-	var core_1 = __webpack_require__(4);
-	var common_1 = __webpack_require__(1);
+	var core_1 = __webpack_require__(7);
+	var common_1 = __webpack_require__(181);
 	// todo: implement global configuration via DI
 	// todo: refactor directive has to many functions! (extract to stateless helper)
 	// todo: use moment js?
@@ -18722,7 +18722,7 @@ webpackJsonp([0],[
 	var __metadata = (this && this.__metadata) || function (k, v) {
 	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 	};
-	var core_1 = __webpack_require__(4);
+	var core_1 = __webpack_require__(7);
 	var tooltip_options_class_1 = __webpack_require__(490);
 	var tooltip_container_component_1 = __webpack_require__(491);
 	var TooltipDirective = (function () {
@@ -18828,7 +18828,7 @@ webpackJsonp([0],[
 	var __metadata = (this && this.__metadata) || function (k, v) {
 	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 	};
-	var core_1 = __webpack_require__(4);
+	var core_1 = __webpack_require__(7);
 	var TooltipOptions = (function () {
 	    function TooltipOptions(options) {
 	        Object.assign(this, options);
@@ -18859,8 +18859,8 @@ webpackJsonp([0],[
 	var __param = (this && this.__param) || function (paramIndex, decorator) {
 	    return function (target, key) { decorator(target, key, paramIndex); }
 	};
-	var core_1 = __webpack_require__(4);
-	var common_1 = __webpack_require__(1);
+	var core_1 = __webpack_require__(7);
+	var common_1 = __webpack_require__(181);
 	var position_1 = __webpack_require__(352);
 	var tooltip_options_class_1 = __webpack_require__(490);
 	var TooltipContainerComponent = (function () {
@@ -18931,12 +18931,12 @@ webpackJsonp([0],[
 	var __metadata = (this && this.__metadata) || function (k, v) {
 	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 	};
-	var core_1 = __webpack_require__(4);
-	var common_1 = __webpack_require__(1);
+	var core_1 = __webpack_require__(7);
+	var common_1 = __webpack_require__(181);
 	var typeahead_utils_1 = __webpack_require__(494);
 	var typeahead_container_component_1 = __webpack_require__(496);
 	var typeahead_options_class_1 = __webpack_require__(497);
-	var lang_1 = __webpack_require__(7);
+	var lang_1 = __webpack_require__(10);
 	/* tslint:disable */
 	var KeyboardEvent = lang_1.global.KeyboardEvent;
 	/* tslint:enable */
@@ -20229,8 +20229,8 @@ webpackJsonp([0],[
 	var __metadata = (this && this.__metadata) || function (k, v) {
 	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 	};
-	var core_1 = __webpack_require__(4);
-	var common_1 = __webpack_require__(1);
+	var core_1 = __webpack_require__(7);
+	var common_1 = __webpack_require__(181);
 	var typeahead_utils_1 = __webpack_require__(494);
 	var typeahead_options_class_1 = __webpack_require__(497);
 	var position_1 = __webpack_require__(352);
@@ -20388,12 +20388,10 @@ webpackJsonp([0],[
 	var __metadata = (this && this.__metadata) || function (k, v) {
 	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 	};
-	var core_1 = __webpack_require__(4);
-	var http_1 = __webpack_require__(280);
+	var core_1 = __webpack_require__(7);
 	var About = (function () {
-	    function About(http) {
+	    function About() {
 	    }
-	    About.prototype.ngOnInit = function () { };
 	    About = __decorate([
 	        core_1.Component({
 	            selector: 'about',
@@ -20403,7 +20401,7 @@ webpackJsonp([0],[
 	            directives: [],
 	            pipes: []
 	        }), 
-	        __metadata('design:paramtypes', [http_1.Http])
+	        __metadata('design:paramtypes', [])
 	    ], About);
 	    return About;
 	}());
@@ -20424,16 +20422,17 @@ webpackJsonp([0],[
 	var __metadata = (this && this.__metadata) || function (k, v) {
 	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 	};
-	var core_1 = __webpack_require__(4);
+	var core_1 = __webpack_require__(7);
+	var router_deprecated_1 = __webpack_require__(301);
 	var ng2_bootstrap_1 = __webpack_require__(335);
 	var question_1 = __webpack_require__(500);
-	var router_deprecated_1 = __webpack_require__(301);
+	var question_2 = __webpack_require__(505);
 	var QuestionsList = (function () {
-	    function QuestionsList(questions, params) {
+	    function QuestionsList(questions, routeParams) {
 	        this.questions = questions;
-	        this.params = params;
+	        this.routeParams = routeParams;
 	        this.currentPage = 0;
-	        var page = parseInt(params.get('page'));
+	        var page = parseInt(routeParams.get('page'));
 	        if (page) {
 	            this.currentPage = page;
 	        }
@@ -20442,12 +20441,24 @@ webpackJsonp([0],[
 	        this.retrieveData(event.page);
 	    };
 	    QuestionsList.prototype.ngOnInit = function () {
-	        this.retrieveData();
+	        this.retrieveData(this.currentPage);
+	    };
+	    QuestionsList.prototype.ensureCorrectPageNumber = function (page) {
+	        if (page === void 0) { page = 0; }
+	        if (page > 1) {
+	            page--;
+	        }
+	        else {
+	            page = 0;
+	        }
+	        return page;
 	    };
 	    QuestionsList.prototype.retrieveData = function (page) {
 	        var _this = this;
+	        page = this.ensureCorrectPageNumber(page);
+	        console.debug("RetrieveData called with page number: " + page);
 	        this.questions
-	            .getAll(page - 1)
+	            .getAll(page)
 	            .subscribe(function (q) {
 	            _this.questionsList = q.entity;
 	            _this.totalItems = q.page.totalElements;
@@ -20461,7 +20472,7 @@ webpackJsonp([0],[
 	            templateUrl: 'app/components/questions-list/questions-list.html',
 	            styleUrls: ['app/components/questions-list/questions-list.css'],
 	            providers: [question_1.QuestionServices],
-	            directives: [ng2_bootstrap_1.PAGINATION_DIRECTIVES],
+	            directives: [ng2_bootstrap_1.PAGINATION_DIRECTIVES, question_2.Question],
 	            pipes: []
 	        }), 
 	        __metadata('design:paramtypes', [question_1.QuestionServices, router_deprecated_1.RouteParams])
@@ -20485,7 +20496,7 @@ webpackJsonp([0],[
 	var __metadata = (this && this.__metadata) || function (k, v) {
 	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 	};
-	var core_1 = __webpack_require__(4);
+	var core_1 = __webpack_require__(7);
 	var http_1 = __webpack_require__(280);
 	var serverRoutes_1 = __webpack_require__(501);
 	var PagableEntity_1 = __webpack_require__(502);
@@ -20540,7 +20551,7 @@ webpackJsonp([0],[
 	var __metadata = (this && this.__metadata) || function (k, v) {
 	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 	};
-	var core_1 = __webpack_require__(4);
+	var core_1 = __webpack_require__(7);
 	var BASE_PATH = 'https://question--answer.herokuapp.com/api';
 	var ServerRoutes = (function () {
 	    function ServerRoutes() {
@@ -20579,7 +20590,7 @@ webpackJsonp([0],[
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	var Observable_1 = __webpack_require__(38);
+	var Observable_1 = __webpack_require__(41);
 	var map_1 = __webpack_require__(504);
 	Observable_1.Observable.prototype.map = map_1.map;
 	//# sourceMappingURL=map.js.map
@@ -20594,7 +20605,7 @@ webpackJsonp([0],[
 	    function __() { this.constructor = d; }
 	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 	};
-	var Subscriber_1 = __webpack_require__(43);
+	var Subscriber_1 = __webpack_require__(46);
 	/**
 	 * Applies a given `project` function to each value emitted by the source
 	 * Observable, and emits the resulting values as an Observable.
@@ -20674,6 +20685,164 @@ webpackJsonp([0],[
 	    return MapSubscriber;
 	}(Subscriber_1.Subscriber));
 	//# sourceMappingURL=map.js.map
+
+/***/ },
+/* 505 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+	    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+	    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+	    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+	    return c > 3 && r && Object.defineProperty(target, key, r), r;
+	};
+	var __metadata = (this && this.__metadata) || function (k, v) {
+	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+	};
+	var core_1 = __webpack_require__(7);
+	var Question = (function () {
+	    function Question() {
+	    }
+	    __decorate([
+	        core_1.Input(), 
+	        __metadata('design:type', Object)
+	    ], Question.prototype, "question", void 0);
+	    Question = __decorate([
+	        core_1.Component({
+	            selector: 'question',
+	            template: "\n    <div class=\"alert alert-dismissible alert-info\">\n        <button type=\"button\" class=\"close\" data-dismiss=\"alert\">\u00D7</button>\n        <strong class=\"wrap\"><a href=\"#\">{{question.title}}</a></strong>\n    </div>\n  "
+	        }), 
+	        __metadata('design:paramtypes', [])
+	    ], Question);
+	    return Question;
+	}());
+	exports.Question = Question;
+	
+
+/***/ },
+/* 506 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+	    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+	    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+	    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+	    return c > 3 && r && Object.defineProperty(target, key, r), r;
+	};
+	var __metadata = (this && this.__metadata) || function (k, v) {
+	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+	};
+	var core_1 = __webpack_require__(7);
+	var router_deprecated_1 = __webpack_require__(301);
+	var question_1 = __webpack_require__(500);
+	var customViews_1 = __webpack_require__(507);
+	var answer_1 = __webpack_require__(508);
+	var QuestionDetail = (function () {
+	    function QuestionDetail(routeParams, customViewsQuestionService) {
+	        this.routeParams = routeParams;
+	        this.customViewsQuestionService = customViewsQuestionService;
+	    }
+	    QuestionDetail.prototype.ngOnInit = function () {
+	        var _this = this;
+	        var id = parseInt(this.routeParams.get('id'));
+	        this.customViewsQuestionService.getQuestionBy(id)
+	            .subscribe(function (x) { return _this.question = x; });
+	    };
+	    QuestionDetail = __decorate([
+	        core_1.Component({
+	            selector: 'question-detail',
+	            templateUrl: 'app/components/question-detail/question-detail.html',
+	            directives: [answer_1.Answer],
+	            providers: [question_1.QuestionServices, customViews_1.CustomViewsServices]
+	        }), 
+	        __metadata('design:paramtypes', [router_deprecated_1.RouteParams, customViews_1.CustomViewsServices])
+	    ], QuestionDetail);
+	    return QuestionDetail;
+	}());
+	exports.QuestionDetail = QuestionDetail;
+	
+
+/***/ },
+/* 507 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+	    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+	    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+	    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+	    return c > 3 && r && Object.defineProperty(target, key, r), r;
+	};
+	var __metadata = (this && this.__metadata) || function (k, v) {
+	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+	};
+	var core_1 = __webpack_require__(7);
+	var http_1 = __webpack_require__(280);
+	var serverRoutes_1 = __webpack_require__(501);
+	__webpack_require__(503);
+	var CustomViewsServices = (function () {
+	    function CustomViewsServices(http) {
+	        this.http = http;
+	    }
+	    CustomViewsServices.prototype.getQuestionBy = function (id) {
+	        return this.http
+	            .get(serverRoutes_1.ServerRoutes.CUSTOM_VIEWS + "/question/" + id)
+	            .map(function (res) { return res.json(); });
+	    };
+	    CustomViewsServices.prototype.upvoteAnswer = function (id) {
+	        return this.http
+	            .get(serverRoutes_1.ServerRoutes.CUSTOM_VIEWS + "/answer/" + id + "/upvoteAnswer")
+	            .map(function (res) { return res.json(); });
+	    };
+	    CustomViewsServices.prototype.downvoteAnswer = function (id) {
+	        return this.http
+	            .get(serverRoutes_1.ServerRoutes.CUSTOM_VIEWS + "/answer/" + id + "/unvoteAnswer")
+	            .map(function (res) { return res.json(); });
+	    };
+	    CustomViewsServices = __decorate([
+	        core_1.Injectable(), 
+	        __metadata('design:paramtypes', [http_1.Http])
+	    ], CustomViewsServices);
+	    return CustomViewsServices;
+	}());
+	exports.CustomViewsServices = CustomViewsServices;
+	
+
+/***/ },
+/* 508 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+	    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+	    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+	    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+	    return c > 3 && r && Object.defineProperty(target, key, r), r;
+	};
+	var __metadata = (this && this.__metadata) || function (k, v) {
+	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+	};
+	var core_1 = __webpack_require__(7);
+	var Answer = (function () {
+	    function Answer() {
+	    }
+	    __decorate([
+	        core_1.Input(), 
+	        __metadata('design:type', Object)
+	    ], Answer.prototype, "answer", void 0);
+	    Answer = __decorate([
+	        core_1.Component({
+	            selector: 'answer',
+	            template: "\n    <blockquote class=\"blockquote-reverse\">\n      <p>{{answer.content}}</p>\n      <span>Votes: {{answer.votesCount}}</span>\n      <a href=\"#\" class=\"btn btn-success\" ng-click=\"upVote(answer.answerId)\">Vote</a>\n      <a href=\"#\" class=\"btn btn-warning\" ng-click=\"unVote(answer.answerId)\">Unvote</a>\n    </blockquote>\n  "
+	        }), 
+	        __metadata('design:paramtypes', [])
+	    ], Answer);
+	    return Answer;
+	}());
+	exports.Answer = Answer;
+	
 
 /***/ }
 ]);

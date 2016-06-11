@@ -1,3 +1,5 @@
 export interface IAnswer {
-    content?: string
+  content: string,
+  answerId: number,
+  votesCount: number
 }

@@ -25,7 +25,7 @@ export class QuestionServices {
       .map(res => new PagableEntity<IQuestion>(res.page, res._embedded.questions));
   }
 
-  getQuestionBy(id: number, entity?: string): IQuestion {
+  getQuestionBy(id: number, entity?: string): Observable<IQuestion> {
     var url = `${ServerRoutes.QUESTIONS}/${id}`;
 
     if (entity) {
@@ -35,7 +35,7 @@ export class QuestionServices {
     return this.http.get(url).map(res => res.json());
   }
 
-  getQuestionsAnswers(id: number): IAnswer {
+  getQuestionsAnswers(id: number): Observable<IAnswer> {
     return this.getQuestionBy(id, 'answers');
   }
 
