@@ -1,15 +1,15 @@
 import {Injectable} from "@angular/core";
-import {Http, URLSearchParams} from "@angular/http";
+import {Http} from "@angular/http";
 import {ServerRoutes} from "./serverRoutes";
-import {IQuestion} from "../models/Question";
+import {IQuestionDetails} from "../models/QuestionDetails";
+import {Observable} from "rxjs/Observable";
 import "rxjs/add/operator/map";
 
 @Injectable()
 export class CustomViewsServices {
-
   constructor(private http: Http) { }
 
-  getQuestionById(id: string): IQuestion {
+  getQuestionBy(id: number): Observable<IQuestionDetails> {
     return this.http
       .get(`${ServerRoutes.CUSTOM_VIEWS}/question/${id}`)
       .map(res => res.json());

@@ -11,6 +11,4 @@ import {AlertComponent, DATEPICKER_DIRECTIVES} from 'ng2-bootstrap/ng2-bootstrap
 })
 export class Home {
   date: Date = new Date();
-  constructor() { }
-  ngOnInit() { }
 }

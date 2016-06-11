@@ -1,11 +1,10 @@
-
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Router, RouteParams, RouteConfig, ROUTER_DIRECTIVES} from '@angular/router-deprecated';
 import {PAGINATION_DIRECTIVES} from 'ng2-bootstrap';
 import {PageChangedEvent} from 'ng2-bootstrap/components/pagination/pagination.component';
 
 import {QuestionServices} from '../../services/question';
-import {Observable} from 'rxjs/Observable';
+import {Question} from '../../components/question/question';
 import {IQuestion} from '../../models/Question';
 import {PagableEntity} from '../../models/PagableEntity';
 
@@ -14,17 +13,17 @@ import {PagableEntity} from '../../models/PagableEntity';
   templateUrl: 'app/components/questions-list/questions-list.html',
   styleUrls: ['app/components/questions-list/questions-list.css'],
   providers: [QuestionServices],
-  directives: [PAGINATION_DIRECTIVES],
+  directives: [PAGINATION_DIRECTIVES, Question],
   pipes: []
 })
-export class QuestionsList {
+export class QuestionsList implements OnInit {
   totalItems: number;
   currentPage: number = 0;
   questionsList: IQuestion[];
   itemsPerPage: number;
 
-  constructor(public questions: QuestionServices, public params: RouteParams) {
-    let page = parseInt(params.get('page'));
+  constructor(private questions: QuestionServices, private routeParams: RouteParams) {
+    let page = parseInt(routeParams.get('page'));
 
     if (page) {
       this.currentPage = page;
