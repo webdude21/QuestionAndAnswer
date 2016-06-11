@@ -3,10 +3,12 @@ import {Router, RouteParams, RouteConfig, ROUTER_DIRECTIVES} from '@angular/rout
 
 import {QuestionServices} from '../../services/question';
 import {CustomViewsServices} from '../../services/customViews';
-import {IQuestionDetails} from "../../models/QuestionDetails";
+import {IQuestionDetails} from '../../models/QuestionDetails';
+import {Answer} from '../../components/answer/answer';
 @Component({
   selector: 'question-detail',
   templateUrl: 'app/components/question-detail/question-detail.html',
+  directives: [Answer],
   providers: [QuestionServices, CustomViewsServices]
 })
 export class QuestionDetail implements OnInit {

@@ -3,7 +3,7 @@
         <p>{{question.question.title}} - published by {{question.user.firstName}} {{question.user.lastName}}</p>
         <small class="wrap">{{question.question.content}}</small>
     </blockquote>
-    <div ngFor="let question of question.answers">
-        <answer answer="answer"></answer>
+    <div *ngFor="let answer of question.answers">
+        <answer [answer]="answer"></answer>
     </div>
 </div>
