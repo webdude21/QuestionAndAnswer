@@ -20505,7 +20505,19 @@ webpackJsonp([0],[
 	    function QuestionServices(http) {
 	        this.http = http;
 	    }
+	    QuestionServices.prototype.mapQuestions = function (questions) {
+	        var downloadedQuestions = questions.map(function (q) {
+	            var question = {
+	                id: parseInt(q._links.self.href.split("/").slice(-1)),
+	                content: q.content,
+	                title: q.title
+	            };
+	            return question;
+	        });
+	        return downloadedQuestions;
+	    };
 	    QuestionServices.prototype.getAll = function (page) {
+	        var _this = this;
 	        var params = new http_1.URLSearchParams();
 	        if (page) {
 	            params.set('page', page.toString());
@@ -20513,7 +20525,7 @@ webpackJsonp([0],[
 	        return this.http
 	            .get("" + serverRoutes_1.ServerRoutes.QUESTIONS, { search: params })
 	            .map(function (res) { return res.json(); })
-	            .map(function (res) { return new PagableEntity_1.PagableEntity(res.page, res._embedded.questions); });
+	            .map(function (res) { return new PagableEntity_1.PagableEntity(res.page, _this.mapQuestions(res._embedded.questions)); });
 	    };
 	    QuestionServices.prototype.getQuestionBy = function (id, entity) {
 	        var url = serverRoutes_1.ServerRoutes.QUESTIONS + "/" + id;
@@ -20701,6 +20713,7 @@ webpackJsonp([0],[
 	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 	};
 	var core_1 = __webpack_require__(7);
+	var router_deprecated_1 = __webpack_require__(301);
 	var Question = (function () {
 	    function Question() {
 	    }
@@ -20711,7 +20724,8 @@ webpackJsonp([0],[
 	    Question = __decorate([
 	        core_1.Component({
 	            selector: 'question',
-	            template: "\n    <div class=\"alert alert-dismissible alert-info\">\n        <button type=\"button\" class=\"close\" data-dismiss=\"alert\">\u00D7</button>\n        <strong class=\"wrap\"><a href=\"#\">{{question.title}}</a></strong>\n    </div>\n  "
+	            template: "\n    <div class=\"alert alert-dismissible alert-info\">\n        <button type=\"button\" class=\"close\" data-dismiss=\"alert\">\u00D7</button>\n        <strong class=\"wrap\"><a [routerLink]=\"['/QuestionDetail', {id: question.id}]\">{{question.title}}</a></strong>\n    </div>\n  ",
+	            directives: [router_deprecated_1.ROUTER_DIRECTIVES]
 	        }), 
 	        __metadata('design:paramtypes', [])
 	    ], Question);

@@ -12,7 +12,20 @@ export class QuestionServices {
 
   constructor(private http: Http) { }
 
-  getAll(page?: number): Observable<PagableEntity<IQuestion>> {
+  private mapQuestions(questions) {
+    let downloadedQuestions = questions.map(q => {
+      let question: IQuestion = {
+        id: parseInt(q._links.self.href.split("/").slice(-1)),
+        content: q.content,
+        title: q.title
+      };
+
+      return question;
+    });
+    return downloadedQuestions;
+  }
+
+  public getAll(page?: number): Observable<PagableEntity<IQuestion>> {
     let params = new URLSearchParams();
 
     if (page) {
@@ -22,10 +35,10 @@ export class QuestionServices {
     return this.http
       .get(`${ServerRoutes.QUESTIONS}`, { search: params })
       .map(res => res.json())
-      .map(res => new PagableEntity<IQuestion>(res.page, res._embedded.questions));
+      .map(res => new PagableEntity<IQuestion>(res.page, this.mapQuestions(res._embedded.questions)));
   }
 
-  getQuestionBy(id: number, entity?: string): Observable<IQuestion> {
+  public getQuestionBy(id: number, entity?: string): Observable<IQuestion> {
     var url = `${ServerRoutes.QUESTIONS}/${id}`;
 
     if (entity) {
@@ -35,11 +48,11 @@ export class QuestionServices {
     return this.http.get(url).map(res => res.json());
   }
 
-  getQuestionsAnswers(id: number): Observable<IAnswer> {
+  public getQuestionsAnswers(id: number): Observable<IAnswer> {
     return this.getQuestionBy(id, 'answers');
   }
 
-  getQuestionsUser(id: number) {
+  public getQuestionsUser(id: number) {
     return this.getQuestionBy(id, 'user');
   }
 }
