@@ -4,13 +4,13 @@ import {Router, RouteParams, RouteConfig, ROUTER_DIRECTIVES} from '@angular/rout
 
 @Component({
   selector: 'question',
+  directives: [ROUTER_DIRECTIVES],
   template: `
     <div class="alert alert-dismissible alert-info">
         <button type="button" class="close" data-dismiss="alert">×</button>
         <strong class="wrap"><a [routerLink]="['/QuestionDetail', {id: question.id}]">{{question.title}}</a></strong>
     </div>
-  `,
-  directives: [ROUTER_DIRECTIVES]
+  `
 })
 export class Question {
   @Input()
