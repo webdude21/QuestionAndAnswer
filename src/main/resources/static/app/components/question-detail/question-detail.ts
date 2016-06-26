@@ -15,6 +15,7 @@ export class QuestionDetail implements OnInit {
   private question: IQuestionDetails;
 
   constructor(private routeParams: RouteParams, private customViewsQuestionService: CustomViewsServices) { }
+  
   ngOnInit() {
     let id = parseInt(this.routeParams.get('id'));
     this.customViewsQuestionService.getQuestionBy(id)

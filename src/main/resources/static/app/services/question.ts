@@ -12,17 +12,14 @@ export class QuestionServices {
 
   constructor(private http: Http) { }
 
-  private mapQuestions(questions) {
-    let downloadedQuestions = questions.map(q => {
-      let question: IQuestion = {
+  private mapQuestions(questions): IQuestion[] {
+    return questions.map(q => {
+      return {
         id: parseInt(q._links.self.href.split("/").slice(-1)),
         content: q.content,
         title: q.title
       };
-
-      return question;
     });
-    return downloadedQuestions;
   }
 
   public getAll(page?: number): Observable<PagableEntity<IQuestion>> {
@@ -48,7 +45,7 @@ export class QuestionServices {
     return this.http.get(url).map(res => res.json());
   }
 
-  public getQuestionsAnswers(id: number): Observable<IAnswer> {
+  public getQuestionsAnswers(id: number): Observable<IQuestion> {
     return this.getQuestionBy(id, 'answers');
   }
 

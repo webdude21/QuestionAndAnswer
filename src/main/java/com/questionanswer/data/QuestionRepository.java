@@ -11,4 +11,6 @@ public interface QuestionRepository extends PagingAndSortingRepository<Question,
 	String ROUTE = "questions";
 
 	List<Question> findByTitleContaining(@Param("title") String title, Pageable pageable);
+	
+	List<Question> findByTitleStartingWith(@Param("title") String title, Pageable pageable);
 }

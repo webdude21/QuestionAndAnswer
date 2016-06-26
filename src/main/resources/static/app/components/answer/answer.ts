@@ -1,18 +1,32 @@
 import {Component, Input} from '@angular/core';
 import {IAnswer} from '../../models/Answer';
 
+import {CustomViewsServices} from '../../services/customViews';
 @Component({
   selector: 'answer',
+  providers: [CustomViewsServices],
   template: `
     <blockquote class="blockquote-reverse">
       <p>{{answer.content}}</p>
       <span>Votes: {{answer.votesCount}}</span>
-      <a href="#" class="btn btn-success" ng-click="upVote(answer.answerId)">Vote</a>
-      <a href="#" class="btn btn-warning" ng-click="unVote(answer.answerId)">Unvote</a>
+      <button class="btn btn-success" (click)="upVote(answer.answerId)">Vote</button>
+      <button class="btn btn-warning" (click)="unVote(answer.answerId)">Unvote</button>
     </blockquote>
   `
 })
 export class Answer {
+  constructor(private customViewsQuestionService: CustomViewsServices) { }
+
   @Input()
   answer: IAnswer;
+
+  upVote(answerId: number): void {
+    this.customViewsQuestionService.upvoteAnswer(answerId)
+      .then(() => this.answer.votesCount += 1);
+  }
+
+  unVote(answerId: number): void {
+    this.customViewsQuestionService.downvoteAnswer(answerId)
+      .then(() => this.answer.votesCount -= 1);
+  }
 }

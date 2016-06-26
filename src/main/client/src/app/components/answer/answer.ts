@@ -20,12 +20,12 @@ export class Answer {
   @Input()
   answer: IAnswer;
 
-  upVote(answerId: number) {
+  upVote(answerId: number): void {
     this.customViewsQuestionService.upvoteAnswer(answerId)
       .then(() => this.answer.votesCount += 1);
   }
 
-  unVote(answerId: number) {
+  unVote(answerId: number): void {
     this.customViewsQuestionService.downvoteAnswer(answerId)
       .then(() => this.answer.votesCount -= 1);
   }

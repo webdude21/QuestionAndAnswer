@@ -1,9 +1,10 @@
-import {Injectable} from "@angular/core";
-import {Http} from "@angular/http";
-import {ServerRoutes} from "./serverRoutes";
-import {IQuestionDetails} from "../models/QuestionDetails";
-import {Observable} from "rxjs/Observable";
+import {Injectable} from '@angular/core';
+import {Http, Response} from '@angular/http';
+import {ServerRoutes} from './serverRoutes';
+import {IQuestionDetails} from '../models/QuestionDetails';
+import {Observable} from 'rxjs/Observable';
 import "rxjs/add/operator/map";
+import "rxjs/add/operator/toPromise";
 
 @Injectable()
 export class CustomViewsServices {
@@ -15,15 +16,15 @@ export class CustomViewsServices {
       .map(res => res.json());
   }
 
-  upvoteAnswer(id: string) {
+  upvoteAnswer(id: number): Promise<Response> {
     return this.http
-      .get(`${ServerRoutes.CUSTOM_VIEWS}/answer/${id}/upvoteAnswer`)
-      .map(res => res.json());
+      .put(`${ServerRoutes.CUSTOM_VIEWS}/answer/${id}/upvoteAnswer`, null)
+      .toPromise();
   }
 
-  downvoteAnswer(id: string) {
+  downvoteAnswer(id: number): Promise<Response> {
     return this.http
-      .get(`${ServerRoutes.CUSTOM_VIEWS}/answer/${id}/unvoteAnswer`)
-      .map(res => res.json());
+      .put(`${ServerRoutes.CUSTOM_VIEWS}/answer/${id}/unvoteAnswer`, null)
+      .toPromise();
   }
 }

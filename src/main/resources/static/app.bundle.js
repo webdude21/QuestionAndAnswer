@@ -20506,15 +20506,13 @@ webpackJsonp([0],[
 	        this.http = http;
 	    }
 	    QuestionServices.prototype.mapQuestions = function (questions) {
-	        var downloadedQuestions = questions.map(function (q) {
-	            var question = {
+	        return questions.map(function (q) {
+	            return {
 	                id: parseInt(q._links.self.href.split("/").slice(-1)),
 	                content: q.content,
 	                title: q.title
 	            };
-	            return question;
 	        });
-	        return downloadedQuestions;
 	    };
 	    QuestionServices.prototype.getAll = function (page) {
 	        var _this = this;
@@ -20564,7 +20562,7 @@ webpackJsonp([0],[
 	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 	};
 	var core_1 = __webpack_require__(7);
-	var BASE_PATH = 'https://question--answer.herokuapp.com/api';
+	var BASE_PATH = '/api';
 	var ServerRoutes = (function () {
 	    function ServerRoutes() {
 	    }
@@ -20724,8 +20722,8 @@ webpackJsonp([0],[
 	    Question = __decorate([
 	        core_1.Component({
 	            selector: 'question',
-	            template: "\n    <div class=\"alert alert-dismissible alert-info\">\n        <button type=\"button\" class=\"close\" data-dismiss=\"alert\">\u00D7</button>\n        <strong class=\"wrap\"><a [routerLink]=\"['/QuestionDetail', {id: question.id}]\">{{question.title}}</a></strong>\n    </div>\n  ",
-	            directives: [router_deprecated_1.ROUTER_DIRECTIVES]
+	            directives: [router_deprecated_1.ROUTER_DIRECTIVES],
+	            template: "\n    <div class=\"alert alert-dismissible alert-info\">\n        <button type=\"button\" class=\"close\" data-dismiss=\"alert\">\u00D7</button>\n        <strong class=\"wrap\"><a [routerLink]=\"['/QuestionDetail', {id: question.id}]\">{{question.title}}</a></strong>\n    </div>\n  "
 	        }), 
 	        __metadata('design:paramtypes', [])
 	    ], Question);
@@ -20752,7 +20750,7 @@ webpackJsonp([0],[
 	var router_deprecated_1 = __webpack_require__(301);
 	var question_1 = __webpack_require__(500);
 	var customViews_1 = __webpack_require__(507);
-	var answer_1 = __webpack_require__(508);
+	var answer_1 = __webpack_require__(509);
 	var QuestionDetail = (function () {
 	    function QuestionDetail(routeParams, customViewsQuestionService) {
 	        this.routeParams = routeParams;
@@ -20796,6 +20794,7 @@ webpackJsonp([0],[
 	var http_1 = __webpack_require__(280);
 	var serverRoutes_1 = __webpack_require__(501);
 	__webpack_require__(503);
+	__webpack_require__(508);
 	var CustomViewsServices = (function () {
 	    function CustomViewsServices(http) {
 	        this.http = http;
@@ -20807,13 +20806,13 @@ webpackJsonp([0],[
 	    };
 	    CustomViewsServices.prototype.upvoteAnswer = function (id) {
 	        return this.http
-	            .get(serverRoutes_1.ServerRoutes.CUSTOM_VIEWS + "/answer/" + id + "/upvoteAnswer")
-	            .map(function (res) { return res.json(); });
+	            .put(serverRoutes_1.ServerRoutes.CUSTOM_VIEWS + "/answer/" + id + "/upvoteAnswer", null)
+	            .toPromise();
 	    };
 	    CustomViewsServices.prototype.downvoteAnswer = function (id) {
 	        return this.http
-	            .get(serverRoutes_1.ServerRoutes.CUSTOM_VIEWS + "/answer/" + id + "/unvoteAnswer")
-	            .map(function (res) { return res.json(); });
+	            .put(serverRoutes_1.ServerRoutes.CUSTOM_VIEWS + "/answer/" + id + "/unvoteAnswer", null)
+	            .toPromise();
 	    };
 	    CustomViewsServices = __decorate([
 	        core_1.Injectable(), 
@@ -20829,6 +20828,16 @@ webpackJsonp([0],[
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
+	var Observable_1 = __webpack_require__(41);
+	var toPromise_1 = __webpack_require__(60);
+	Observable_1.Observable.prototype.toPromise = toPromise_1.toPromise;
+	//# sourceMappingURL=toPromise.js.map
+
+/***/ },
+/* 509 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
 	var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
 	    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
 	    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -20839,9 +20848,21 @@ webpackJsonp([0],[
 	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 	};
 	var core_1 = __webpack_require__(7);
+	var customViews_1 = __webpack_require__(507);
 	var Answer = (function () {
-	    function Answer() {
+	    function Answer(customViewsQuestionService) {
+	        this.customViewsQuestionService = customViewsQuestionService;
 	    }
+	    Answer.prototype.upVote = function (answerId) {
+	        var _this = this;
+	        this.customViewsQuestionService.upvoteAnswer(answerId)
+	            .then(function () { return _this.answer.votesCount += 1; });
+	    };
+	    Answer.prototype.unVote = function (answerId) {
+	        var _this = this;
+	        this.customViewsQuestionService.downvoteAnswer(answerId)
+	            .then(function () { return _this.answer.votesCount -= 1; });
+	    };
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Object)
@@ -20849,9 +20870,10 @@ webpackJsonp([0],[
 	    Answer = __decorate([
 	        core_1.Component({
 	            selector: 'answer',
-	            template: "\n    <blockquote class=\"blockquote-reverse\">\n      <p>{{answer.content}}</p>\n      <span>Votes: {{answer.votesCount}}</span>\n      <a href=\"#\" class=\"btn btn-success\" ng-click=\"upVote(answer.answerId)\">Vote</a>\n      <a href=\"#\" class=\"btn btn-warning\" ng-click=\"unVote(answer.answerId)\">Unvote</a>\n    </blockquote>\n  "
+	            providers: [customViews_1.CustomViewsServices],
+	            template: "\n    <blockquote class=\"blockquote-reverse\">\n      <p>{{answer.content}}</p>\n      <span>Votes: {{answer.votesCount}}</span>\n      <button class=\"btn btn-success\" (click)=\"upVote(answer.answerId)\">Vote</button>\n      <button class=\"btn btn-warning\" (click)=\"unVote(answer.answerId)\">Unvote</button>\n    </blockquote>\n  "
 	        }), 
-	        __metadata('design:paramtypes', [])
+	        __metadata('design:paramtypes', [customViews_1.CustomViewsServices])
 	    ], Answer);
 	    return Answer;
 	}());
