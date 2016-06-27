@@ -1,11 +1,12 @@
 package com.questionanswer.model;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import java.util.HashSet;
-import java.util.Set;
 
 @Entity
 public class Answer extends BaseEntityAudit {

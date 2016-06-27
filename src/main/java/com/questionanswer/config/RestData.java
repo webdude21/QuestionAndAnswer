@@ -13,6 +13,7 @@ public class RestData extends RepositoryRestMvcConfiguration {
 
 	private static final int CACHE_TIME = 60 * 60 * 24; // 24 hours
 
+	@Override
 	protected void configureRepositoryRestConfiguration(RepositoryRestConfiguration config) {
 		config.setBasePath(Routes.API_BASE_ROUTE);
 	}

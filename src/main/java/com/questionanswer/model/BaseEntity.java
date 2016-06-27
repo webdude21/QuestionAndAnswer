@@ -1,9 +1,16 @@
 package com.questionanswer.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
-import javax.persistence.*;
 import java.io.Serializable;
+
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.MappedSuperclass;
+import javax.persistence.Version;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @MappedSuperclass
 public abstract class BaseEntity implements Serializable {

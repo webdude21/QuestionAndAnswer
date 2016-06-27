@@ -1,23 +1,22 @@
 package com.questionanswer;
 
+import static org.hamcrest.Matchers.equalTo;
+import static org.junit.Assert.assertThat;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+
+import org.junit.Test;
+import org.springframework.security.crypto.password.PasswordEncoder;
+
 import com.questionanswer.data.AnswerRepository;
 import com.questionanswer.data.UserRepository;
 import com.questionanswer.model.Answer;
 import com.questionanswer.model.User;
-import com.questionanswer.service.UserService;
 import com.questionanswer.service.UserServiceImpl;
 import com.questionanswer.service.VotingService;
 import com.questionanswer.service.VotingServiceImpl;
-import org.junit.Test;
-import org.springframework.security.crypto.password.PasswordEncoder;
-
-import static org.hamcrest.Matchers.equalTo;
-import static org.junit.Assert.assertThat;
-import static org.mockito.Mockito.*;
 
 public class VotingServiceTest {
-
-	private static final String ENCODED_PASSWORD = "encodedPassword";
 
 	private static final String RAW_PASSWORD = "somePassword";
 
@@ -31,8 +30,6 @@ public class VotingServiceTest {
 
 	private UserRepository mockedUserRepo;
 
-	private UserService userService;
-
 	private AnswerRepository mockedAnswerRepo;
 
 	private Answer mockedAnswer;
@@ -44,7 +41,7 @@ public class VotingServiceTest {
 		mockedUserRepo = mock(UserRepository.class);
 		mockedPasswordEncoder = mock(PasswordEncoder.class);
 		mockedAnswerRepo = mock(AnswerRepository.class);
-		userService = new UserServiceImpl(mockedUserRepo, mockedPasswordEncoder);
+		new UserServiceImpl(mockedUserRepo, mockedPasswordEncoder);
 		voteService = new VotingServiceImpl(mockedAnswerRepo, mockedUserRepo);
 		mockedAnswer = new Answer();
 	}
@@ -105,12 +102,6 @@ public class VotingServiceTest {
 		setupValidCase();
 		voteService.upVote(mockedUser, VALID_ANSWER_ID);
 		voteService.unVote(mockedUser, VALID_ANSWER_ID);
-	}
-
-	private void relevantMethodsCalled() {
-		verify(mockedUserRepo, times(1)).findOneByEmail(VALID_EMAIL);
-		verify(mockedAnswerRepo, times(1)).findOne(VALID_ANSWER_ID);
-		verify(mockedAnswerRepo, times(1)).save(mockedAnswer);
 	}
 
 	private void setupValidCase() {

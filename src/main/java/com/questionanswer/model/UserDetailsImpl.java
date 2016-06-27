@@ -1,10 +1,10 @@
 package com.questionanswer.model;
 
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-
 import java.security.Principal;
 import java.util.Collection;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 public class UserDetailsImpl extends User implements UserDetails, Principal {
 	private static final long serialVersionUID = 1L;

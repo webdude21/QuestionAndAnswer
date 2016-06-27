@@ -1,8 +1,8 @@
 package com.questionanswer.service;
 
-import org.springframework.stereotype.Service;
-
 import java.security.Principal;
+
+import org.springframework.stereotype.Service;
 
 @Service
 public interface VotingService {

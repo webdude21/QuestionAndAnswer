@@ -1,7 +1,5 @@
 package com.questionanswer.security;
 
-import com.questionanswer.config.Routes;
-import com.questionanswer.data.QuestionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -13,6 +11,9 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+
+import com.questionanswer.config.Routes;
+import com.questionanswer.data.QuestionRepository;
 
 @Configuration
 @EnableGlobalMethodSecurity()

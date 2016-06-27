@@ -1,11 +1,12 @@
 package com.questionanswer.data;
 
-import com.questionanswer.model.Question;
+import java.util.List;
+
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.query.Param;
 
-import java.util.List;
+import com.questionanswer.model.Question;
 
 public interface QuestionRepository extends PagingAndSortingRepository<Question, Long> {
 	String ROUTE = "questions";

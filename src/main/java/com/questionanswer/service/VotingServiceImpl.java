@@ -1,14 +1,16 @@
 package com.questionanswer.service;
 
+import java.security.Principal;
+
+import javax.transaction.Transactional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.questionanswer.data.AnswerRepository;
 import com.questionanswer.data.UserRepository;
 import com.questionanswer.model.Answer;
 import com.questionanswer.model.User;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import javax.transaction.Transactional;
-import java.security.Principal;
 
 @Service
 public class VotingServiceImpl implements VotingService {

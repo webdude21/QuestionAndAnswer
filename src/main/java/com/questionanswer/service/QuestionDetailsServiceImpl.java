@@ -1,15 +1,17 @@
 package com.questionanswer.service;
 
-import com.questionanswer.data.QuestionRepository;
-import com.questionanswer.model.AnswerAndVoteCount;
-import com.questionanswer.model.Question;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import javax.transaction.Transactional;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
+
+import javax.transaction.Transactional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.questionanswer.data.QuestionRepository;
+import com.questionanswer.model.AnswerAndVoteCount;
+import com.questionanswer.model.Question;
 
 @Service
 public class QuestionDetailsServiceImpl implements QuestionDetailService {

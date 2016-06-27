@@ -1,10 +1,16 @@
 package com.questionanswer.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
-import javax.persistence.*;
-import javax.validation.constraints.Size;
 import java.util.Date;
+
+import javax.persistence.Column;
+import javax.persistence.MappedSuperclass;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.validation.constraints.Size;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @MappedSuperclass
 public abstract class BaseEntityAudit extends BaseEntity {

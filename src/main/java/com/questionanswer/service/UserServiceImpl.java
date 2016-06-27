@@ -1,13 +1,14 @@
 package com.questionanswer.service;
 
-import com.questionanswer.data.UserRepository;
-import com.questionanswer.model.User;
-import com.questionanswer.model.UserDetailsImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import com.questionanswer.data.UserRepository;
+import com.questionanswer.model.User;
+import com.questionanswer.model.UserDetailsImpl;
 
 @Service
 public class UserServiceImpl implements UserService {

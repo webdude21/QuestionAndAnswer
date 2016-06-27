@@ -1,5 +1,11 @@
 package com.questionanswer.service;
 
+import java.util.ArrayList;
+
+import org.apache.commons.lang3.RandomStringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.questionanswer.data.AnswerRepository;
 import com.questionanswer.data.QuestionRepository;
 import com.questionanswer.data.RoleRepository;
@@ -8,11 +14,6 @@ import com.questionanswer.model.Answer;
 import com.questionanswer.model.Question;
 import com.questionanswer.model.Role;
 import com.questionanswer.model.User;
-import org.apache.commons.lang3.RandomStringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
 
 @Service
 public class SeederServiceImpl implements SeederService {
