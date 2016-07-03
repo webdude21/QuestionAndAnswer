@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="825c28a9-d392-4ab3-8b3f-6b82ac2f4acf" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/QuestionAnswer.iml" afterPath="$PROJECT_DIR$/QuestionAnswer.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/client/src/app/services/serverRoutes.ts" afterPath="$PROJECT_DIR$/src/main/client/src/app/services/serverRoutes.ts" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/questionanswer/config/RestData.java" afterPath="$PROJECT_DIR$/src/main/java/com/questionanswer/config/RestData.java" />
     </list>
     <ignored path="QuestionAndAnswer.iws" />
@@ -41,11 +41,11 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/com/questionanswer/config/RestData.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="342">
-              <caret line="19" column="13" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
+              <caret line="34" column="0" selection-start-line="34" selection-start-column="0" selection-end-line="52" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1236#1237#0" expanded="true" />
-                <element signature="e#1269#1270#0" expanded="true" />
+                <element signature="e#1630#1631#0" expanded="true" />
+                <element signature="e#1672#1673#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -587,6 +587,14 @@
       <workItem from="1465644970075" duration="487000" />
       <workItem from="1465671823162" duration="1220000" />
     </task>
+    <task id="LOCAL-00001" summary="added cors support">
+      <created>1467572367131</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1467572367131</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -630,6 +638,10 @@
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="added cors support" />
+    <option name="LAST_COMMIT_MESSAGE" value="added cors support" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -933,14 +945,22 @@
         </state>
       </provider>
     </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-web/4.2.6.RELEASE/spring-web-4.2.6.RELEASE.jar!/org/springframework/web/cors/CorsConfiguration.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="262">
+          <caret line="123" column="26" selection-start-line="123" selection-start-column="19" selection-end-line="123" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/questionanswer/config/RestData.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="342">
-          <caret line="19" column="13" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
+          <caret line="34" column="0" selection-start-line="34" selection-start-column="0" selection-end-line="52" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1236#1237#0" expanded="true" />
-            <element signature="e#1269#1270#0" expanded="true" />
+            <element signature="e#1630#1631#0" expanded="true" />
+            <element signature="e#1672#1673#0" expanded="true" />
           </folding>
         </state>
       </provider>
