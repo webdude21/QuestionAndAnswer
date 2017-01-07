@@ -1,7 +1,6 @@
-import {Component, Input} from '@angular/core';
-import {IAnswer} from '../../models/Answer';
-
-import {CustomViewsServices} from '../../services/customViews';
+import { Component, Input } from "@angular/core";
+import { IAnswer } from "../../models/Answer";
+import { CustomViewsServices } from "../../services/customViews";
 @Component({
   selector: 'answer',
   providers: [CustomViewsServices],
@@ -15,7 +14,8 @@ import {CustomViewsServices} from '../../services/customViews';
   `
 })
 export class Answer {
-  constructor(private customViewsQuestionService: CustomViewsServices) { }
+  constructor(private customViewsQuestionService: CustomViewsServices) {
+  }
 
   @Input()
   answer: IAnswer;

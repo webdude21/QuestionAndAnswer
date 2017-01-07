@@ -1,10 +1,9 @@
-import {Component} from '@angular/core';
-import {Router, RouteConfig, ROUTER_DIRECTIVES} from '@angular/router-deprecated';
-
-import {Home} from './components/home/home';
-import {About} from './components/about/about';
-import {QuestionsList} from './components/questions-list/questions-list';
-import {QuestionDetail} from './components/question-detail/question-detail';
+import { Component } from "@angular/core";
+import { Router, RouteConfig, ROUTER_DIRECTIVES } from "@angular/router-deprecated";
+import { Home } from "./components/home/home";
+import { About } from "./components/about/about";
+import { QuestionsList } from "./components/questions-list/questions-list";
+import { QuestionDetail } from "./components/question-detail/question-detail";
 
 @Component({
   selector: 'seed-app',
@@ -20,5 +19,6 @@ import {QuestionDetail} from './components/question-detail/question-detail';
   { path: '/questions-list', component: QuestionsList, name: 'QuestionsList' }
 ])
 export class SeedApp {
-  constructor() { }
+  constructor() {
+  }
 }

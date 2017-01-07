@@ -1,5 +1,5 @@
-import {Component} from '@angular/core';
-import {AlertComponent, DATEPICKER_DIRECTIVES} from 'ng2-bootstrap/ng2-bootstrap';
+import { Component } from "@angular/core";
+import { AlertComponent, DATEPICKER_DIRECTIVES } from "ng2-bootstrap/ng2-bootstrap";
 
 @Component({
   selector: 'home',

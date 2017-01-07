@@ -1,12 +1,10 @@
-import {Component, OnInit} from '@angular/core';
-import {Router, RouteParams, RouteConfig, ROUTER_DIRECTIVES} from '@angular/router-deprecated';
-import {PAGINATION_DIRECTIVES} from 'ng2-bootstrap';
-import {PageChangedEvent} from 'ng2-bootstrap/components/pagination/pagination.component';
-
-import {QuestionServices} from '../../services/question';
-import {Question} from '../../components/question/question';
-import {IQuestion} from '../../models/Question';
-import {PagableEntity} from '../../models/PagableEntity';
+import { Component, OnInit } from "@angular/core";
+import { Router, RouteParams, RouteConfig, ROUTER_DIRECTIVES } from "@angular/router-deprecated";
+import { PAGINATION_DIRECTIVES } from "ng2-bootstrap";
+import { PageChangedEvent } from "ng2-bootstrap/components/pagination/pagination.component";
+import { QuestionServices } from "../../services/question";
+import { Question } from "../../components/question/question";
+import { IQuestion } from "../../models/Question";
 
 @Component({
   selector: 'questions-list',

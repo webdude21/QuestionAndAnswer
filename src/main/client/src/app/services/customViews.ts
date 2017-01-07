@@ -1,14 +1,15 @@
-import {Injectable} from '@angular/core';
-import {Http, Response} from '@angular/http';
-import {ServerRoutes} from './serverRoutes';
-import {IQuestionDetails} from '../models/QuestionDetails';
-import {Observable} from 'rxjs/Observable';
+import { Injectable } from "@angular/core";
+import { Http, Response } from "@angular/http";
+import { ServerRoutes } from "./serverRoutes";
+import { IQuestionDetails } from "../models/QuestionDetails";
+import { Observable } from "rxjs/Observable";
 import "rxjs/add/operator/map";
 import "rxjs/add/operator/toPromise";
 
 @Injectable()
 export class CustomViewsServices {
-  constructor(private http: Http) { }
+  constructor(private http: Http) {
+  }
 
   getQuestionBy(id: number): Observable<IQuestionDetails> {
     return this.http

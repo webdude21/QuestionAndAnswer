@@ -1,7 +1,6 @@
-import {IPage} from './Page';
-import {IQuestion} from './Question';
-import {IAnswer} from './Answer';
-import {IUser} from './User';
+import { IQuestion } from "./Question";
+import { IAnswer } from "./Answer";
+import { IUser } from "./User";
 
 export interface IQuestionDetails {
   question: IQuestion;

@@ -1,16 +1,16 @@
-import {Injectable} from "@angular/core";
-import {Http, URLSearchParams} from "@angular/http";
-import {ServerRoutes} from "./serverRoutes";
-import {IQuestion} from "../models/Question";
-import {IAnswer} from "../models/Answer";
-import {PagableEntity} from '../models/PagableEntity';
-import {Observable} from "rxjs/Observable";
+import { Injectable } from "@angular/core";
+import { Http, URLSearchParams } from "@angular/http";
+import { ServerRoutes } from "./serverRoutes";
+import { IQuestion } from "../models/Question";
+import { PagableEntity } from "../models/PagableEntity";
+import { Observable } from "rxjs/Observable";
 import "rxjs/add/operator/map";
 
 @Injectable()
 export class QuestionServices {
 
-  constructor(private http: Http) { }
+  constructor(private http: Http) {
+  }
 
   private mapQuestions(questions): IQuestion[] {
     return questions.map(q => {

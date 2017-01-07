@@ -1,6 +1,6 @@
-import {Component, Input} from '@angular/core';
-import {IQuestion} from '../../models/Question';
-import {Router, RouteParams, RouteConfig, ROUTER_DIRECTIVES} from '@angular/router-deprecated';
+import { Component, Input } from "@angular/core";
+import { IQuestion } from "../../models/Question";
+import { Router, RouteParams, RouteConfig, ROUTER_DIRECTIVES } from "@angular/router-deprecated";
 
 @Component({
   selector: 'question',
